@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>探墟界 · 仙契录</title>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background: #e2d4bd;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    position: relative;
+    background-image: repeating-linear-gradient(0deg, rgba(120, 85, 50, 0.06) 0px, rgba(120, 85, 50, 0.06) 1px, transparent 1px, transparent 12px);
+    background-size: 100% 12px;
+    font-family: 'Segoe UI', 'Roboto', 'Noto Sans CJK SC', system-ui, sans-serif;
+}
+.petals-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; overflow: hidden; opacity: 0.55; }
+.petal { position: absolute; background: radial-gradient(ellipse at 30% 40%, #ffe6cd, #f5cfa8); width: 12px; height: 18px; border-radius: 80% 0 70% 0; transform: rotate(25deg); opacity: 0.7; filter: blur(0.4px); animation: fall linear forwards; }
+@keyframes fall { 0% { transform: translateY(-12vh) rotate(0deg); opacity: 0.75; } 100% { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
+.app-container {
+    max-width: 1200px;
+    width: 100%;
+    background: #fffef8;
+    border-radius: 22px;
+}
+.corner-deco { position: absolute; width: 26px; height: 26px; border: 1.5px solid #bc9468; border-radius: 2px; pointer-events: none; opacity: 0.55; }
+.corner-tl { top: 18px; left: 18px; border-right: none; border-bottom: none; border-radius: 2px 0 0 0; }
+.corner-tr { top: 18px; right: 18px; border-left: none; border-bottom: none; border-radius: 0 2px 0 0; }
+.corner-bl { bottom: 18px; left: 18px; border-right: none; border-top: none; border-radius: 0 0 0 2px; }
+.corner-br { bottom: 18px; right: 18px; border-left: none; border-top: none; border-radius: 0 0 2px 0; }
+.seal { position: absolute; bottom: 22px; right: 28px; width: 58px; height: 58px; opacity: 0.75; pointer-events: none; z-index: 6; }
+.main-content { padding: 1.2rem 1.8rem; }
+.nav-bar { display: flex; justify-content: center; gap: 1.8rem; padding-bottom: 1.2rem; }
+.nav-btn { font-size: 1.3rem; font-weight: 550; font-family: 'Ma Shan Zheng', 'ZCOOL XiaoWei', serif; background: #f6efdf; border: none; padding: 0.45rem 1.8rem; border-radius: 48px; color: #8c5a34; cursor: pointer; transition: all 0.2s ease; letter-spacing: 3px; box-shadow: 0 2px 4px rgba(0,0,0,0.04); border: 1px solid #ecdbba; position: relative; overflow: hidden; }
+.nav-btn::after { content: ''; position: absolute; top: -50%; left: -80%; width: 180%; height: 200%; background: linear-gradient(120deg, rgba(255,245,200,0) 20%, rgba(255,240,170,0.5) 60%, rgba(255,245,200,0) 90%); transform: rotate(25deg); transition: left 0.5s ease; pointer-events: none; }
+.nav-btn:hover::after { left: 120%; }
+.nav-btn:hover { transform: translateY(-2px); background: #fcf3e4; border-color: #dbb27c; box-shadow: 0 6px 12px rgba(100, 65, 30, 0.1); }
+.nav-btn.active { background: #ddbc8c; color: #3e2a1c; border-color: #b57a44; box-shadow: inset 0 1px 3px #fff0cf, 0 3px 6px rgba(0,0,0,0.08); }
+.page { display: none; animation: fadeIn 0.25s ease; }
+.page.active-page { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+/* 世界界面样式 */
+.world-layout { display: flex; flex-direction: column; gap: 1.8rem; }
+.map-area { background: rgba(250, 245, 235, 0.4); border-radius: 32px; padding: 0.8rem 1rem 1rem 1rem; backdrop-filter: blur(1px); }
+.map-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; padding-bottom: 5px; border-bottom: 2px solid #eedfc2; }
+.map-header h2 { font-size: 1.9rem; font-weight: 500; font-family: 'ZCOOL XiaoWei', 'Ma Shan Zheng', 'Noto Serif SC', cursive; color: #8b5c32; letter-spacing: 5px; text-shadow: 1px 1px 1px rgba(0,0,0,0.02); }
+.svg-map-wrapper { background: #fffbf2; border-radius: 28px; box-shadow: inset 0 0 0 1px #f6ecdb, 0 8px 18px rgba(0,0,0,0.04); width: 100%; padding: 6px; }
+#realmSvg { width: 100%; height: auto; min-height: 530px; display: block; border-radius: 24px; background: #fef7ea; cursor: pointer; }
+.region-click-effect { transform: scale(0.98); transition: transform 0.1s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+.region-click-effect ellipse { stroke: #d17e3c !important; stroke-width: 3.5 !important; filter: drop-shadow(0 0 6px rgba(200, 100, 30, 0.5)); transition: all 0.08s; }
+.region-item { cursor: pointer; transition: filter 0.15s, transform 0.1s; }
+.region-item:hover { filter: drop-shadow(0 0 8px rgba(190, 120, 50, 0.6)); }
+.story-collapsible { background: rgba(252, 248, 238, 0.7); border-radius: 28px; backdrop-filter: blur(1px); overflow: hidden; }
+.story-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; cursor: pointer; background: rgba(250, 242, 226, 0.5); border-bottom: 1px solid #efe1ca; }
+.story-header:hover { background: rgba(245, 235, 215, 0.7); }
+.story-header h3 { font-size: 1.7rem; font-weight: 500; font-family: 'ZCOOL XiaoWei', 'Ma Shan Zheng', 'Noto Serif SC', cursive; color: #8b5c32; letter-spacing: 5px; }
+.toggle-icon { font-size: 1.8rem; color: #b4824a; transition: transform 0.2s; }
+.story-content { max-height: 500px; overflow-y: auto; transition: max-height 0.3s ease-out, padding 0.2s; padding: 1rem 1.2rem; }
+.story-content.collapsed { max-height: 0; padding: 0 1.2rem; overflow: hidden; }
+.card-list { display: flex; flex-direction: column; gap: 1rem; }
+.plot-card { background: #fffcf5; border-radius: 24px; border: 1px solid #efe1ca; padding: 0.9rem 1.2rem; transition: all 0.2s; cursor: pointer; }
+.plot-card:hover { transform: translateY(-3px); border-color: #cdac7a; background: #ffffff; box-shadow: 0 10px 18px rgba(80, 55, 25, 0.08); }
+.card-title { font-size: 1.3rem; font-weight: 600; font-family: 'ZCOOL XiaoWei', 'Ma Shan Zheng', 'Noto Serif SC', cursive; color: #91673e; letter-spacing: 2px; }
+.card-summary { font-size: 0.88rem; font-family: 'Noto Serif SC', 'Ma Shan Zheng', serif; color: #b28657; margin-top: 8px; display: flex; justify-content: space-between; }
+
+/* 个人界面样式 */
+.personal-search-area { background: rgba(250, 242, 226, 0.5); border-radius: 40px; padding: 1rem; margin-bottom: 1.5rem; display: flex; gap: 0.8rem; align-items: center; justify-content: center; flex-wrap: wrap; }
+.personal-search-input { background: #fffef5; border: 1px solid #e2caa0; border-radius: 48px; padding: 0.5rem 1.2rem; width: 220px; font-family: 'Noto Serif SC', serif; font-size: 0.9rem; color: #4b311c; outline: none; }
+.personal-search-btn { background: #ddbc8c; border: none; border-radius: 40px; padding: 0.5rem 1.2rem; font-family: 'Ma Shan Zheng', serif; font-weight: 500; color: #3e2a1c; cursor: pointer; transition: 0.2s; }
+.personal-search-btn:hover { background: #cfa56e; transform: scale(0.97); }
+.personal-panel { background: rgba(252, 248, 238, 0.7); border-radius: 32px; padding: 1.2rem; backdrop-filter: blur(2px); }
+.attr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.8rem; margin-bottom: 1.5rem; background: #fffaf0; border-radius: 28px; padding: 1rem; border: 1px solid #efe1ca; }
+.attr-item { display: flex; justify-content: center; align-items: baseline; gap: 0.5rem; border-bottom: 1px dashed #e6cfaa; padding: 5px 0; font-size: 0.85rem; }
+.attr-label, .attr-value { display: inline-block; }
+.attr-label { font-weight: 600; color: #a06b3a; }
+.attr-value { color: #5c3a24; }
+.personal-tabs { display: flex; gap: 1rem; justify-content: center; margin: 1rem 0 0.8rem; }
+.personal-tab { background: #f6efdf; border: 1px solid #e2cfae; padding: 0.3rem 1.2rem; border-radius: 40px; font-family: 'Noto Serif SC', serif; font-size: 0.9rem; color: #8c5a34; cursor: pointer; transition: 0.2s; }
+.personal-tab.active { background: #ddbc8c; color: #3e2a1c; border-color: #b57a44; }
+.personal-tab-content { background: #fffef5; border-radius: 28px; padding: 1rem; min-height: 150px; border: 1px solid #eedfc2; color: #8b623e; font-size: 0.9rem; }
+.search-tip { text-align: center; color: #b88252; padding: 2rem; font-style: italic; }
+
+/* 设定界面完整样式 */
+.setting-container { background: rgba(252, 248, 238, 0.6); border-radius: 28px; padding: 0.6rem 0.2rem 0.2rem 0.2rem; backdrop-filter: blur(1px); }
+.setting-tabs { display: flex; gap: 0.8rem; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.setting-tab { background: #f6efdf; border: 1px solid #e2cfae; padding: 0.4rem 1.2rem; border-radius: 40px; font-family: 'Noto Serif SC', 'Ma Shan Zheng', serif; font-size: 1rem; font-weight: 500; color: #8c5a34; cursor: pointer; transition: all 0.2s; }
+.setting-tab.active { background: #ddbc8c; color: #3e2a1c; border-color: #b57a44; box-shadow: inset 0 1px 2px #fff0cf, 0 2px 4px rgba(0,0,0,0.05); }
+.setting-panel { display: none; animation: fadePanel 0.2s ease; }
+.setting-panel.active { display: block; }
+@keyframes fadePanel { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.realm-table-wrapper { overflow-x: auto; margin-bottom: 1.5rem; }
+.realm-table { width: 100%; border-collapse: collapse; background: #fffbf0; border-radius: 24px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+.realm-table th, .realm-table td { border: 1px solid #ecdbba; padding: 10px 8px; text-align: center; font-family: 'Noto Serif SC', serif; font-size: 0.9rem; color: #5c3a24; }
+.realm-table th { background: #efe1cf; font-weight: 600; color: #7a4a2a; }
+.cultivate-notes { background: #fffcf3; border-radius: 24px; padding: 1rem 1.2rem; border: 1px solid #efe1ca; margin-top: 0.5rem; }
+.cultivate-notes h4 { font-size: 1.1rem; color: #a06b3a; margin: 0.6rem 0 0.3rem; font-weight: 600; border-left: 3px solid #ce9f6a; padding-left: 10px; }
+.cultivate-notes ul { padding-left: 1.4rem; margin: 0.2rem 0 0.6rem; }
+.cultivate-notes li { font-size: 0.85rem; line-height: 1.45; color: #7b583b; }
+.sect-note { background: #f7efe1; border-radius: 20px; padding: 10px 16px; margin-top: 12px; font-size: 0.85rem; color: #8b5a2e; text-align: center; }
+.item-categories { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 1.2rem; }
+.item-cat, .bag-cat {
+    background: #f3eadb;
+    border: 1px solid #e0caa5;
+    border-radius: 40px;
+    padding: 0.4rem 1.4rem;
+    font-family: 'Noto Serif SC', 'Ma Shan Zheng', serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #7f583a;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    letter-spacing: 1px;
+}
+.item-cat:hover, .bag-cat:hover {
+    background: #e8d9c2;
+    border-color: #c89a60;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(100, 65, 30, 0.12);
+}
+.item-cat.active, .bag-cat.active {
+    background: #dabb90;
+    color: #3e2a1c;
+    border-color: #b78148;
+    box-shadow: inset 0 1px 3px #fff0cf, 0 4px 8px rgba(0,0,0,0.05);
+    font-weight: 600;
+}
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-height: 550px;
+    overflow-y: auto;
+    padding: 0.2rem 0.2rem 0.5rem 0.2rem;
+}
+.item-card {
+    background: #fffef5;
+    border: 1px solid #eedfc2;
+    border-radius: 20px;
+    padding: 1rem 0.8rem;
+    transition: all 0.18s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.item-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #8b5a30;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+.item-name .name-wrap {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    max-width: calc(5em + 40px);
+    overflow: hidden;
+}
+.item-name .item-name-text {
+    display: inline-block;
+    max-width: 5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.item-count {
+    background: #e8dac6;
+    border-radius: 20px;
+    padding: 1px 6px;
+    font-size: 0.7rem;
+    color: #8b5a30;
+    font-weight: normal;
+    flex-shrink: 0;
+}
+.item-tag {
+    font-size: 0.65rem;
+    background: #e8dac6;
+    padding: 2px 8px;
+    border-radius: 30px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.item-desc {
+    font-size: 0.75rem;
+    color: #aa7b51;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.item-modal-mask { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(30, 22, 16, 0.75); backdrop-filter: blur(4px); z-index: 2100; display: flex; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: 0.2s; }
+.item-modal-mask.active { visibility: visible; opacity: 1; }
+.item-modal-card {
+    width: 580px;
+    max-width: 90vw;
+    background: #fffaf2;
+    background-image: repeating-linear-gradient(0deg, #ecdbba30 0px, #ecdbba30 1px, transparent 1px, transparent 18px);
+    border-radius: 32px;
+    border: 1px solid #e3cca4;
+    box-shadow: 0 25px 40px rgba(0,0,0,0.3);
+    transform: scale(0.96);
+    transition: transform 0.2s;
+    position: relative;
+}
+.item-modal-inner {
+    padding: 2rem 2rem 2rem 2rem;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+.item-modal-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    font-family: 'ZCOOL XiaoWei', 'Ma Shan Zheng', serif;
+    color: #835c38;
+    border-bottom: 1px dashed #e8cfaa;
+    margin-bottom: 1.2rem;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.item-modal-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #4e351f;
+}
+.item-modal-desc strong {
+    color: #a06b3a;
+    font-weight: 600;
+    margin-right: 6px;
+}
+.item-modal-desc div {
+    margin: 0.9rem 0;
+}
+.item-modal-mask.active .item-modal-card { transform: scale(1); }
+.item-modal-close { position: absolute; top: 12px; right: 18px; font-size: 26px; cursor: pointer; color: #bb8753; z-index: 22; }
+.detail-box { background: #fdf7ea; border-radius: 20px; padding: 10px 12px; margin: 12px 0; border: 1px solid #eadbbd; }
+.placeholder-panel { text-align: center; padding: 2.5rem 1rem; background: rgba(250, 242, 226, 0.6); border-radius: 40px; color: #b28050; font-size: 1.2rem; }
+.subnote { font-size: 0.8rem; color: #bc8f62; display: block; margin-top: 8px; }
+.modal-mask { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(30, 22, 16, 0.8); backdrop-filter: blur(5px); z-index: 2000; display: flex; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: 0.2s; }
+.modal-mask.active { visibility: visible; opacity: 1; }
+.scroll-vertical {
+    position: relative;
+    width: 560px;
+    max-width: 88vw;
+    background: #fff9ef;
+    background-image: repeating-linear-gradient(90deg, rgba(190, 150, 100, 0.08) 0px, rgba(190, 150, 100, 0.08) 2px, transparent 2px, transparent 38px), repeating-linear-gradient(0deg, #ecdbba30 0px, #ecdbba30 1px, transparent 1px, transparent 20px);
+    border-radius: 4px 4px 28px 28px;
+    box-shadow: 0 25px 40px rgba(0,0,0,0.4), inset 0 0 0 1px #fcf3e0;
+    padding: 0;
+    transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    transform: scale(0.96);
+    overflow: hidden;
+}
+.modal-mask.active .scroll-vertical { transform: scale(1); }
+.scroll-vertical::before { content: ""; position: absolute; top: -12px; left: 8%; width: 84%; height: 18px; background: linear-gradient(145deg, #b47c48, #7a4c2a); border-radius: 30px; box-shadow: 0 3px 8px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,235,190,0.7); z-index: 12; }
+.scroll-vertical::after { content: ""; position: absolute; bottom: -12px; left: 8%; width: 84%; height: 18px; background: linear-gradient(145deg, #b47c48, #7a4c2a); border-radius: 30px; box-shadow: 0 -2px 8px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,235,190,0.6); z-index: 12; }
+.scroll-inner { padding: 1.8rem 1.8rem 1.8rem 1.8rem; max-height: 65vh; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #c39a64 #eedbc2; }
+.scroll-inner::-webkit-scrollbar { width: 6px; background: #eedbc2; border-radius: 10px; }
+.scroll-inner::-webkit-scrollbar-thumb { background: #c39a64; border-radius: 10px; }
+.close-scroll { position: absolute; top: 12px; right: 20px; font-size: 28px; cursor: pointer; color: #bc8a55; z-index: 25; background: rgba(255,250,235,0.6); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.scroll-vertical h3 { font-size: 1.9rem; font-weight: 500; font-family: 'ZCOOL XiaoWei', 'Ma Shan Zheng', 'Noto Serif SC', cursive; color: #7a4a2a; text-align: center; margin-bottom: 1rem; letter-spacing: 6px; border-bottom: 1px dashed #e2c596; display: inline-block; width: auto; padding: 0 12px 8px; }
+.scroll-content { line-height: 1.78; font-size: 1rem; color: #3e2a1c; font-family: 'Noto Serif SC', serif; text-align: justify; }
+@media (max-width: 680px) {
+    .main-content { padding: 1rem; }
+    .nav-btn { padding: 0.3rem 1rem; font-size: 1rem; }
+    .map-header h2 { font-size: 1.4rem; }
+    .story-header h3 { font-size: 1.3rem; }
+    #realmSvg { min-height: 380px; }
+    .scroll-vertical h3 { font-size: 1.5rem; }
+    .scroll-inner { padding: 1.2rem; }
+    .item-grid { gap: 0.7rem; }
+    .item-name { font-size: 0.9rem; }
+}
+/* 关系图谱样式 */
+.relation-graph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    min-height: 400px;
+    position: relative;
+}
+.relation-canvas {
+    background: #fdf7ea;
+    border-radius: 48px;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+.relation-avatar {
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+.relation-avatar:hover {
+    filter: drop-shadow(0 0 6px #c28a55);
+}
+.relation-label {
+    font-size: 11px;
+    fill: #a56834;
+    text-anchor: middle;
+}
+/* 宗门界面样式 */
+.sect-full-container {
+    background: rgba(252, 248, 238, 0.6);
+    border-radius: 28px;
+    padding: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.sect-button-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.sect-btn {
+    background: #f6efdf;
+    border: 1px solid #e2cfae;
+    border-radius: 20px;
+    padding: 0.8rem 0.5rem;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.9rem;
+    color: #8c5a34;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+.sect-btn.active {
+    background: #ddbc8c;
+    color: #3e2a1c;
+    border-color: #b57a44;
+}
+.sect-content-area {
+    background: #fffef5;
+    border-radius: 28px;
+    padding: 1rem;
+    min-height: 260px;
+    border: 1px solid #eedfc2;
+}
+.sect-info-panel h4 {
+    color: #a06b3a;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+}
+.sect-info-panel p {
+    margin: 0.5rem 0;
+    color: #7b583b;
+}
+.member-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+.member-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 12px;
+    border-bottom: 1px dashed #e6cfaa;
+    font-size: 0.85rem;
+}
+.warehouse-item, .skill-item {
+    padding: 8px;
+    border-bottom: 1px dashed #e6cfaa;
+}
+/* 内嵌姻缘面板样式 */
+.marriage-embedded {
+    background: rgba(252, 248, 238, 0.7);
+    border-radius: 32px;
+    padding: 1.5rem 1.2rem;
+    backdrop-filter: blur(2px);
+    position: relative;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><path fill="none" stroke="%23ecc9b0" stroke-width="2" opacity="0.3" d="M200,550 Q250,400 350,300 Q380,250 400,200 Q420,250 450,300 Q550,400 600,550" /><path fill="none" stroke="%23ecc9b0" stroke-width="2" opacity="0.2" d="M300,550 Q340,420 400,320 Q460,420 500,550" /><circle cx="400" cy="180" r="70" fill="%23ffb7c5" opacity="0.1" /></svg>');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+    box-shadow: inset 0 0 30px rgba(255,200,180,0.2), 0 5px 15px rgba(0,0,0,0.03);
+}
+.marriage-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+.marriage-header h2 {
+    font-size: 1.8rem;
+    font-family: 'ZCOOL XiaoWei', 'Ma Shan Zheng', serif;
+    color: #c47a44;
+    letter-spacing: 6px;
+    text-shadow: 0 2px 4px rgba(200,100,50,0.1);
+    display: inline-block;
+    background: linear-gradient(135deg, #e7bf8e, #d49c6c);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+.marriage-header p {
+    font-size: 0.85rem;
+    color: #c28252;
+    margin-top: 4px;
+    letter-spacing: 1px;
+}
+.marriage-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 0.2rem 0.3rem 0.5rem 0.3rem;
+}
+.marriage-card {
+    background: linear-gradient(145deg, #fffbf2, #fff7ea);
+    border: 1px solid #f3dfc0;
+    border-radius: 48px 24px 48px 24px;
+    padding: 1.2rem 0.8rem;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    box-shadow: 0 6px 12px rgba(140, 80, 40, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+.marriage-card::before,
+.marriage-card::after {
+    content: "❤";
+    position: absolute;
+    font-size: 12px;
+    opacity: 0.2;
+    color: #e69b6e;
+    pointer-events: none;
+}
+.marriage-card::before {
+    top: 8px;
+    left: 12px;
+    transform: rotate(-15deg);
+}
+.marriage-card::after {
+    bottom: 8px;
+    right: 12px;
+    transform: rotate(15deg);
+}
+.marriage-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    background: #fffef7;
+    border-color: #e0b082;
+    box-shadow: 0 16px 28px rgba(160, 90, 40, 0.12);
+}
+.marriage-card:hover::before,
+.marriage-card:hover::after {
+    opacity: 0.4;
+}
+.couple-names {
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: 'Ma Shan Zheng', 'Noto Serif SC', serif;
+    color: #b4532e;
+    text-align: center;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+    background: linear-gradient(120deg, #c25a34, #d47848);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+.couple-token {
+    font-size: 0.78rem;
+    color: #c59065;
+    text-align: center;
+    margin: 6px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.couple-token::before {
+    content: "🎋";
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+.couple-token::after {
+    content: "🎋";
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+.couple-verse {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #8f623f;
+    text-align: center;
+    border-top: 1px dashed #f2dcbc;
+    padding-top: 10px;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+.marriage-note {
+    background: rgba(255,245,230,0.8);
+    border-radius: 32px;
+    padding: 0.9rem 1rem;
+    font-size: 0.8rem;
+    color: #a7683a;
+    text-align: center;
+    border: 1px solid #f1ddc0;
+    backdrop-filter: blur(2px);
+}
+.marriage-grid::-webkit-scrollbar {
+    width: 5px;
+    background: #f7e5d2;
+    border-radius: 10px;
+}
+.marriage-grid::-webkit-scrollbar-thumb {
+    background: #e7b28a;
+    border-radius: 10px;
+}
+@media (max-width: 680px) {
+    .marriage-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .marriage-card {
+        border-radius: 32px 16px 32px 16px;
+    }
+    .couple-names {
+        font-size: 1rem;
+    }
+}
+/* 美化道具网格滚动条 */
+.item-grid::-webkit-scrollbar {
+    width: 6px;
+    background: #f2e4d4;
+    border-radius: 10px;
+}
+.item-grid::-webkit-scrollbar-thumb {
+    background: #c39a64;
+    border-radius: 10px;
+    box-shadow: inset 0 0 2px #a57242;
+}
+.item-grid::-webkit-scrollbar-track {
+    background: #f7ecdb;
+    border-radius: 10px;
+}
+/* 宗门相关列表滚动条 */
+.member-list::-webkit-scrollbar,
+.warehouse-list::-webkit-scrollbar,
+.skill-list::-webkit-scrollbar {
+    width: 5px;
+    background: #eedbc2;
+    border-radius: 10px;
+}
+.member-list::-webkit-scrollbar-thumb,
+.warehouse-list::-webkit-scrollbar-thumb,
+.skill-list::-webkit-scrollbar-thumb {
+    background: #c39a64;
+    border-radius: 10px;
+}
+/* 宗门卡片容器（网格布局，自动适配） */
+.sect-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+    max-height: 520px;
+    overflow-y: auto;
+    padding: 0.2rem 0.3rem 0.5rem 0.3rem;
+}
+.sect-card {
+    background: linear-gradient(145deg, #fffbf0, #fff7ea);
+    border: 1px solid #ecdbb8;
+    border-radius: 32px;
+    padding: 1rem 1.2rem;
+    transition: all 0.2s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+}
+.sect-card:hover {
+    transform: translateY(-3px);
+    border-color: #dbb27c;
+    background: #ffffff;
+    box-shadow: 0 12px 20px rgba(100, 65, 30, 0.08);
+}
+.sect-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: 'Ma Shan Zheng', 'ZCOOL XiaoWei', serif;
+    color: #c06a38;
+    text-align: center;
+    margin-bottom: 0.6rem;
+    letter-spacing: 2px;
+}
+.sect-master, .sect-address, .sect-motto, .sect-recruit {
+    font-size: 0.85rem;
+    color: #946b3e;
+    margin: 0.4rem 0;
+    line-height: 1.4;
+    word-break: break-word;
+}
+.sect-rules {
+    margin-top: 0.6rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed #e8cfaa;
+}
+.sect-rules div {
+    font-size: 0.8rem;
+    color: #b17a4b;
+    margin: 0.3rem 0;
+    padding-left: 0.5rem;
+}
+.sect-join-note {
+    background: #fef5e8;
+    border-radius: 28px;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    color: #9f6a3c;
+    text-align: center;
+    border: 1px solid #eedcbf;
+}
+.sect-cards-container::-webkit-scrollbar {
+    width: 6px;
+    background: #f2e4d4;
+    border-radius: 10px;
+}
+.sect-cards-container::-webkit-scrollbar-thumb {
+    background: #c39a64;
+    border-radius: 10px;
+}
+@media (max-width: 680px) {
+    .sect-cards-container {
+        grid-template-columns: 1fr;
+    }
+}
+.refresh-bag-btn {
+    background: #f6efdf;
+    border: 1px solid #e2cfae;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #8c5a34;
+}
+.refresh-bag-btn:hover {
+    background: #ddbc8c;
+    border-color: #b57a44;
+    transform: rotate(30deg);
+}        
+
+</style>
+
+</head>
+<body>
+<div class="petals-layer" id="petalContainer"></div>
+<div class="app-container">
+    <div class="corner-deco corner-tl"></div><div class="corner-deco corner-tr"></div><div class="corner-deco corner-bl"></div><div class="corner-deco corner-br"></div>
+    <svg class="seal" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="38" fill="#bf4932" fill-opacity="0.85" stroke="#a53b22" stroke-width="1.8" /><path d="M30 50 L70 50 M50 30 L50 70" stroke="#fbe5c4" stroke-width="2.2" /><text x="50" y="67" text-anchor="middle" fill="#fff4e0" font-size="18" font-weight="bold" font-family="Georgia">契</text></svg>
+
+<div class="main-content">
+    <!-- 世界页面 -->
+    <div id="worldPage" class="page active-page">
+        <div class="world-layout">
+            <div class="map-area">
+                <div class="map-header"><h2>🗺️ 探墟界·仙迹图</h2></div>
+                <div class="svg-map-wrapper"><svg id="realmSvg" viewBox="0 0 920 620" preserveAspectRatio="xMidYMid meet"></svg></div>
+                <div style="font-size:13px; text-align:center; margin-top:12px; color:#ac8660; font-weight: 500;">※ 轻触灵域，阅览洞天秘闻</div>
+            </div>
+            <div class="story-collapsible">
+                <div class="story-header" id="toggleStoryBtn"><h3>📖 探墟界·卷轴</h3><span class="toggle-icon" id="toggleIcon">⌵</span></div>
+                <div id="storyContentWrap" class="story-content"><div id="storyList" class="card-list"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 设定页面 -->
+    <div id="settingPage" class="page">
+        <div class="setting-container">
+            <div class="setting-tabs">
+                <button class="setting-tab active" data-tab="cultivate">修为</button>
+                <button class="setting-tab" data-tab="item">道具</button>
+                <button class="setting-tab" data-tab="sect">宗门</button>
+                <button class="setting-tab" data-tab="marriage">姻缘</button>
+            </div>
+
+            <!-- 修为面板 -->
+            <div class="setting-panel active" id="cultivatePanel">
+                <div class="realm-table-wrapper">
+                    <table class="realm-table">
+                        <thead><tr><th>境界层数</th><th>每层修为</th><th>突破修为</th></tr></thead>
+                        <tbody>
+                            <tr><td>练气（1-10层）</td><td>10点</td><td>100点</td></tr>
+                            <tr><td>筑基（1-10层）</td><td>10点</td><td>200点</td></tr>
+                            <tr><td>金丹（1-10层）</td><td>20点</td><td>400点</td></tr>
+                            <tr><td>元婴（1-10层）</td><td>30点</td><td>700点</td></tr>
+                            <tr><td>化神（1-10层）</td><td>50点</td><td>1200点</td></tr>
+                            <tr><td>问心（1-10层）</td><td>80点</td><td>2000点</td></tr>
+                            <tr><td>破鼎（1-10层）</td><td>100点</td><td>3000点</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cultivate-notes">
+                    <h4>📜 修为获取途径</h4>
+                    <ul>
+                        <li>· 每日打卡固定增加10点修为</li>
+                        <li>· 副本/Boss掉落</li>
+                        <li>· 每日自戏、对戏（按精彩程度概率爆修为）</li>
+                        <li>· 奇遇机缘</li>
+                        <li>· 使用增加修为的物品</li>
+                        <li>· 达到可突破修为后，需自戏300+字</li>
+                    </ul>
+                    <h4>⚡ 越阶惩罚</h4>
+                    <ul>
+                        <li>· 越一阶：残、伤、废、遁</li>
+                        <li>· 越两阶：必死，无例外</li>
+                        <li>· 越境之罚：或得机缘，或跌修为……</li>
+                        <li>· 注：天地不斩生灵，死后为鬼修</li>
+                    </ul>
+                    <div class="sect-note"><span>🏯 宗门：金丹可开宗立派 · 宗门必须拥有灵脉</span></div>
+                </div>
+            </div>
+
+            <!-- 道具面板 -->
+            <div class="setting-panel" id="itemPanel">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                    <div class="item-categories" style="margin-bottom: 0;">
+                        <button class="item-cat active" data-cat="consumable">消耗品</button>
+                        <button class="item-cat" data-cat="skill">功法</button>
+                        <button class="item-cat" data-cat="material">材料</button>
+                        <button class="item-cat" data-cat="weapon">武器</button>
+                        <button class="item-cat" data-cat="pet">灵宠</button>
+                        <button class="item-cat" data-cat="special">特殊</button>
+                    </div>
+                    <div>
+                        <input type="text" id="itemSearchInput" placeholder="🔍 搜索名称、描述、来源..." style="background: #fffef5; border: 1px solid #e2caa0; border-radius: 40px; padding: 0.4rem 1rem; width: 200px;">
+                    </div>
+                </div>
+                <div class="item-grid" id="itemGrid"></div>
+            </div>
+
+            <!-- 宗门面板 -->
+            <div class="setting-panel" id="sectPanel">
+                <div class="sect-cards-container">
+                    <div class="sect-card"><h3 class="sect-name">帝庭</h3><div class="sect-master">宗主：皇翎九霄 [化神]</div><div class="sect-address">云澜雪山半腰，冰火相融之地</div><div class="sect-motto">祖训：秉持团结、民主、自由，倡导互助修行</div><div class="sect-recruit">招人标准：通关秘境获冰火二灵认可即可入门</div><div class="sect-rules"><div>📌 规矩一：同门团结互助，严禁内斗陷害</div><div>📌 规矩二：严守宗门机密，维护宗门声誉</div><div>📌 规矩三：平等对待外宗之人，以修道为本</div></div></div>
+                    <div class="sect-card"><h3 class="sect-name">溯命垣</h3><div class="sect-master">宗主：褚修叶 [化神]</div><div class="sect-address">云澜枯木林深处</div><div class="sect-motto">祖训：为光驱奉身，还命天下</div><div class="sect-recruit">招人标准：经人推荐获认可，或通关秘境可入门</div><div class="sect-rules"><div>📌 规矩一：遇众生生死危难，需挺身而出</div><div>📌 规矩二：非大奸大恶之人，行事需留余地</div><div>📌 规矩三：不轻视旁门左道，接纳各类修行者</div></div></div>
+                    <div class="sect-card"><h3 class="sect-name">相思门</h3><div class="sect-master">宗主：九酒 [化神]</div><div class="sect-address">红尘万丈，人间各处</div><div class="sect-motto">祖训：以红尘为炉，以相思为火，炼一颗不灭的道心</div><div class="sect-recruit">招人标准：于人间历情缘、沾因果，获执念认可即可入门</div><div class="sect-rules"><div>📌 规矩一：情之一字不许强求，违者废去修为，逐出师门</div><div>📌 规矩二：不可忘恩负义</div><div>📌 规矩三：不可断红尘，不许忘过往</div></div></div>
+                </div>
+                <div class="sect-join-note">📖 加入宗门需要自戏300+字，也可对戏，宗门职位需要联系宗主。</div>
+            </div>
+
+            <!-- 姻缘面板 -->
+            <div class="setting-panel" id="marriagePanel">
+                <div class="marriage-embedded">
+                    <div class="marriage-header"><h2>🌳 天定姻缘簿 🌸</h2><p>天道认证 · 红线永结</p></div>
+                    <div class="marriage-grid" id="marriageGrid"></div>
+                    <div class="marriage-note">📜 【注】婚姻经过天道认证，旁人不可骚扰，强抢，如有被举报，必将严惩！<br>新人上婚姻请找管理。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 个人页面 -->
+    <div id="personalPage" class="page">
+        <div class="personal-search-area">
+            <input type="text" id="searchNameInput" class="personal-search-input" placeholder="输入道号/姓名" value="陈以宁">
+            <button id="searchPersonalBtn" class="personal-search-btn">寻访</button>
+        </div>
+        <div id="personalDisplayArea">
+            <div class="search-tip">🔍 请输入修士姓名进行查看</div>
+        </div>
+    </div>
+</div>
+
+<div class="nav-bar">
+    <button class="nav-btn active" data-nav="world">世界</button>
+    <button class="nav-btn" data-nav="setting">设定</button>
+    <button class="nav-btn" data-nav="personal">个人</button>
+</div>
+<footer></footer>
+
+<div id="scrollModal" class="modal-mask"><div class="scroll-vertical"><span class="close-scroll">&times;</span><div class="scroll-inner"><div id="scrollModalTitle" style="text-align:center;"></div><div id="scrollModalContent" class="scroll-content"></div></div></div></div>
+    <!-- 全局道具弹窗（与之前一致） -->
+    <div id="itemModal" class="item-modal-mask">
+        <div class="item-modal-card">
+            <span class="item-modal-close">&times;</span>
+            <div class="item-modal-inner">
+                <div id="itemModalTitle" class="item-modal-title"></div>
+                <div id="itemModalContent" class="item-modal-desc"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 个人面板数据
+    const chenData = {
+    name: "陈以宁",
+    daoName: "长生道",
+    realmLevel: "元婴八层",
+    cultivation: 634,
+    sect: "溯命垣",
+    sectPosition: "四长老",
+    checkDays: 20,
+    totalCultivation: 200,
+    breakthroughCount: 3
+};
+
+// 人物数据库（用于个人搜索）
+const peopleDatabase = [
+        // ========== 化神主要人物 ==========
+    { name: "褚修叶", daoName: "暂无", realmLevel: "化神九层", cultivation: 1133, sect: "溯命垣", sectPosition: "宗主", checkDays: 57, totalCultivation: 570, breakthroughCount: 4 },
+    { name: "九酒", daoName: "暂无", realmLevel: "化神八层", cultivation: 1063, sect: "相思门", sectPosition: "宗主", checkDays: 56, totalCultivation: 560, breakthroughCount: 4 },
+    { name: "皇翎九霄", daoName: "暂无", realmLevel: "化神七层", cultivation: 1017, sect: "帝庭", sectPosition: "宗主", checkDays: 54, totalCultivation: 540, breakthroughCount: 4 },
+    { name: "程颂柒", daoName: "暂无", realmLevel: "化神四层", cultivation: 863, sect: "散修", sectPosition: "无", checkDays: 21, totalCultivation: 210, breakthroughCount: 4 },
+    { name: "骁彻", daoName: "暂无", realmLevel: "化神一层", cultivation: 704, sect: "散修", sectPosition: "无", checkDays: 52, totalCultivation: 520, breakthroughCount: 4 },
+    { name: "苏轻青", daoName: "暂无", realmLevel: "元婴十层", cultivation: 700, sect: "相思门", sectPosition: "弟子", checkDays: 56, totalCultivation: 560, breakthroughCount: 3 },
+    { name: "姬时愿", daoName: "暂无", realmLevel: "元婴十层", cultivation: 697, sect: "溯命垣", sectPosition: "弟子", checkDays: 52, totalCultivation: 520, breakthroughCount: 3 },
+    { name: "杨建设", daoName: "暂无", realmLevel: "元婴十层", cultivation: 700, sect: "散修", sectPosition: "无", checkDays: 46, totalCultivation: 460, breakthroughCount: 3 },
+    { name: "谢今安", daoName: "暂无", realmLevel: "元婴九层", cultivation: 661, sect: "相思门", sectPosition: "弟子", checkDays: 54, totalCultivation: 540, breakthroughCount: 3 },
+    { name: "李鸢", daoName: "暂无", realmLevel: "元婴九层", cultivation: 647, sect: "相思门", sectPosition: "弟子", checkDays: 47, totalCultivation: 470, breakthroughCount: 3 },
+    { name: "王源", daoName: "暂无", realmLevel: "元婴九层", cultivation: 645, sect: "帝庭", sectPosition: "弟子", checkDays: 52, totalCultivation: 520, breakthroughCount: 3 },
+    { name: "陈以宁", daoName: "长生道", realmLevel: "元婴九层", cultivation: 644, sect: "溯命垣", sectPosition: "四长老", checkDays: 20, totalCultivation: 200, breakthroughCount: 3 },
+    { name: "梳翎", daoName: "暂无", realmLevel: "元婴八层", cultivation: 615, sect: "散修", sectPosition: "无", checkDays: 31, totalCultivation: 310, breakthroughCount: 3 },
+    { name: "执久", daoName: "暂无", realmLevel: "元婴七层", cultivation: 588, sect: "散修", sectPosition: "无", checkDays: 44, totalCultivation: 440, breakthroughCount: 3 },
+    { name: "任决", daoName: "暂无", realmLevel: "元婴六层", cultivation: 571, sect: "散修", sectPosition: "无", checkDays: 50, totalCultivation: 500, breakthroughCount: 3 },
+    { name: "云知微", daoName: "暂无", realmLevel: "元婴六层", cultivation: 552, sect: "散修", sectPosition: "无", checkDays: 51, totalCultivation: 510, breakthroughCount: 3 },
+    { name: "轩辕", daoName: "暂无", realmLevel: "元婴四层", cultivation: 513, sect: "散修", sectPosition: "无", checkDays: 27, totalCultivation: 270, breakthroughCount: 3 },
+    { name: "澹台净尘", daoName: "暂无", realmLevel: "元婴二层", cultivation: 460, sect: "散修", sectPosition: "无", checkDays: 38, totalCultivation: 380, breakthroughCount: 3 },
+    { name: "观仰止", daoName: "暂无", realmLevel: "元婴一层", cultivation: 420, sect: "散修", sectPosition: "无", checkDays: 42, totalCultivation: 420, breakthroughCount: 2 },
+    { name: "单纯", daoName: "暂无", realmLevel: "金丹十层", cultivation: 400, sect: "散修", sectPosition: "无", checkDays: 52, totalCultivation: 520, breakthroughCount: 2 },
+    { name: "江愿", daoName: "暂无", realmLevel: "金丹十层", cultivation: 400, sect: "散修", sectPosition: "无", checkDays: 38, totalCultivation: 380, breakthroughCount: 2 },
+    { name: "夜烬", daoName: "暂无", realmLevel: "金丹十层", cultivation: 400, sect: "散修", sectPosition: "无", checkDays: 53, totalCultivation: 530, breakthroughCount: 2 },
+    { name: "梓卿", daoName: "暂无", realmLevel: "金丹十层", cultivation: 400, sect: "散修", sectPosition: "无", checkDays: 34, totalCultivation: 340, breakthroughCount: 2 },
+    { name: "初妆", daoName: "暂无", realmLevel: "金丹九层", cultivation: 364, sect: "散修", sectPosition: "无", checkDays: 31, totalCultivation: 310, breakthroughCount: 2 },
+    { name: "凌水芸", daoName: "暂无", realmLevel: "金丹八层", cultivation: 360, sect: "散修", sectPosition: "无", checkDays: 38, totalCultivation: 380, breakthroughCount: 2 },
+    { name: "羲和", daoName: "暂无", realmLevel: "金丹七层", cultivation: 330, sect: "散修", sectPosition: "无", checkDays: 32, totalCultivation: 320, breakthroughCount: 2 },
+    { name: "洛冕", daoName: "暂无", realmLevel: "金丹七层", cultivation: 326, sect: "散修", sectPosition: "无", checkDays: 29, totalCultivation: 290, breakthroughCount: 2 },
+    { name: "渡昭", daoName: "暂无", realmLevel: "金丹六层", cultivation: 313, sect: "帝庭", sectPosition: "弟子", checkDays: 20, totalCultivation: 200, breakthroughCount: 2 },
+    { name: "简长生", daoName: "暂无", realmLevel: "金丹六层", cultivation: 301, sect: "散修", sectPosition: "无", checkDays: 24, totalCultivation: 240, breakthroughCount: 2 },
+    { name: "许青埃", daoName: "暂无", realmLevel: "金丹五层", cultivation: 284, sect: "散修", sectPosition: "无", checkDays: 14, totalCultivation: 140, breakthroughCount: 2 },
+    { name: "南宫临阙", daoName: "暂无", realmLevel: "金丹四层", cultivation: 280, sect: "散修", sectPosition: "无", checkDays: 24, totalCultivation: 240, breakthroughCount: 2 },
+    { name: "古月星恒", daoName: "暂无", realmLevel: "金丹三层", cultivation: 250, sect: "散修", sectPosition: "无", checkDays: 21, totalCultivation: 210, breakthroughCount: 2 },
+    { name: "封拙安", daoName: "暂无", realmLevel: "金丹一层", cultivation: 216, sect: "散修", sectPosition: "无", checkDays: 22, totalCultivation: 220, breakthroughCount: 1 },
+    { name: "慈洲屿", daoName: "暂无", realmLevel: "筑基十层", cultivation: 200, sect: "散修", sectPosition: "无", checkDays: 35, totalCultivation: 350, breakthroughCount: 1 },
+    { name: "陌池", daoName: "暂无", realmLevel: "筑基十层", cultivation: 200, sect: "散修", sectPosition: "无", checkDays: 24, totalCultivation: 240, breakthroughCount: 1 },
+    { name: "夙玄溟", daoName: "暂无", realmLevel: "筑基十层", cultivation: 200, sect: "散修", sectPosition: "无", checkDays: 26, totalCultivation: 260, breakthroughCount: 1 },
+    { name: "灵汐", daoName: "暂无", realmLevel: "筑基九层", cultivation: 190, sect: "散修", sectPosition: "无", checkDays: 13, totalCultivation: 130, breakthroughCount: 1 },
+    { name: "夜羽", daoName: "暂无", realmLevel: "筑基九层", cultivation: 190, sect: "散修", sectPosition: "无", checkDays: 18, totalCultivation: 180, breakthroughCount: 1 },
+    { name: "际渊", daoName: "暂无", realmLevel: "筑基七层", cultivation: 170, sect: "散修", sectPosition: "无", checkDays: 15, totalCultivation: 150, breakthroughCount: 1 },
+    { name: "藤霖", daoName: "暂无", realmLevel: "筑基六层", cultivation: 155, sect: "散修", sectPosition: "无", checkDays: 23, totalCultivation: 230, breakthroughCount: 1 },
+    { name: "霁鸢", daoName: "暂无", realmLevel: "筑基五层", cultivation: 148, sect: "散修", sectPosition: "无", checkDays: 9, totalCultivation: 90, breakthroughCount: 0 },
+    { name: "凌霄", daoName: "暂无", realmLevel: "筑基四层", cultivation: 140, sect: "散修", sectPosition: "无", checkDays: 14, totalCultivation: 140, breakthroughCount: 0 },
+    { name: "晏川", daoName: "暂无", realmLevel: "筑基四层", cultivation: 140, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "墨渊", daoName: "暂无", realmLevel: "筑基三层", cultivation: 122, sect: "散修", sectPosition: "无", checkDays: 9, totalCultivation: 90, breakthroughCount: 0 },
+    { name: "白夙", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "百里瑾", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 8, totalCultivation: 80, breakthroughCount: 0 },
+    { name: "朝珩筠", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 9, totalCultivation: 90, breakthroughCount: 0 },
+    { name: "顾思言", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 13, totalCultivation: 130, breakthroughCount: 0 },
+    { name: "槐玄", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 10, totalCultivation: 100, breakthroughCount: 0 },
+    { name: "离煜", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 10, totalCultivation: 100, breakthroughCount: 0 },
+    { name: "李木羊", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 10, totalCultivation: 100, breakthroughCount: 0 },
+    { name: "刘政安", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 21, totalCultivation: 210, breakthroughCount: 0 },
+    { name: "洛言川", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 12, totalCultivation: 120, breakthroughCount: 0 },
+    { name: "眠安", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 13, totalCultivation: 130, breakthroughCount: 0 },
+    { name: "墨珏", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 13, totalCultivation: 130, breakthroughCount: 0 },
+    { name: "南靡", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 20, totalCultivation: 200, breakthroughCount: 0 },
+    { name: "念欢", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 23, totalCultivation: 230, breakthroughCount: 0 },
+    { name: "青严", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 19, totalCultivation: 190, breakthroughCount: 0 },
+    { name: "阮穗", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 23, totalCultivation: 230, breakthroughCount: 0 },
+    { name: "邬稔", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 9, totalCultivation: 90, breakthroughCount: 0 },
+    { name: "勿忘卿", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 7, totalCultivation: 70, breakthroughCount: 0 },
+    { name: "谢沉喻", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 19, totalCultivation: 190, breakthroughCount: 0 },
+    { name: "夜璃", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 17, totalCultivation: 170, breakthroughCount: 0 },
+    { name: "依妍", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 9, totalCultivation: 90, breakthroughCount: 0 },
+    { name: "银岑", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 9, totalCultivation: 90, breakthroughCount: 0 },
+    { name: "尹宿泱", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 12, totalCultivation: 120, breakthroughCount: 0 },
+    { name: "虞悠悠", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 12, totalCultivation: 120, breakthroughCount: 0 },
+    { name: "月衔枝", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 10, totalCultivation: 100, breakthroughCount: 0 },
+    { name: "云言深", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 10, totalCultivation: 100, breakthroughCount: 0 },
+    { name: "程喻", daoName: "暂无", realmLevel: "炼气十层", cultivation: 95, sect: "散修", sectPosition: "无", checkDays: 8, totalCultivation: 80, breakthroughCount: 0 },
+    { name: "江逸", daoName: "暂无", realmLevel: "炼气九层", cultivation: 90, sect: "散修", sectPosition: "无", checkDays: 7, totalCultivation: 70, breakthroughCount: 0 },
+    { name: "宋锦苏", daoName: "暂无", realmLevel: "炼气九层", cultivation: 90, sect: "散修", sectPosition: "无", checkDays: 11, totalCultivation: 110, breakthroughCount: 0 },
+    { name: "长生", daoName: "暂无", realmLevel: "炼气九层", cultivation: 85, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "长云浮", daoName: "暂无", realmLevel: "炼气九层", cultivation: 85, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "凤清林", daoName: "暂无", realmLevel: "炼气八层", cultivation: 80, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "萧承彦", daoName: "暂无", realmLevel: "炼气八层", cultivation: 80, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "云间月", daoName: "暂无", realmLevel: "炼气八层", cultivation: 80, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "桃夭", daoName: "暂无", realmLevel: "炼气七层", cultivation: 69, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "江书舒", daoName: "暂无", realmLevel: "炼气七层", cultivation: 63, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "白稚", daoName: "暂无", realmLevel: "炼气六层", cultivation: 60, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "安陵清梧", daoName: "暂无", realmLevel: "炼气六层", cultivation: 55, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "祁正武", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "叶凡", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "鱼日", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "云沐泠", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "筝渡", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "柳生", daoName: "暂无", realmLevel: "炼气五层", cultivation: 46, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "宋守真", daoName: "暂无", realmLevel: "炼气五层", cultivation: 43, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "许易安", daoName: "暂无", realmLevel: "炼气五层", cultivation: 43, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "黎绥禾", daoName: "暂无", realmLevel: "炼气五层", cultivation: 42, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "苏箐禾", daoName: "暂无", realmLevel: "炼气五层", cultivation: 42, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "夜星", daoName: "暂无", realmLevel: "炼气五层", cultivation: 42, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "何寻笙", daoName: "暂无", realmLevel: "炼气五层", cultivation: 41, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "薄青", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "陈锦归", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "程与年", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "坊青殿", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "梁念桉", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "铃湘桦", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "洛歌梦", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "沈烬", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "塔沙维尔", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "魏澜沉", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "玄鸳", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "云瑶", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "张乌山", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "皎皎", daoName: "暂无", realmLevel: "炼气四层", cultivation: 38, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "蓝夜", daoName: "暂无", realmLevel: "炼气四层", cultivation: 35, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "安渡", daoName: "暂无", realmLevel: "炼气四层", cultivation: 34, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "白无月", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "独夫", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "公孙玲", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "江薄枝", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "柳安", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "裴知禾", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "柒茉", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "清心辞", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "万毅卿", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "云瞳瑶", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "晏无墟", daoName: "暂无", realmLevel: "炼气三层", cultivation: 27, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "斯谛凡", daoName: "暂无", realmLevel: "炼气二层", cultivation: 20, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "向姊", daoName: "暂无", realmLevel: "炼气二层", cultivation: 20, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "叶泠鸢", daoName: "暂无", realmLevel: "炼气二层", cultivation: 20, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "晨璇", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "池暮星", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "东方见秋", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "江晚烟", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "姜十三", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "姜辞", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "君寄雪", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "乐正欢", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "李飞羽", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "柳俞", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "罗岐", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "落安", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "慕容溪", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "亓岁", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "秦宓", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "清辞", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "商欣辞", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "上官瑾瑜", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "孙傅黎", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "谢无渡", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "玄卿", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "厌清", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "羽湘容", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "云尘", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
+    { name: "染灵钰", daoName: "暂无", realmLevel: "炼气一层", cultivation: 5, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 }
+    ]
+// 个人已拥有的背包物品
+const personInventoryMap = {
+    "褚修叶": ["荧惑", "恒石星陨", "火之本源", "冰渊髓晶", "冰心照渊", "仙门残锋x2", "风残石", "宗门储物袋", "灵脉心脏", "沙舟碎片x10", "赤耀沙晶x2", "飞舟", "云露精华", "储物袋x2", "双生源石x2", "冰火玄晶", "脉息石", "熔岩火虫", "镜破", "冰心碎片x11", "龙骨相", "谭果", "冰聚石", "阴嚎狼心", "幻墟衍灵髓", "青鸾", "风聚石", "霜脊狼骨", "时隙幽影", "渡灵灯芯", "冰魄心核", "灵脉碎晶", "折柳", "时影珠", "空明晶", "阴影的许诺"],
+    "梳翎": [],
+    "南靡": ["阶梯尘晶"],
+    "任决": ["欲烬余温", "火沙蝗虫", "雪挽剑", "青鸾"],
+    "苏轻青": ["青冥剑", "幻梦灵露", "沙舟碎片", "凝雪灵气", "冰心招式", "枯木根茎"],
+    "骁彻": ["天擎", "沙舟碎片", "抗火功法", "灵果", "雾纱丝", "赤耀沙晶", "幻墟衍灵髓", "渡灵灯芯"],
+    "谢今安": ["梦幻灵露", "弥月灵兔", "沼泽蜈蚣", "发光果实", "白蛇印记"],
+    "羲和": ["灵泉水", "虚妄尘晶x2", "沼泽蜈蚣", "霜脊狼骨"],
+    "百里瑾": [],
+    "简长生": ["弥月灵兔", "云雾凝珠", "幻墟衍灵髓", "攀君", "冰毒绿莲", "天梯石髓", "冰晶记忆"],
+    "观仰止": ["仙门残锋", "发光果实", "时影珠", "空明晶", "枯木灵","幻梦灵露"],
+    "姬时愿": ["食铁兽", "心眼", "冰魄心核", "储物袋", "脉息石", "星辰眼", "沙舟碎片", "时影珠", "水灵脉", "风残石", "镜破"],
+    "皇翎九霄": ["冰心碎片", "脉息石", "欲烬余温", "灵果", "奔雷破空", "阴嚎狼心", "宗门储物袋", "青鸾", "时影珠", "空明晶", "发光果实", "飞舟", "冰火玄晶", "枯木灵", "弥月灵兔", "攀君", "逆鳞七斩", "龙髓珠", "火沙蝗虫", "虚妄尘晶", "食铁兽", "鸡羽", "兽语录", "龙骨相", "冰魄心核", "恒石星陨", "冰渊髓晶", "冰心照渊", "灵气结晶", "云露精华", "渡灵灯芯", "赤耀沙晶", "古丹残液", "幻梦灵露", "脉纹石"],
+    "杨建设": ["冰渊寒气", "天龙", "女鬼的衣物", "玄元护罩", "魂质", "鸡羽", "赤耀沙晶", "飞舟", "蝗虫", "枯木藤", "沙舟碎片", "灵果", "君子", "福泽灵语", "风残石", "熔岩余烬", "枯木灵"],
+    "刘政安": ["幻梦灵露", "登阶灵叶"],
+    "白无月": ["冰渊寒气"],
+    "白凩": ["虚妄尘晶"],
+    "南宫临阙": ["灵气结晶", "青鸾", "焚石碎片", "镜破", "弥月灵兔"],
+    "王源": ["唤针术", "冰渊髓晶", "草鸡"],
+    "长云浮": ["雾纱丝", "雾里摘尘"],
+    "许青埃": ["弥月灵兔", "福泽灵语", "攀君", "枯木根茎", "蛇脱残片", "枯木藤", "冰火玄晶", "食铁兽"],
+    "执久": ["熔岩余烬", "法典", "碧鳞蛇", "发光果实", "沙舟碎片", "枯木灵", "草鸡", "山髓结晶"],
+    "澹台净尘": ["草鸡", "发光果实", "恒石星陨", "冰火玄晶", "枯木灵", "赤耀沙晶", "渡灵灯芯", "焚石碎片"],
+    "季鸢": ["雾里摘尘", "风信", "星光的祝福", "霜脊狼", "熔岩火虫", "时影珠", "弥光精灵", "雪狼幼崽", "莲下鱼", "碧鳞蛇", "渡灵灯芯", "沼泽蜈蚣", "青鸾", "冰魄心核", "欲烬余温"],
+    "九酒": ["宗门储物袋", "汇灵结晶"],
+    "江愿": ["灵果"],
+    "霡霂": ["烈焰器魂诀"],
+    "陌池": ["发光果实"],
+    "叙": ["储物袋", "梦幻灵露", "发光果实", "白蛇逆鳞"],
+    "云言深": ["冰魄心核"],
+    "单纯": ["梦幻灵露"],
+    "殷祀念": ["梦幻灵露"],
+    "梓卿": ["沙舟碎片", "食铁兽", "幽嚎兽", "枯木藤", "青鸾", "福泽灵语", "弥月灵兔", "冰渊髓晶", "镜破", "渡灵灯芯"],
+    "云知微": ["冰渊寒气x1", "霜狼幼崽", "弥月灵兔x1", "食铁兽", "枯木藤x1", "枯木灵x1", "沙舟碎片x1", "青穗鼠", "沙潜蝎", "雾纱丝", "幽嚎兽", "青鸾"],
+    "轩辕": ["碧鳞蛇", "土聚石x2", "变异藤蔓x3", "龙骨锻体", "龙骨尘x1", "辟邪丹", "冰渊髓晶"],   
+    "陈以宁": ["食铁兽", "碧鳞蛇", "幻墟衍灵髓x1", "枯木藤x1", "焚石碎片", "弥月灵兔", "沙舟碎片x4", "沼泽蜈蚣", "枯木根茎", "潭果", "冰心碎片x3", "草鸡", "土聚石", "风残石"],
+    "古月墨恒": ["云隐决", "空银瓶x1", "青穗鼠", "天梯石髓"],
+    "夜璃": ["灵气结晶", "幽嚎兽"],
+    "封拙安": ["风缚丝", "天梯石髓", "熔岩火虫", "雾纱丝"],
+    "夙玄溟": ["时影珠", "空明晶", "天梯石髓x1"],
+    "程颂柒": ["弥月灵兔", "镜破", "灵脉", "脉石碎片x1", "逆鳞七斩", "空明晶x1", "雾里摘尘", "沙舟碎片x2", "灵脉碎晶", "渡灵灯芯", "熊猫", "草鸡", "冰心碎片x2"],
+    "初鿆": ["暗河引", "幽嚎兽", "弥月灵兔", "攀君", "镜破"],
+    "邬稔": ["攀君", "弥月灵兔"],
+    "宋锶苏": ["弥月灵兔"],
+    "洛冕": ["天梯石髓x1", "脉息石", "赤曜沙晶", "发光果实"],
+    "渡昭": ["弥月灵兔", "食铁兽", "风缚丝", "沼泽蜈蚣", "霜脊狼"],
+    "秦凯泽": ["凝气露x2"],
+    "皎皎": ["风残石"],
+    "灵汐": ["福泽灵语", "风残石", "霜脊狼骨"],
+    "墨渊": ["梦幻灵露", "食铁兽"],
+    "勿忘卿": ["青鸾x1"],
+    "霁鸢": [],
+    "桃夭": [],
+    "云间月": ["霜狼脊骨", "沙潜蝎", "风缚丝", "灵气结晶"],
+    "梁念桉": ["攀君"],
+    "云曦瑶": ["弥月灵兔"],
+    "池暮星": ["弥月灵兔", "枯木灵"]
+    };
+let currentBagCat = "consumable";
+
+function renderBagSubTabs(inventory, activeCat = currentBagCat) {
+    const contentDiv = document.getElementById('personalTabContent');
+    if (!contentDiv) {
+        console.warn('personalTabContent 未找到');
+        return;
+    }
+    
+    const subHtml = `
+        <div class="item-categories" style="margin-top: 0; margin-bottom: 1rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem;">
+            <button class="bag-cat" data-cat="consumable">消耗品</button>
+            <button class="bag-cat" data-cat="skill">功法</button>
+            <button class="bag-cat" data-cat="material">材料</button>
+            <button class="bag-cat" data-cat="weapon">武器</button>
+            <button class="bag-cat" data-cat="pet">灵宠</button>
+            <button class="bag-cat" data-cat="special">特殊</button>
+            <button id="refreshBagBtn" class="refresh-bag-btn" title="刷新背包">⟳</button>
+        </div>
+        <div id="bagGridArea"></div>
+    `;
+    contentDiv.innerHTML = subHtml;
+    
+    const bagCats = document.querySelectorAll('.bag-cat');
+    bagCats.forEach(btn => {
+        if (btn.getAttribute('data-cat') === activeCat) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+    
+    function refreshBagGrid(cat) {
+        const gridArea = document.getElementById('bagGridArea');
+        if (!gridArea) return;
+        
+        const currentName = window.currentPersonName;
+        const latestInventory = (currentName && personInventoryMap[currentName]) ? personInventoryMap[currentName] : [];
+        
+        let itemsWithCount = [];
+        if (latestInventory && latestInventory.length) {
+            const parsedItems = latestInventory.map(rawName => findItemInDatabase(rawName));
+            itemsWithCount = parsedItems.filter(({ category }) => {
+                if (cat === 'special') return category === 'special';
+                return category === cat;
+            });
+        }
+        
+        if (itemsWithCount.length === 0) {
+            gridArea.innerHTML = '<div style="text-align:center; padding:2rem;">📦 暂无已拥有的物品</div>';
+            return;
+        }
+        
+        let gridHtml = '<div class="item-grid">';
+        itemsWithCount.forEach(({ item, count }) => {
+            const countBadge = count ? `<span class="item-count">x${count}</span>` : '';
+            let nameDisplay = item.name;
+            if (nameDisplay.length > 5) nameDisplay = nameDisplay.slice(0, 5) + '…';
+            gridHtml += `
+                <div class="item-card" data-item='${JSON.stringify(item)}'>
+                    <div class="item-name">
+                        <div class="name-wrap">
+                            <span class="item-name-text">${nameDisplay}</span>
+                            ${countBadge}
+                        </div>
+                        <span class="item-tag">${item.grade || item.type}</span>
+                    </div>
+                    <div class="item-desc">${item.desc || item.effect || ''}</div>
+                </div>
+            `;
+        });
+        gridHtml += '</div>';
+        gridArea.innerHTML = gridHtml;
+        
+        document.querySelectorAll('#bagGridArea .item-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const rawItem = card.getAttribute('data-item');
+                if (rawItem) {
+                    try {
+                        const itemData = JSON.parse(rawItem);
+                        if (typeof showItemDetail === 'function') showItemDetail(itemData);
+                    } catch(e) {}
+                }
+            });
+        });
+    }
+    
+    refreshBagGrid(activeCat);
+    
+    bagCats.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const cat = btn.getAttribute('data-cat');
+            currentBagCat = cat;
+            bagCats.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            refreshBagGrid(cat);
+        });
+    });
+    
+    const refreshBtn = document.getElementById('refreshBagBtn');
+    if (refreshBtn) {
+        refreshBtn.replaceWith(refreshBtn.cloneNode(true));
+        const newRefreshBtn = document.getElementById('refreshBagBtn');
+        newRefreshBtn.addEventListener('click', () => {
+            const currentName = window.currentPersonName;
+            if (!currentName) return;
+            const freshInventory = personInventoryMap[currentName] || [];
+            const currentActiveCat = document.querySelector('.bag-cat.active')?.getAttribute('data-cat') || 'consumable';
+            renderBagSubTabs(freshInventory, currentActiveCat);
+        });
+    }
+}
+
+// ---------- 宗门相关函数 ----------
+    function renderSectContent() {
+    const contentDiv = document.getElementById('personalTabContent');
+    if (!contentDiv) return;
+    contentDiv.innerHTML = `
+        <div style="text-align: center; padding: 2rem; color: #b88252;">
+            🏯 宗门功能开发中，敬请期待。
+        </div>
+    `;
+        // 宗门面板
+        // const contentDiv = document.getElementById('personalTabContent');
+        // if (!contentDiv) return;
+        // contentDiv.innerHTML = `
+            // <div class="sect-full-container">
+                // <div class="sect-button-grid">
+                    // <button class="sect-btn" data-sect-panel="info">宗门信息</button>
+                    // <button class="sect-btn" data-sect-panel="members">宗门人员</button>
+                    // <button class="sect-btn" data-sect-panel="warehouse">宗门仓库</button>
+                    // <button class="sect-btn" data-sect-panel="skills">宗门功法</button>
+                    // <button class="sect-btn" data-sect-panel="map">宗门地图</button>
+                    // <button class="sect-btn" data-sect-panel="residence">个人居所</button>
+                // </div>
+                // <div id="sectContentArea" class="sect-content-area"></div>
+            // </div>
+        // `;
+
+    }
+ // ---------- 关系图谱函数 ----------
+    function drawRelationGraph() {
+    const container = document.getElementById('personalTabContent');
+    if (!container) return;
+    const width = 500, height = 400;
+    const cx = width/2, cy = height/2;
+    const radius = 150;
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="relation-canvas" xmlns="http://www.w3.org/2000/svg">`;
+    
+    relationData.connections.forEach((conn, idx) => {
+        const angle = (idx / relationData.connections.length) * 2 * Math.PI;
+        const x = cx + radius * Math.cos(angle);
+        const y = cy + radius * Math.sin(angle);
+        // 主虚线（加粗，圆点）
+        svg += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${conn.lineColor}" stroke-width="2.5" stroke-dasharray="6 8" stroke-linecap="round" opacity="0.9" />`;
+        // 辅虚线（细线，营造层次感）
+        svg += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${conn.lineColor}" stroke-width="1.2" stroke-dasharray="2 12" stroke-linecap="round" opacity="0.5" />`;
+        
+        // 关系标签气泡
+        const mx = (cx + x)/2;
+        const my = (cy + y)/2 - 15;
+        svg += `<rect x="${mx-22}" y="${my-8}" width="44" height="18" rx="9" fill="rgba(250,245,230,0.85)" stroke="${conn.lineColor}" stroke-width="0.8" />`;
+        svg += `<text x="${mx}" y="${my+2}" class="relation-label" fill="${conn.lineColor}" text-anchor="middle" font-size="10" font-weight="bold">${conn.label}</text>`;
+    });
+    
+    // 中心头像（保持不变）
+    svg += `<circle cx="${cx}" cy="${cy}" r="40" fill="#dabb90" stroke="#b57a44" stroke-width="2.5" class="relation-avatar" data-name="center" />`;
+    svg += `<text x="${cx}" y="${cy+6}" text-anchor="middle" fill="#3e2a1c" font-size="26" font-weight="bold" font-family="'Ma Shan Zheng',serif" class="relation-avatar" data-name="center">${relationData.center.short}</text>`;
+    svg += `<text x="${cx}" y="${cy+50}" text-anchor="middle" fill="#7a4a2a" font-size="10">${relationData.center.name}</text>`;
+    
+    // 周围节点
+    relationData.connections.forEach((conn, idx) => {
+        const angle = (idx / relationData.connections.length) * 2 * Math.PI;
+        const x = cx + radius * Math.cos(angle);
+        const y = cy + radius * Math.sin(angle);
+        svg += `<circle cx="${x}" cy="${y}" r="28" fill="#f2e5d2" stroke="#a97c4a" stroke-width="2" class="relation-avatar" data-name="${conn.name}" />`;
+        svg += `<text x="${x}" y="${y+5}" text-anchor="middle" fill="#5c3a24" font-size="18" font-weight="bold" font-family="'Ma Shan Zheng',serif" class="relation-avatar" data-name="${conn.name}">${conn.short}</text>`;
+        svg += `<text x="${x}" y="${y+40}" text-anchor="middle" fill="#8b623e" font-size="9">${conn.name}</text>`;
+    });
+    
+    svg += `</svg>`;
+    container.innerHTML = svg;
+    
+    // 绑定点击事件（保持不变）
+    document.querySelectorAll('.relation-avatar').forEach(avatar => {
+        avatar.addEventListener('click', (e) => {
+            const name = avatar.getAttribute('data-name');
+            if (name === 'center') return;
+            const person = relationData.connections.find(c => c.name === name);
+            if (person) showRelationPersonModal(person);
+        });
+    });
+}
+    function showRelationPersonModal(person) {
+        const modal = document.getElementById('scrollModal');
+        if (!modal) return;
+        const titleEl = document.getElementById('scrollModalTitle');
+        const contentEl = document.getElementById('scrollModalContent');
+        titleEl.innerHTML = `<h3> ${person.name}</h3>`;
+        contentEl.innerHTML = `
+            <p><strong>境界：</strong> ${person.realm}</p>
+            <p><strong>宗门：</strong> ${person.sect}</p>
+            <p><strong>宗门职位：</strong> ${person.position}</p>
+            <p><strong>双方关系：</strong> ${person.relation}</p>
+            <div style="margin-top: 20px; text-align:center;">「缘法深浅，灵犀一点」</div>
+        `;
+        modal.classList.add('active');
+    }
+    function renderRelationContent() {
+    const contentDiv = document.getElementById('personalTabContent');
+    if (!contentDiv) return;
+    contentDiv.innerHTML = `
+        <div style="text-align: center; padding: 2rem; color: #b88252;">
+            💞 关系功能开发中，敬请期待。
+        </div>
+    `;
+        // drawRelationGraph();
+    }
+
+    // ---------- 主渲染函数 ----------
+    function renderPersonalPanel(data) {
+        window.currentPersonName = data.name;
+        const container = document.getElementById('personalDisplayArea');
+        if (!container) return;
+        container.innerHTML = `
+            <div class="personal-panel">
+                <div class="attr-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 0.8rem; margin-bottom: 1rem; background: #fffaf0; border-radius: 24px; padding: 0.8rem; border: 1px solid #efe1ca; text-align: center;">
+                <div class="attr-item"><span class="attr-label">名字：</span><span class="attr-value">${data.name}</span></div>
+                    <div class="attr-item"><span class="attr-label">大道名称：</span><span class="attr-value">${data.daoName}</span></div>
+                    <div class="attr-item"><span class="attr-label">境界层数：</span><span class="attr-value">${data.realmLevel}</span></div>
+                    <div class="attr-item"><span class="attr-label">修为：</span><span class="attr-value">${data.cultivation}</span></div>
+                    <div class="attr-item"><span class="attr-label">宗门：</span><span class="attr-value">${data.sect}</span></div>
+                    <div class="attr-item"><span class="attr-label">宗门职位：</span><span class="attr-value">${data.sectPosition}</span></div>
+                    <div class="attr-item"><span class="attr-label">打卡天数：</span><span class="attr-value">${data.checkDays}</span></div>
+                    <div class="attr-item"><span class="attr-label">打卡修为：</span><span class="attr-value">${data.totalCultivation}</span></div>
+                    <div class="attr-item"><span class="attr-label">突破次数：</span><span class="attr-value">${data.breakthroughCount}</span></div>
+                </div>
+                <div class="personal-tabs">
+                    <button class="personal-tab active" data-tab="bag">背包</button>
+                    <button class="personal-tab" data-tab="sect">宗门</button>
+                    <button class="personal-tab" data-tab="relation">关系</button>
+                </div>
+                <div id="personalTabContent" class="personal-tab-content"></div>
+            </div>
+        `;
+        
+        // 绑定选项卡切换事件
+        const tabs = document.querySelectorAll('.personal-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const target = tab.getAttribute('data-tab');
+                if (target === 'bag') {
+                const inventory = personInventoryMap[data.name] || [];
+                setTimeout(() => {
+                renderBagSubTabs(inventory);
+                }, 50);
+                }
+                    else if (target === 'sect') {
+                    renderSectContent();
+                } else if (target === 'relation') {
+                    renderRelationContent();
+                }
+            });
+        });
+        // 默认激活背包视图
+        const inventory = personInventoryMap[data.name] || [];
+        setTimeout(() => {
+        renderBagSubTabs(inventory);
+        }, 50);
+    }
+
+    // ---------- 搜索与初始化 ----------
+    function showSearchTip(msg = "未找到该修士，请重新输入") {
+        const container = document.getElementById('personalDisplayArea');
+        if (container) container.innerHTML = `<div class="search-tip">🔍 ${msg}</div>`;
+    }
+    
+    function handleSearch() {
+    const name = document.getElementById('searchNameInput')?.value.trim() || '';
+    if (name === "") {
+        showSearchTip("请输入修士姓名进行查看");
+        return;
+    }
+    const person = peopleDatabase.find(p => p.name === name);
+    if (person) {
+        renderPersonalPanel(person);
+    } else {
+        showSearchTip(`未找到“${name}”，请尝试其他姓名`);
+    }
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('searchPersonalBtn');
+        if (btn) btn.addEventListener('click', handleSearch);
+        const inp = document.getElementById('searchNameInput');
+        if (inp) inp.addEventListener('keypress', e => { if (e.key === 'Enter') handleSearch(); });
+        showSearchTip("请输入修士姓名进行查看");
+    });
+</script>
+
+<script>
+    // 世界、设定等原有脚本（完整保留）
+    let regions = [
+        { id: "lianqi", name: "清霄原", realm: "练气", status: "已开辟", pioneer: "未知", desc: "地势平缓，灵气温弱。草甸延绵，初踏道途之根基。", x: 210, y: 370, rx: 96, ry: 70, colorType: "lightgreen" },
+        { id: "zhuji", name: "云澜涧", realm: "筑基", status: "已开辟", pioneer: "柳谬", desc: "云气绕山，灵溪潺潺，灵气渐浓。飞瀑藏道韵，筑基佳所。", x: 390, y: 270, rx: 100, ry: 74, colorType: "lightblue" },
+        { id: "jindan", name: "赤曜荒原", realm: "金丹", status: "已开辟", pioneer: "执久", desc: "火海刀山、寸草不生、堆金积玉。地火汹涌，奇遇与凶险并存。", x: 620, y: 410, rx: 104, ry: 76, colorType: "orange" },
+        { id: "yuanying", name: "玉镜寒潭", realm: "元婴", status: "已开辟", pioneer: "褚修叶", desc: "镜花水月、迷魂夺魄、如堕烟海。幻阵天成，破妄方证元婴。", x: 750, y: 230, rx: 98, ry: 70, colorType: "default" },
+        { id: "huashen", name: "苍断山脉", realm: "化神", status: "已开辟", pioneer: "陈以宁", desc: "万古苍莽，断岳凌空。灵粹化龙，化神之巅隐仙痕。", x: 520, y: 120, rx: 108, ry: 78, colorType: "default" }
+    ];
+    function getRegionFill(r) { if (r.colorType==="lightgreen") return "#daf3d2"; if (r.colorType==="lightblue") return "#cdecf7"; if (r.colorType==="orange") return "#fde6c4"; return "#efe3cf"; }
+    function getRegionStroke(r) { if (r.colorType==="lightgreen") return "#9cc282"; if (r.colorType==="lightblue") return "#86b5d1"; if (r.colorType==="orange") return "#d6a468"; return "#cb9f6b"; }
+    const chapters = [
+        { id: 1, title: "缘起篇 · 第一只妖", summary: "天道从未沉睡", content: "天道从未沉睡，它注视着这片废墟百亿年，静候第一个挣脱凡尘的生灵。\n终于，有一只狸猫，在轮回之中灵智初开。\n天道当即降下点化，赐其灵识、启其神智。狸猫能思、能言、能感知天地灵气，成为纪元以来第一只妖。\n天道托付于它：去引世人触碰壁垒，踏入探墟界，重启仙路。\n狸猫领命而行。\n它奔走人间，带无数生灵至世界壁垒之前。然而凡尘蒙昧，无人能悟，无人能入。人们只觉气血翻涌，以为是妖邪作祟，反将此地封为禁地，立碑而退。\n狸猫怒，亦不退。\n它守在壁垒前，谁来便一爪拍入其中。\n一人坠入，两人坠入，十人坠入。\n终于，有人在灵气乍泄的废墟之中，引气入体，悟得修行之道。\n——那不是诅咒，那是仙路之门。\n一人悟道，百人随之。灵气如潮水般涌回人间，功法代代相传。\n探墟界的辉煌纪元，从这一爪开始。\n天道不移，静候有缘。\n狸猫一爪，拍开仙路。\n从此凡尘可登天，废墟之中证长生。" },
+        { id: 2, title: "第二篇 · 拓荒时代", summary: "仙门既开，世人涌入", content: "仙门既开，世人涌入。\n然而最初，无人敢走远。\n人们只敢在壁垒附近游荡，小心翼翼引气入体，生怕一步踏错，万劫不复。\n也不是没人试过前往更深处。\n有人鼓起勇气，踏入那片云气缭绕的涧谷。不过数息，便觉气血翻涌如沸，经脉鼓胀欲裂，险些当场爆体而亡。\n那人狼狈逃回，修养数月才得复原。\n但这一次，没有人再喊“妖邪作祟”。\n因为他们分明感知到——那不是诅咒，不是禁制，而是灵气太浓，凡躯承受不住。\n原来，危险的不是禁区，而是自己太弱。\n于是，人们给已开辟的地方取名清霄原，意为清气初生之地。给那片遥不可及的涧谷取名云澜涧，意为云气如澜、可望不可及。\n有人不甘，日日探寻。\n有人精于术算，推演天地格局，最终得出一个惊人的结论：\n壁垒之外，还有天。天外，仍有天。\n以当前可观测的灵气波动与天道威压推算，前方地图不止一处。每一道壁垒之后，都藏着一片全新的天地。\n世人沸腾了。\n探寻之心日益炽烈，有人铤而走险深入险地，有人静心修炼等待突破。得机缘者，一跃登高；失机缘者，磨砺再战。\n拓荒的时代，没有坦途，只有不断向前的脚步。\n只是，那只狸猫的身影，再未出现过。\n有人说它完成了天道的托付，已然归去。有人说它仍在某处，静静看着世人成长。\n唯有演武场地的深处，偶尔传来几声——\n喵。\n清霄起，云澜望。\n天外有天，路未尽。\n猫隐世间，喵声犹在。" },
+        { id: 3, title: "支线篇 · 清霄灵窟 ", summary: "清霄原上，人们忙着开辟洞府，安身立命", content: "清霄原上，人们忙着开辟洞府，安身立命。 \n有人选在山脚，有人选在溪畔，有人偏往深处走，想寻一处僻静之地，独享清修。 \n那一日，一名修士在山壁之间凿石开路，一锤落下，岩壁竟轰然塌陷，露出一个幽深的洞口。 \n他还来不及反应，脚下一空，整个人坠了进去。 坠落不过数息，却仿佛穿越了另一层天地。 \n扑通—— 他落入水中。 冰凉，但不刺骨。清澈，却不见底。 \n修士挣扎着爬上岸，抬起头，怔住了。 洞窟之内，竟是另一番天地。 \n石壁上爬满了不知名的藤蔓与青苔，绿意盎然，郁郁葱葱。点点荧光从石缝、叶间、水中升起，如星河倒悬，洒落一室清辉。\n水潭清澈见底，水波微漾，隐隐透出灵气。捧一口饮下，竟觉经脉舒畅，丹田微暖。 \n——这不是普通的水，这是灵泉。 消息传开，世人蜂拥而至。 \n有人说是上古遗脉，有人说是天道馈赠。不论如何，清霄原有了第一处真正的修行宝地。 \n人们将它唤作—— 清霄灵窟。 洞中一日，世上已千年。 灵泉洗髓，绿光引路。 探墟之路，从此多了一处落脚之地。" },
+        { id: 4, title: "第三篇 · 平原惊鸿", summary: "秘境散去后，洞窟石门再次被推开了", content: "秘境散去后，洞窟石门再次被推开了。\n不是一个人，是一群人。他们合力凿开那些残破的石缝，撬动沉重的门扉。\n然而门后，什么也没有。\n没有仙门，没有废墟，没有丛林，没有壁画。\n只有一片辽阔的平原，在阳光下静静铺展，一眼望不到头。\n众人愣在原地。\n有人回头看了一眼身后的洞窟，又看了看脚下的泥土，恍然大悟——原来整座仙门废墟，都嵌在山壁之上。推开石门，不是深入山腹，而是翻过了山。\n门后，是另一片天地。\n有人第一个冲了出去，踩上松软的草地，仰头深吸一口气。\n“是风！是真的风！”\n更多的人涌了出来。他们在平原上奔跑、翻滚、大喊大叫。从洞窟里钻出来的人，太久没见过这样开阔的天空了。\n有人躺在草地上，有人爬上矮丘眺望远方，有人干脆闭眼晒太阳。\n撒欢。\n那是真正的撒欢。\n就在这时，幽光从石门中飘了出来。\n那些在洞窟深处、在废墟之间沉睡了不知多少年的荧光，像是被惊醒了。它们纷纷从门缝中涌出，飘向平原，在空中飞舞盘旋，如星河倾泻，如梦如幻。\n幽光越聚越多，仿佛也有了自己的欢喜。\n它们掠过草地，草叶微微发亮；它们掠过溪流，水面泛起粼粼波光。有几团幽光钻入水中，竟将水中的鱼带出了水面。\n鱼群在幽光的包裹下，缓缓升空，在天空中游动。\n银鳞闪烁，尾鳍轻摆，仿佛它们本就应该在天上游，而不是在水中。\n人们仰头看着这一幕，久久无言。\n鱼在天上飞，光在地上舞，人在平原上奔跑。\n幽光玩够了，渐渐散入平原各处，像是一群找到了新家的孩子。\n而人们知道，这片平原，从此不再是荒野。\n石门开，秘境现。\n门后再无仙宫，唯有天地宽。\n幽光逐鱼上九天，人在平原笑开颜。" },
+        { id: 5, title: "平原篇 · 筑造天梯", summary: "人们在平原上撒欢了数日，渐渐摸清了这片天地的轮廓", content: "人们在平原上撒欢了数日，渐渐摸清了这片天地的轮廓。\n四面环山。\n清霄原并非真正的平原，而是一个巨大的盆地。远处山峦起伏，将这片土地围拢其中，只在头顶留下一方天空。\n有人抬头望去，发现了一件令人震撼的事。\n云澜涧，在高处。\n那道曾经可望不可即的灵气壁垒，那座传说中的筑基秘境，就悬在盆地的边缘之上，远远高出平原的地面。云雾缭绕之间，隐约可见山涧轮廓，仿佛在俯瞰着盆地中的一切。\n“原来我们一直在山下。”\n“云澜涧，在上头。”\n云澜涧在山巅。想要踏足那片更高的天地，必须先翻过这四面环抱的山峦。\n有人提议绕路，沿着山脚寻找缓坡。走了数日，发现山势陡峭，处处绝壁，无路可上。\n有人试图攀爬，爬到半途便力竭而退，险些坠落。\n最后，有人站在盆地中央，环顾四周，说了一句改变一切的话：\n“上不去，就修上去。”\n于是，筑梯开始了。\n人们从山脚搬来石块，垒成第一级台阶。一人动手，十人跟上，百人加入。没有法器，没有神通，只有凡人的双手和一颗向上的心。\n阶梯一寸一寸地延伸，从山脚蜿蜒而上，贴附着陡峭的山壁，向着云澜涧的方向攀爬。\n有人凿石，有人搬运，有人垒砌，有人加固。\n累了就坐在台阶上歇息，渴了饮一口清泉，伤了互相包扎。\n没有人催促，没有人退缩。\n因为他们知道，阶梯的尽头，是筑基的机缘，是更广阔的天地，是仙路的下一程。\n阶梯越修越长，从山脚延伸到山腰，从山腰延伸到云雾之中。\n远远望去，像是一条石龙盘踞在山壁之上，龙头隐入云端。\n人们给它取了一个名字——\n天梯。\n四面山围盆底宽，云澜高处不可攀。\n凡人无有登天术，一阶一石筑山峦。" },
+        { id: 6, title: "第四篇 · 守界人", summary: "天梯蜿蜒向上，行至半途，山势忽然开阔", content: "天梯蜿蜒向上，行至半途，山势忽然开阔。\n\n人们这才看清，盆地的山体并非直上直下，而是分作两重阶梯。\n\n第一阶梯，是脚下这座高山，巍峨雄浑，草木葱茏，灵气比盆底浓郁数倍。站在山脊上眺望，隐约可见深处藏着一片仙门遗迹\n残殿、断柱、坍塌的楼阁，历历在目，仿佛在诉说上古的辉煌。\n\n第二阶梯，才是云澜涧的门前。那座山更高，更险，云雾缭绕，天道微压从上方倾泻而下，压得人喘不过气。\n\n第一阶梯，像是一座桥。桥的这一头，是清霄原；桥的那一头，是云澜涧。\n\n而桥上，满是机缘。\n\n有人在山脊上发现了灵草丛，有人在山涧中找到了灵泉，有人捡到了散落的古器碎片。第一阶梯仿佛在告诉每一个人：机缘在此，只等你来取。\n\n人们走下天梯，踏上山体，向第一阶梯的深处探索。\n\n然后，他们遇到了灵物。\n\n那是一头如山般巨大的妖兽，盘踞在山谷之中，身躯之庞大，远超任何人想象。它只是趴在那里，便占据了大半个山谷。\n\n这是修士们第一次遇到真正的灵物。\n\n在此之前，清霄原只有微灵兽，体型不过豺狼虎豹，虽有灵性，却无甚威胁。而眼前这头巨兽，虽也不过练气境界，却凭借庞大的肉身，拥有了碾压性的力量。\n\n一尾扫过，山石崩裂。\n\n一息喷出，灵气激荡。\n\n修士们围攻了三天三夜，死伤无数，才终于摸清了它的底细\n\n它也是壁垒复苏后从凡间误入此地的生灵。不过是一头凡蛇，误闯灵域，被灵气滋养了数月，便长成了这般模样。\n\n练气境。没有神通，没有术法，只有一身蛮力。\n\n可就是这一身蛮力，让数十名修士束手无策。\n\n就在众人准备再度围攻之时，有人站了出来。\n\n那是一条白蛇。\n\n身长三米，通体纯白无杂，鳞片如霜雪凝就，竖瞳赤红如熔玉，游动时有水泽灵气萦绕周身。他从人群中缓缓游出，不疾不徐，仿佛面前那头如山巨蛇不过是一块顽石。\n\n他没有拔刀。\n\n他只是抬起头，赤红的竖瞳凝视着那头巨蛇，一言不发。\n\n一人一蛇，对视良久。\n\n没有人知道那天发生了什么。\n\n只知道巨蛇缓缓低下头，伏在地上，再也没有攻击过任何人。\n\n白蛇转身，他的声音很淡，淡得像山涧的薄雾：\n\n“它只是迷路了。和你们一样，从凡间来，想找一条修行的路。”\n\n“我带你们进去。”\n\n如今，\n修士们给它取了一个名字——\n\n清霄守界人。\n\n有人说，大蛇是被他点化了。\n\n也有人说，他本就不是来争什么的，只是恰好路过，恰好能帮，恰好愿意。\n\n无论如何，清霄原有了第一位守护者。\n\n一条白蛇，带着一条大蛇，守着一条路，等着一群人。\n\n天梯半程见双阶，一重山水一重天。\n白蛇出灵泽，赤瞳守人间。\n巨蛇横卧非为阻，清霄守界待君前。" },
+        { id: 7, title: "支线篇 · 文明初立", summary: "那条通体纯白、赤瞳如焰的蛇，镇守一方，护凡民安好", content: "那条通体纯白、赤瞳如焰的蛇，镇守一方，护凡民安好。有人翻遍古籍，寻到了女娲伏羲的传说，人首蛇身，上古正神，创世造人，补天救世。\n\n“白蛇护我们，可是神明后裔？”\n\n“即便不是，也是神明之姿。”\n\n于是，人们开始尊称他为清霄守界人，有虔诚者，已悄悄在心中将他奉为一方神明。\n\n白蛇不知这些。\n\n他只是看着人们风餐露宿，夜来蜷缩在山石之间，白日里啃着干涩的野果。天梯虽成，落脚之处却依旧简陋。\n\n他抬起尾尖，灵力涌动，泥土自行翻涌，凝成方正的土块。\n\n一块，两块，十块。\n\n垒起来，便成了墙。\n\n他忽然停下了动作。\n\n“何不，教他们自己造？”\n\n这个念头升起的一瞬，天地骤变。\n\n云层翻涌，一道流光从天而降，不偏不倚，落于白蛇掌心。那是一枚碎片，通体莹白，刻着古篆二字：\n\n云澜。\n\n天降异象，云澜钥匙碎片，择主而降。\n\n白蛇握紧碎片，沉默良久。隔日一早，他将众人召集到山脊平地上，声音不重，却清晰传遍每一个人耳中：\n\n“我们要在此地，开展第一份文明。”\n\n“从搭建开始。”\n\n他抬手，灵力在地面上勾勒出一座建筑的轮廓，飞檐、石阶、殿门、回廊。\n\n“此为白蛇庙宇。”\n\n“每人皆可绘制图纸，按己心所想，筑此一方水土。”\n\n“写得好者，名震四方。”\n\n众人面面相觑，随即眼中燃起了光。\n\n那是文明的火焰。\n\n白蛇凝土欲成家，天降云澜碎片斜。\n召来众人开笔会，一纸庙宇定风华。" },
+
+
+    ];
+    function renderMap() {
+        const svg = document.getElementById('realmSvg'); svg.innerHTML = '';
+        const bg = document.createElementNS("http://www.w3.org/2000/svg","rect"); bg.setAttribute("width","100%"); bg.setAttribute("height","100%"); bg.setAttribute("fill","#fcf6ea"); bg.setAttribute("rx","24"); svg.appendChild(bg);
+        for(let i=0;i<4;i++) { let p=document.createElementNS("http://www.w3.org/2000/svg","path"); p.setAttribute("d",`M${70+i*190} 560 Q${190+i*150} 470,${340+i*120} 580`); p.setAttribute("stroke","#e3cfae"); p.setAttribute("stroke-width","2"); p.setAttribute("fill","none"); p.setAttribute("opacity","0.4"); svg.appendChild(p); }
+        regions.forEach(r => {
+            let g = document.createElementNS("http://www.w3.org/2000/svg","g"); g.classList.add("region-item");
+            let e = document.createElementNS("http://www.w3.org/2000/svg","ellipse"); e.setAttribute("cx",r.x); e.setAttribute("cy",r.y); e.setAttribute("rx",r.rx); e.setAttribute("ry",r.ry); e.setAttribute("fill",getRegionFill(r)); e.setAttribute("stroke",getRegionStroke(r)); e.setAttribute("stroke-width","2.8"); e.setAttribute("stroke-dasharray","5 4"); e.setAttribute("opacity","0.94"); g.appendChild(e);
+            let nt = document.createElementNS("http://www.w3.org/2000/svg","text"); nt.setAttribute("x",r.x); nt.setAttribute("y",r.y-20); nt.setAttribute("font-size","22"); nt.setAttribute("font-weight","800"); nt.setAttribute("fill","#5a3920"); nt.setAttribute("text-anchor","middle"); nt.setAttribute("font-family","'Ma Shan Zheng','ZCOOL XiaoWei',serif"); nt.textContent = r.name;
+            let rt = document.createElementNS("http://www.w3.org/2000/svg","text"); rt.setAttribute("x",r.x); rt.setAttribute("y",r.y+26); rt.setAttribute("font-size","15"); rt.setAttribute("font-weight","600"); rt.setAttribute("fill","#9e6e42"); rt.setAttribute("text-anchor","middle"); rt.setAttribute("font-family","'Noto Serif SC',serif"); rt.textContent = `[${r.realm}]`;
+            g.appendChild(nt); g.appendChild(rt); g.style.cursor="pointer";
+            g.addEventListener("mousedown",()=>{ g.classList.add("region-click-effect"); e.setAttribute("stroke","#d97c2b"); e.setAttribute("stroke-width","3.8"); });
+            g.addEventListener("mouseup",()=>{ setTimeout(()=>{ g.classList.remove("region-click-effect"); e.setAttribute("stroke",getRegionStroke(r)); e.setAttribute("stroke-width","2.8"); },80); });
+            g.addEventListener("mouseleave",()=>{ g.classList.remove("region-click-effect"); e.setAttribute("stroke",getRegionStroke(r)); e.setAttribute("stroke-width","2.8"); });
+            g.addEventListener("click",()=> showRegionDetails(r));
+            svg.appendChild(g);
+        });
+        let dec = document.createElementNS("http://www.w3.org/2000/svg","g"); dec.setAttribute("opacity","0.5");
+        let circ = document.createElementNS("http://www.w3.org/2000/svg","circle"); circ.setAttribute("cx","840"); circ.setAttribute("cy","540"); circ.setAttribute("r","42"); circ.setAttribute("fill","#e6d6bc"); circ.setAttribute("stroke","#b58553"); circ.setAttribute("stroke-dasharray","3 5"); dec.appendChild(circ);
+        let th = document.createElementNS("http://www.w3.org/2000/svg","text"); th.setAttribute("x","840"); th.setAttribute("y","546"); th.setAttribute("font-size","13"); th.setAttribute("fill","#7b583b"); th.setAttribute("text-anchor","middle"); th.textContent = "未垦"; dec.appendChild(th); svg.appendChild(dec);
+    }
+    function showRegionDetails(r) { let modal=document.getElementById('scrollModal'); document.getElementById('scrollModalTitle').innerHTML=`<h3>📍 ${r.name} · 灵域录</h3>`; document.getElementById('scrollModalContent').innerHTML=`<p><strong>境界：</strong> ${r.realm}</p><p><strong>区域：</strong> ${r.name}</p><p><strong>状态：</strong> ${r.status}</p><p><strong>开辟者：</strong> ${r.pioneer}</p><p><strong>地脉灵机：</strong> ${r.desc}</p><div style="margin-top:20px; font-style:italic; text-align:center;">「一花一叶，皆蕴道机」</div>`; modal.classList.add('active'); }
+    function showChapter(c) { let modal=document.getElementById('scrollModal'); document.getElementById('scrollModalTitle').innerHTML=`<h3>📜 ${c.title}</h3>`; document.getElementById('scrollModalContent').innerHTML=`<div style="white-space:pre-wrap;">${c.content}</div>`; modal.classList.add('active'); }
+    function renderStoryCards() { let cont=document.getElementById('storyList'); cont.innerHTML=''; chapters.forEach(ch=>{ let cd=document.createElement('div'); cd.className='plot-card'; cd.innerHTML=`<div class="card-title">${ch.title}</div><div class="card-summary">${ch.summary} <span style="font-size:0.7rem;">✧ 展卷 ✧</span></div>`; cd.addEventListener('click',()=>showChapter(ch)); cont.appendChild(cd); }); }
+    function initCollapsible() { let sc=document.getElementById('storyContentWrap'), tb=document.getElementById('toggleStoryBtn'), ic=document.getElementById('toggleIcon'); let col=false; tb.addEventListener('click',()=>{ col=!col; if(col){ sc.classList.add('collapsed'); ic.innerHTML='⌃'; ic.style.transform='rotate(180deg)'; }else{ sc.classList.remove('collapsed'); ic.innerHTML='⌵'; ic.style.transform='rotate(0deg)'; } }); }
+    function startPetals() { let cont=document.getElementById('petalContainer'); function add(){ let p=document.createElement('div'); p.classList.add('petal'); let s=8+Math.random()*14; p.style.width=`${s}px`; p.style.height=`${s*1.3}px`; p.style.left=`${Math.random()*100}%`; p.style.animationDuration=`${5+Math.random()*7}s`; p.style.animationDelay=`${Math.random()*4}s`; p.style.opacity=0.5+Math.random()*0.35; cont.appendChild(p); setTimeout(()=>p.remove(),11000); } for(let i=0;i<32;i++) setTimeout(add,i*70); setInterval(()=>{ if(document.visibilityState==="visible") add(); },480); }
+    function initNav() { let btns=document.querySelectorAll('.nav-btn'), pages={world:document.getElementById('worldPage'), setting:document.getElementById('settingPage'), personal:document.getElementById('personalPage')}; btns.forEach(b=>{ b.addEventListener('click',()=>{ let t=b.getAttribute('data-nav'); btns.forEach(bb=>bb.classList.remove('active')); b.classList.add('active'); Object.values(pages).forEach(p=>p.classList.remove('active-page')); if(t==='world') pages.world.classList.add('active-page'); else if(t==='setting') pages.setting.classList.add('active-page'); else pages.personal.classList.add('active-page'); }); }); }
+    function bindModalClose() { let modal=document.getElementById('scrollModal'); document.querySelector('.close-scroll').addEventListener('click',()=>modal.classList.remove('active')); modal.addEventListener('click',e=>{ if(e.target===modal) modal.classList.remove('active'); }); }
+    function initWorld() { renderMap(); renderStoryCards(); initCollapsible(); initNav(); bindModalClose(); startPetals(); }
+    initWorld();
+    // 道具数据库及设定界面
+    const itemDatabase = { 
+    // 消耗品数据库
+    consumable: [
+    { name: "灵泉水", type: "消耗品", grade: "凡品", desc: "清澈甘甜的山泉，蕴含微弱灵气，饮用后能恢复体力，驱散疲乏。", effect: "服用后 +2 修为", source: "通用/日常获取", detail: "" },
+    { name: "荧光露珠", type: "消耗品", grade: "凡品", desc: "夜间采集的露珠，泛着微弱的荧光，入口清甜，如饮星光。", effect: "服用后 +1 修为", source: "通用/日常获取", detail: "" },
+    { name: "凝气露", type: "消耗品", grade: "初品", desc: "灵气凝结而成的露珠，晶莹剔透，入口化作一缕温热的灵气流入丹田。", effect: "服用后 +4 修为", source: "通用/日常获取", detail: "" },
+    { name: "灵果", type: "消耗品", grade: "初品", desc: "灵气滋养下生长的果实，果肉饱满，咬一口汁水四溢，甘甜中带着草木清香。", effect: "服用后 +3 修为", source: "通用/日常获取", detail: "" },
+    { name: "灵气结晶", type: "消耗品", grade: "良品", desc: "半透明晶石，内里有灵气如云雾般流转。握在掌心微微发凉，灵气会自然渗入体内。", effect: "服用后 +12 修为", source: "清霄洞窟", detail: "" },
+    { name: "发光果实", type: "消耗品", grade: "初品", desc: "半透明果实，内部绿色光点缓慢流动，表皮薄如蝉翼。咬破后果肉化开，像喝温糖水。", effect: "服用后 +5 修为", source: "未标注", detail: "" },
+    { name: "枯木灵", type: "消耗品", grade: "良品", desc: "枯木林中凝结的灵质，呈淡黄色胶状，散发着草木的涩味。可服用，也可入药。", effect: "服用后 +7 修为", source: "枯木掉落", detail: "" },
+    { name: "幻梦灵露", type: "消耗品", grade: "良品", desc: "幻境秘境中凝结的露珠，泛着七彩微光。服用后眼前闪过零碎的梦境片段，如梦似幻。", effect: "服用后 +7 修为", source: "天梯·幻境秘境", detail: "" },
+    { name: "古丹残液", type: "消耗品", grade: "良品", desc: "上古遗迹中残留的丹液，已凝固成半透明的胶状物，散发着淡淡的药香。", effect: "服用后 +7 修为", source: "上古遗迹", detail: "" },
+    { name: "浮空灵珠", type: "消耗品", grade: "良品", desc: "悬浮区域凝结的灵珠，轻若无物，握在掌心时整个人会感到一阵轻盈。", effect: "服用后 +10 修为", source: "悬浮区域", detail: "" },
+    { name: "天风玉露", type: "消耗品", grade: "良品", desc: "高空灵气凝结的玉露，清冽甘甜，入口如饮寒风，过后却有一股暖意从丹田升起。", effect: "服用后 +9 修为", source: "高空灵气凝结", detail: "" },
+    { name: "云露精华", type: "消耗品", grade: "良品", desc: "云层深处凝聚的精华，如雾如露，入口即化，留下一缕清凉的灵气在经脉中流转。", effect: "服用后 +10 修为", source: "天梯攀登", detail: "" },
+    { name: "阶梯尘晶", type: "消耗品", grade: "初品", desc: "天梯台阶上凝结的细小晶粒，灰白色，握在手心有粗糙的质感。", effect: "服用后 +2 修为", source: "天梯攀登", detail: "" },
+    { name: "云雾凝珠", type: "消耗品", grade: "初品", desc: "云中凝结的水珠，圆润如珠，表面有淡淡的雾气缭绕。", effect: "服用后 +4 修为", source: "天梯攀登", detail: "" },
+    { name: "登阶灵叶", type: "消耗品", grade: "初品", desc: "天梯沿途灵木飘落的叶子，叶脉清晰，泛着淡淡的灵光。", effect: "服用后 +6 修为", source: "天梯攀登", detail: "" },
+    { name: "天梯石髓", type: "消耗品", grade: "良品", desc: "天梯石缝中渗出的髓液，凝固成半透明的石块，散发着淡淡的灵气。", effect: "服用后 +8 修为", source: "天梯攀登", detail: "" },
+    { name: "凝雪灵气", type: "消耗品", grade: "初品", desc: "雪山之巅凝结的灵气团，如雪如雾，触之冰凉，入口化作一缕寒意在丹田散开。", effect: "服用后 +5 修为", source: "雪山任务", detail: "" },
+    { name: "熔岩余烬", type: "消耗品", grade: "初品", desc: "火山余烬中捡拾的碎石，表面有细密的裂纹，裂纹中隐约可见橙红色光芒。", effect: "服用后 +5 修为", source: "雪山任务", detail: "" },
+    { name: "冰火交汇露", type: "消耗品", grade: "珍品", desc: "冰火交汇处凝结的露珠，一半冰蓝一半赤红，入口时冰火交替。", effect: "服用后 +10 修为", source: "雪山任务", detail: "" },
+    { name: "虚妄尘晶", type: "消耗品", grade: "初品", desc: "凝结的尘晶，半透明，内里有细小的光点漂浮，像微缩的星空。", effect: "服用后 +5 修为", source: "天梯·幻境秘境", detail: "" },
+    { name: "回音石", type: "消耗品", grade: "初品", desc: "暖石涧石壁中剥落的碎块，表面有细密的音纹，握在手中有微微震颤。", effect: "服用后 +4 修为", source: "暖石涧", detail: "" },
+    { name: "潭果", type: "消耗品", grade: "良品", desc: "寒潭深处生长的灵果，果皮呈深蓝色，果肉晶莹剔透，入口冰凉。", effect: "服用后 +8 修为", source: "寒潭", detail: "" },
+    { name: "山髓结晶", type: "消耗品", grade: "良品", desc: "山体深处凝结的髓晶，乳白色，半透明，散发着淡淡的土腥气。", effect: "服用后 +6 修为", source: "未标注", detail: "" },
+    { name: "冰魄心核", type: "消耗品", grade: "珍品", desc: "冰蓝色心形核体，表面有细密冰纹，触之冰凉却不冻手。", effect: "服用后 +10 修为", source: "玉镜寒潭", detail: "" },
+    { name: "汇灵结晶", type: "消耗品", grade: "良品", desc: "灵气高度浓缩而成的结晶，色泽纯净，内部灵力流转如活物。", effect: "服用后 +12 修为", source: "未标注", detail: "" },
+    { name: "赤曜沙晶", type: "消耗品", grade: "良品", desc: "峡谷中凝结的沙晶，呈暗红色，表面有细密的沙纹，握在手心微微发烫。", effect: "服用后 +10 修为", source: "赤曜峡谷", detail: "" },
+    { name: "阴嚎狼心", type: "消耗品", grade: "珍品", desc: "阴嚎狼的心脏，取出时仍在微微跳动，散发着浓烈的血腥气与灵力波动。", effect: "服用后 +12 修为", source: "赤曜峡谷", detail: "" },
+    { name: "风凝露", type: "消耗品", grade: "初品", desc: "从风眼中凝取的露珠，入口清凉，拂去疲乏。", effect: "服用后 +3 修为", source: "清霄山崖", detail: "" },
+    { name: "碧落果", type: "消耗品", grade: "良品", desc: "峡谷深处生长的灵果，果皮青翠，果肉清脆。", effect: "服用后 +8 修为", source: "赤曜峡谷", detail: "" },
+    { name: "幽荧草", type: "消耗品", grade: "初品", desc: "峡谷中生长的灵草，夜间会发出淡绿色荧光。叶片细长，嚼之微苦，回甘。", effect: "服用后 +3 修为", source: "赤曜峡谷", detail: "" },
+    { name: "阴魂花", type: "消耗品", grade: "初品", desc: "阴气凝聚而成的灵花，花瓣呈暗紫色，散发着淡淡的腐香。", effect: "服用后 +5 修为", source: "赤曜峡谷", detail: "" },
+    { name: "幽嚎兽骨", type: "消耗品", grade: "初品", desc: "幽嚎兽的骨骼碎片，灰白色，表面有细密的裂纹，残留着微弱灵力。", effect: "服用后 +4 修为", source: "赤曜峡谷", detail: "" },
+    { name: "碧鳞蛇胆", type: "消耗品", grade: "良品", desc: "碧鳞蛇的胆囊，墨绿色，饱满圆润，散发着淡淡的腥苦味。", effect: "服用后 +6 修为", source: "赤曜峡谷", detail: "" },
+    { name: "鳞下灵果", type: "消耗品", grade: "良品", desc: "某种灵兽鳞片下寄生的灵果，外表粗糙，内里多汁，味道酸甜。", effect: "服用后 +10 修为", source: "巨蛇试炼", detail: "" },
+    { name: "蛇蜕残片", type: "消耗品", grade: "初品", desc: "灵蛇蜕下的皮膜碎片，半透明，轻薄如纸，残留着淡淡的灵气。", effect: "服用后 +5 修为", source: "巨蛇试炼", detail: "" },
+    { name: "晶砂", type: "消耗品", grade: "良品", desc: "细碎的晶粒，如沙如粉，在阳光下泛着细碎的光芒。", effect: "服用后 +10 修为", source: "龙宫旧址", detail: "" },
+    { name: "珠子", type: "消耗品", grade: "珍品", desc: "圆润的灵珠，表面光滑，内里有灵气如雾流转。捏碎时灵力迸发。", effect: "捏碎后 +15 修为", source: "龙宫旧址", detail: "" },
+    { name: "龙髓珠", type: "消耗品", grade: "珍品", desc: "龙骨中取出的髓珠，乳白色，温润如玉，散发着淡淡的龙威。", effect: "服用后 +15 修为", source: "未标注", detail: "" },
+    { name: "远古水脉残滴", type: "消耗品", grade: "珍品", desc: "远古水脉凝结的残滴，如泪珠般晶莹。", effect: "服用后 +10 修为，或用于灵宠升阶", source: "龙宫旧址", detail: "" },
+    { name: "脉石碎片", type: "消耗品", grade: "初品", desc: "灵脉碎片剥落的小块，灰白色，表面有细密的纹路。", effect: "服用后 +6 修为", source: "龙宫旧址", detail: "" },
+    { name: "龙骨尘", type: "消耗品", grade: "良品", desc: "龙骨研磨而成的细粉，灰白色，散发着淡淡的龙气。", effect: "服用后 +5 修为", source: "龙宫旧址", detail: "" },
+    { name: "冰鸣心", type: "消耗品", grade: "珍品", desc: "寒潭冰下取出的冰蓝色核体，贴耳能听到微弱心跳声。", effect: "服用后 +10 修为", source: "玉镜寒潭", detail: "" },
+    { name: "辟邪丹", type: "消耗品", grade: "良品", desc: "呈淡金色，表面有细密丹纹，散发着淡淡的龙气。", effect: "服用后 +5 修为", source: "龙宫旧址", detail: "" },
+    { name: "溟元果", type: "消耗品", grade: "", desc: "灰白果实", effect: "服用后 +8 修为", source: "溟泽古林·树冠", detail: "" }    
+], 
+
+    // 功法数据库
+    skill: [
+    { name: "冰心照渊", type: "功法", grade: "识海系", desc: "识海系辅修功法", effect: "可直接破坏低阶幻境，对幻术类攻击有较强抗性。", source: "冰渊欲窟副本", detail: "识海系辅修功法，修成后识海如冰湖澄澈，可照破幻境幻术，不受欲望类幻境影响。" },
+    { name: "冰心招式", type: "功法", grade: "功法", desc: "十枚冰心碎片可兑换", effect: "唤出镜子倒影敌人，让敌人自己和自己对战。", source: "玉镜寒潭", detail: "" },
+    { name: "雾里摘尘", type: "功法", grade: "感知系", desc: "感知系辅修功法", effect: "可直接看破幻境，精准锁定真实破绽。", source: "冰渊欲窟副本", detail: "感知系辅修功法，可看破虚假场景，不受幻术类幻境迷惑。" },
+    { name: "欲烬余温", type: "功法", grade: "心法系", desc: "心法系辅修功法", effect: "可将幻境中的欲望能量转化为自身防御。", source: "冰渊欲窟副本", detail: "心法系辅修功法，可净化或摧毁欲望类幻境，不受负面情绪影响。" },
+    { name: "云隐诀", type: "功法", grade: "身法", desc: "身法", effect: "灵力流转间身周生出薄雾，雾随人动，人隐雾中。", source: "云中石任务", detail: "雾中可凝云成针无声刺出。被攻击命中或主动出针时雾气炸开，功法暂破。" },
+    { name: "御风诀", type: "功法", grade: "身法", desc: "身法", effect: "可在悬崖峭壁间借风踏行，短暂滑空，落地无声。", source: "清霄山崖任务", detail: "身法，修成后周身气流缠绕，轻身如燕。" },
+    { name: "龙骨相", type: "功法", grade: "护身类", desc: "护身类功法", effect: "龙骨合拢形成屏障，外界攻击落于龙骨之上。", source: "龙宫旧址", detail: "护身类功法，身后开启龙骨虚影，庞大如山。" },
+    { name: "逆鳞七斩", type: "功法", grade: "攻击类", desc: "攻击类连斩功法", effect: "七斩连出，如七条巨龙接连扑杀，连绵不绝。", source: "龙宫旧址", detail: "攻击类连斩功法，身后依次浮现七道龙相，一相一斩。" },
+    { name: "龙骨锻体", type: "功法", grade: "体修类", desc: "体修类功法残篇", effect: "化龙十秒，伤口自愈。", source: "未龙宫旧址", detail: "体修类功法残篇，可修炼至金丹境。濒死时人性化龙，仰天长啸震慑对方。" },
+    { name: "暗河引", type: "功法", grade: "水系", desc: "水系法术", effect: "水线入体化作冰针，痛如骨髓。", source: "龙宫旧址", detail: "水系法术，可凝聚刺骨水线数道射向目标。" },
+    { name: "冰心招式", type: "功法", grade: "冰属性", desc: "冰属性招式", effect: "唤出镜子，倒映出敌人的身影，使其与自己的镜像对战。", source: "镜心试炼", detail: "冰属性招式，凝冰成镜。镜像会复刻敌人的动作与招式，敌人需同时应对自身与镜像的双重压力。" },
+    { name: "星辰眼", type: "功法", grade: "瞳术类", desc: "瞳术类功法", effect: "夜间视物，感知灵力波动。", source: "未标注", detail: "瞳术类功法，引星光淬炼双目，可在黑暗中视物，看破低阶隐匿。" },
+    { name: "心眼", type: "功法", grade: "感知类", desc: "感知类功法", effect: "不受视觉幻术影响，但范围有限。", source: "未标注", detail: "感知类功法，闭目时可感知周围生物的大致位置与灵力强弱。" },
+    { name: "换针术", type: "功法", grade: "攻击类", desc: "攻击类功法", effect: "对金丹及以上无效。", source: "未标注", detail: "攻击类功法，灵力飞针，次数模糊。" },
+    { name: "残破道图", type: "功法", grade: "功法", desc: "观摩壁画道韵", effect: "一次性道具，使用后消失。", source: "上古废墟", detail: "观摩壁画道韵，可参悟基础功法、身法。" },
+    { name: "兽语录", type: "功法", grade: "功法", desc: "记录灵兽习性、弱点、喜好的薄册", effect: "面对非敌对灵兽时，持有者仇恨值不优先指向。", source: "开辟令", detail: "记录灵兽习性、弱点、喜好的薄册，字迹潦草。" }
+        ], 
+
+    // 材料数据库
+    material: [
+    { name: "幻墟衍灵髓", type: "材料", grade: "", desc: "幻化兵器为虚影", effect: "幻化任意兵刃一次，或辅助武器突破", source: "天梯·幻境秘境", detail: "" },
+    { name: "福泽灵语", type: "材料", grade: "", desc: "白蛇的福泽文书，镶嵌于器上化成器文。", effect: "炼器后有效制造视觉骗局，实现强控", source: "白蛇神庙", detail: "灵兽使用不增加外观\n挥舞出招之处，生机盎然之景。" },
+    { name: "风缚丝", type: "材料", grade: "", desc: "银白色丝线，细如发丝却韧如蚕丝。", effect: "牵引目标的攻击轨迹略微偏移", source: "清霄", detail: "挥剑时，剑锋拖曳一缕无形的气流，可牵引目标的攻击轨迹略微偏移\n出招之际，风声轻啸，丝线所过之处留下细密的银色残影，如风过竹林。" },
+    { name: "枯木藤", type: "材料", grade: "", desc: "深褐色藤蔓，一指粗，坚韧难断，内中空有暗绿汁液。", effect: "镶嵌武器（概率吸灵）、炼器、灵力牵引装置", source: "枯木林", detail: "" },
+    { name: "枯木根茎", type: "材料", grade: "", desc: "蕴含灵力存储之威能。", effect: "可起手将存储灵力挥出", source: "枯木林", detail: "灵力获取可来自天地灵气，或吸食灵兽与修士。" },
+    { name: "变异藤蔓", type: "材料", grade: "", desc: "藤蔓脱落后依然保持活性，表面有细密倒刺。", effect: "附魔于武器。", source: "开拓令", detail: "每次击中目标会在其体内留下微小寄生种子，击中足够次数后种子短暂萌芽\n使目标出现不受控的微小抽搐，握力松懈、脚步偏移、招式变形。\n使用者可在极短时间内牵引对方攻击方向偏移分毫。" },
+    { name: "幽光藤蔓", type: "材料", grade: "", desc: "造成异变", effect: "具有腐蚀之效与操控之能", source: "开拓令", detail: "" },
+    { name: "烧焦藤蔓", type: "材料", grade: "灵宠", desc: "藤蔓被石门夹断，断口有雷电灼烧痕迹。", effect: "灵宠服用升阶", source: "开拓令", detail: "灵宠服用后升阶一次，不改变形态，仅提升等阶。\n枯藤中残留的雷电与寄生体气息刺激灵宠体质，增强对外界毒素、寄生物的抵抗力。" },
+    { name: "熔岩火虫", type: "材料", grade: "", desc: "火系材料", effect: "+5修为/可锻造", source: "雪山·岩浆边缘", detail: "" },
+    { name: "火灵之羽", type: "材料", grade: "", desc: "火系材料", effect: "+10修为/锻造材料", source: "火焰鹤", detail: "" },
+    { name: "霜脊狼骨", type: "材料", grade: "", desc: "冰系材料", effect: "+5修为/可锻造", source: "雪山·霜脊狼", detail: "" },
+    { name: "冰灵绒毛", type: "材料", grade: "", desc: "冰系材料", effect: "+7修为/可锻造，提高冰抗性", source: "冰系灵兽", detail: "" },
+    { name: "冰鹿之角", type: "材料", grade: "", desc: "冰系材料", effect: "+10修为/锻造材料", source: "冰封鹿", detail: "" },
+    { name: "冰火玄晶", type: "材料", grade: "", desc: "一半赤红一半莹白，内蕴冰火双属性。", effect: "武器附带冰火双属性", source: "雪山", detail: "" },
+    { name: "冰渊髓晶", type: "材料", grade: "", desc: "冰系材料", effect: "婴儿拳头大小不规则晶体，内部蓝色光丝缓慢游动，触之冰凉刺骨", source: "冰渊欲窟副本", detail: "" },
+    { name: "冰毒绿莲", type: "材料", grade: "", desc: "花瓣纯白如雪，薄到近乎透明，花蕊绿到发黑。", effect: "冰毒属性/可炼化入体", source: "寒潭秘境", detail: "冰毒触碰花蕊会沿经脉上行麻痹肢体，冰白而血绿\n将其炼化入体，灵力中多了一道淡绿色寒毒，攻击时结白冰绿血\n寒毒抗性提升但体温常年偏低。" },
+    { name: "渡灵灯芯", type: "材料", grade: "灵宠", desc: "渡船青灯中取出的灯芯，长约三寸，细如发丝，泛着幽蓝微光。", effect: "灵宠可吞服或佩戴", source: "玉镜寒潭", detail: "灵宠吞服或佩戴后，周身泛起幽蓝光晕，瞳孔深处隐约有青焰跳动\n升阶后，攻击时爪牙附带幽蓝残影，可触及目标神魂，令其短暂失神\n夜间隐匿时，身形如融入薄雾，难以捕捉。" },
+    { name: "风残石", type: "材料", grade: "", desc: "于时停之风沙域因时间弹跳所造之石", effect: "可时停，借助弹跳毁其生物神志，攻其识海。", source: "寒潭秘境", detail: "" },
+    { name: "风聚石", type: "升阶材料", grade: "", desc: "风属性之石", effect: "可用于提升品级", source: "玉镜寒潭", detail: "" },
+    { name: "土聚石", type: "升阶材料", grade: "", desc: "土属性之石", effect: "可用于提升品级", source: "玉镜寒潭", detail: "" },
+    { name: "冰聚石", type: "升阶材料", grade: "", desc: "风属性之石", effect: "可用于提升品级", source: "玉镜寒潭", detail: "" },
+    { name: "焚石碎片", type: "材料", grade: "武器", desc: "通体暗红，表面有灼烧纹路，触之滚烫", effect: "可嵌入武器，挥器时拖曳一缕暗红火星", source: "未知", detail: "特效（嵌入武器后）：\n挥器时，器拖曳一缕暗红火星，击中目标时火星炸开，溅射数点灼热烈焰。\n若与冰属性材料同铸，冰火交织，剑刃划过之处，半边焦 痕半边霜。" },
+    { name: "沙舟碎片", type: "材料", grade: "", desc: "十枚碎片可制造飞舟", effect: "飞舟外观、功能，需要审核通过。", source: "赤曜荒原", detail: "" },
+    { name: "冰心碎片", type: "材料", grade: "", desc: "十枚碎片可兑换功法《冰心招式》", effect: "《冰心招式》唤出镜子倒影敌人，让敌人自己和自己对战。", source: "玉镜寒潭", detail: "" },
+    { name: "仙门残锋", type: "材料", grade: "", desc: "上古仙门遗留碎片", effect: "融入武器提升品质", source: "上古废墟", detail: "" },
+    { name: "星荧绸", type: "材料", grade: "", desc: "造器核心材料", effect: "处似夜空有幽蓝光点，亮处流光溢彩，织出星河旋转", source: "溯命之隙", detail: "" },
+    { name: "混沌石", type: "材料", grade: "仅一枚", desc: "五行本源随机抽取", effect: "形态改造一次+ 属性附魔", source: "修为前三奖励", detail: "金：锋锐、破甲\n木：生长、缠绕\n水：流动、渗透\n火：爆裂、灼\n土：厚重、稳固" },
+    { name: "变异混沌石", type: "材料", grade: "仅一枚", desc: "混沌石受天地异变浸染，分化出五种本之力", effect: "形态改造一次+ 属性附魔", source: "修为前三奖励", detail: "变异混沌石·雷 雷劫浸染，石面雷纹密布\n变异混沌石·光 极光照射，内藏星辰光点\n变异混沌石·暗 深渊万年，通体漆黑不反光\n变异混沌石·冰 万年寒冰，触之刺骨\n变异混沌石·风 万年风眼，轻若无物\n属性效果：名称 特性\n雷 引雷、麻痹\n光 留痕、破隐\n暗 失向、乱步\n冰 凝霜、脆化\n风 吹障、散盾" },
+    { name: "双生源石", type: "材料", grade: "武器/灵宠", desc: "如菱石，通体半透明，内里封存双生之力", effect: "双属性效果", source: "修为前三奖励", detail: "双形态：武器可在两种选定形态间切换，外观与基础属性随之变化\n双属性：灵宠获得两种选定属性，技能附带双系效果\n全新特效：攻击时触发双属性交织特效，两种力量同时显现\n武器：\n形态一：主属性特效\n形态二：副属性特效\n切换无消耗，一念即可\n灵宠：\n获得双属性抗性，技能附带双重伤害效果，外观出现双属性交织印记\n打斗特效：\n双属性能量凝而不散，交汇处泛起金色光晕\n命中目标时，两种特效同时迸发\n属性自选：一石双生，源力同根。器有双形，宠具双魂。" },
+    { name: "恒石星陨", type: "材料", grade: "武器", desc: "灰黑色石片，掌心大小，边缘粗糙", effect: "武器功能", source: "修为前三奖励", detail: "挥击之时：挥击时星点膨胀成球体砸落，虚空凹陷炸开裂隙\n裂隙：目标连同碎裂空间坠入未成型的混沌秘境，裂隙随即闭合。" },
+    { name: "恒石星陨*", type: "材料", grade: "小世界", desc: "灰黑色石片，掌心大小，边缘粗糙", effect: "小世界功能", source: "修为前三奖励", detail: "裂隙之内，持主即是这片混沌的唯一主宰。灵雾随念而动，光影随行而变。未成形的世界尚在沉睡，却在每一次握石时微微震颤。\n小世界功能：\n· 持主可自由进出自己的秘境\n· 可邀请他人进入，也可强制将目标拖入\n· 秘境内，持主可操控环境、压制闯入者\n· 秘境需通过材料与机缘逐步打造，方可发挥完整功能\n个人小世界（升阶）\n方寸之地 - 仅容转身，雾气紧裹\n弹丸之隅 - 如庭院一角，灵雾初散\n丈许之域 - 约一丈方圆，地面平整\n数丈见方 - 数丈开阔，灵泉居其中\n半亩之池 - 半亩有余，青草漫生\n一顷之地 - 可容一村，溪流穿行\n十里方圆 - 十方之境，天光普照\n百里之疆 - 山丘起伏，生灵渐聚\n千里之界 - 一眼望不尽，四季分明\n自成天地 - 无垠无际，心念所及皆是疆土" },
+    { name: "玄霜藤", type: "材料", grade: "升阶材料", desc: "枯枝间垂挂的银白藤蔓。摸上去冰凉光滑，指节粗，韧性极强，扯不断。", effect: "融入武器后，攻击时有银白霜气缠绕锋刃", source: "溟泽古林·树冠", detail: "融入武器后，攻击时有银白霜气缠绕锋刃，击中目标后霜气短暂附着，使目标动作略微凝滞不是冻住，是像被湿冷的藤蔓绊了一下。" },
+    { name: "霜玄叶", type: "材料", grade: "升阶材料", desc: "枯木顶端新枝上蜷曲的嫩叶，绿得扎眼，叶片边缘泛着细碎的银光。", effect: "融入武器后，叶脉纹路浮现在武器表面，挥斩时刃口带出一缕极细的银线", source: "溟泽古林·树冠", detail: "融入武器后，叶脉纹路浮现在武器表面，挥斩时刃口带出一缕极细的银线，不是剑气，是叶片边缘那一线银光被拉长了。含在舌下可清心明目，对低阶幻术有微弱抗性。" }
+    ],
+
+    // 武器数据库
+    weapon: [
+    { name:"镜破", type:"武器", grade:"优品", desc:"镜子碎片凝成的冰紫剑", effect:"聚合成剑，剑面如镜", source:"玉镜寒潭", detail:"碎镜之痕\n剑身炸开，化作数十片冰紫碎片悬空。每片碎片映出身影，镜像动作与本体错开一拍，碎片齐射，划过空间边缘。\n所过之处留下蛛网般冰紫裂痕，裂痕内画面定格，落叶悬停、尘埃静止。\n镜渊倒影\n发剑身平举，镜面映照的并非此刻，而是久时的过去，在镜中缓缓浮现。\n若看向镜面，会看到“自己”做动作愧事，心神恍惚，错认当下。\n特殊作用：劈开时停之域一段时间。" },        
+    { name:"枯荣枝", type:"武器", grade:"优品", desc:"枯木深处爆出的内核，枝节粗糙，状如枯枝，握在手中不似兵器", effect:"枝上骤生新芽，抽条如鞭，从地面、空气中无声抽出，快如疾雨，连绵不绝", source:"溟泽古林·树冠", detail:"枝上骤生新芽，抽条如鞭，从地面、空气中无声抽出，快如疾雨，连绵不绝。\n佩戴效果：不战时，心念所至，枝上开花。\n花型、花色、花数随心而变，握一枝枯木，可得满手春意。" }        
+    
+    ], 
+
+    // 灵宠数据库
+    pet: [
+    { name: "沼泽蜈蚣", type: "灵宠", grade: "凡品", desc: "墨绿多足，行动快", effect: "口器大带毒", source: "枯木林", detail: "暂无" },
+    { name: "攀君", type: "灵宠", grade: "初品", desc: "擅长攀爬", effect: "山地探索、驮运物资，亦可作为坐骑。", source: "青霄", detail: "在陡峭岩壁，四蹄稳健，可在险峻山地如履平地。" },
+    { name: "弥月灵兔", type: "灵宠", grade: "初品", desc: "身形小巧，毛色柔白如月，行动敏捷。", effect: "适合作为陪伴型灵宠", source: "青霄", detail: "性情温和，能感知灵气波动，对危险有敏锐直觉。" },
+    { name: "莲下鱼", type: "灵宠", grade: "良品", desc: "通体灰白，近乎透明。", effect: "以咬作为攻击，伤口会迅速结冰", source: "未知", detail: "体型不大，约一掌长。\n攻击方式：以冰毒入体后，寒气从伤口向四周蔓延；\n中者先失知觉，后失行动能力，最后全身冻僵瘫痪。" },
+    { name: "火焰鹤", type: "灵宠", grade: "良品", desc: "常态下通体雪白羽毛，朱红长喙配上一对朱红长腿。", effect: "火焰破风乘骑飞行不会感受到有阻力", source: "未知", detail: "翼展开腾空而起，烈焰自羽根腾起，顺着翼展向后蔓延，拖曳出两片炽红尾焰犹如空中锦帛。\n飞行：火焰鹤周身燃火双翅一震扶摇腾空而起，至半空后便不再振翅转为火之灵力驱动飞行" },
+    { name: "冰封鹿", type: "灵宠", grade: "良品", desc: "周身青蓝色绒毛覆体，沉冰色鹿角树枝散开。", effect: "冰封鹿四蹄踏上地面，所过之处覆上薄冰。", source: "未知", detail: "骑行：鹿角幽蓝微光悦动，若踏足水面，每一步都在脚下凝出一片冰台，身后留下一串晶莹的冰路。" },
+    { name: "食铁兽", type: "灵宠", grade: "初品", desc: "毛发锃亮，体态憨厚，行动较为笨拙。", effect: "可协助进攻亦可乘骑作为坐骑。", source: "青霄竹林", detail: "作为熊，嗅觉敏锐并且力量大。" },
+    { name: "幽嚎兽", type: "灵宠", grade: "初品", desc: "通体漆黑如墨，身形似狼但更修长，皮毛下隐约有暗纹流动。", effect: "音波攻击", source: "赤曜峡谷", detail: "" },
+    { name: "碧鳞蛇", type: "灵宠", grade: "初品", desc: "通体碧绿鳞片，泛幽冷光泽，蛇身纤细修长。", effect: "具有毒属性", source: "未知", detail: "" },
+    { name: "青鸾·岚翼", type: "灵宠", grade: "良品", desc: "羽翼以靛青为底，翼尖渐变为水蓝与苍翠，层层叠染如远山含黛。", effect: "具有时停之风和风暴跃迁", source: "赤曜峡谷", detail: "时停之风：翼尖凝出透明波纹外散。所过之处，皆停滞定格。\n风刃划过之处，空间留下一道银白裂痕，无法流动。时停解除的瞬间，静止的空间在眨眼间会被风暴填满。\n风暴跃迁：连续空间跳跃中，每次跃迁都会压制旧位置的风、释放新位置的风，使死寂之处瞬间爆发出十倍狂风；落地时所有被压制的风同时释放，在中心点对撞炸开气浪。" },
+    { name: "火沙蝗虫", type: "灵宠", grade: "良品", desc: "通体暗金色，甲壳上有细密的赤红纹路如岩浆流动", effect: "具有噬停之颚和流沙行走", source: "赤曜峡谷", detail: "噬停之颚：咬住时停沙暴边缘，硬生生撕开裂口，使停滞的沙粒碎裂成粉末，身后留下一段恢复流动的通道。\n流沙行走：六足所至，沙粒被高温软化为半流动状态，使蝗虫能在停滞的沙暴中如履平地，身后留下一串冷却后呈深褐色的暗红足印。" },
+    { name: "青穗鼠", type: "灵宠", grade: "初品", desc: "体长半尺，灰褐色皮毛，背脊有一道青色的细纹，从鼻尖延伸至尾尖。", effect: "行动迅捷如风，能嗅出方圆百步内灵气最浓之处", source: "未知", detail: "双耳圆润，眼睛乌黑透亮。\n鼻尖轻嗅时，青色细纹微微发亮，能嗅出方圆百步内灵气最浓之处。\n找到宝物时，双耳竖起，发出细碎的吱吱声，前爪刨地示意。概率触发修为奖励。" },
+    { name: "沙潜蝎", type: "灵宠", grade: "初品", desc: "体金黄色的蝎子，体型约成人半个手掌，尾钩细长呈暗红色。", effect: "在沙中快速移动，突袭时从目标脚底窜出", source: "未知", detail: "钻沙：钻入沙地快速移动，从目标脚底突袭。\n喷沙：喷射沙尘形成沙雾，迷眼扰敌。\n尾钩：刺中注入麻痹毒素，使局部僵硬、动作迟缓。" },
+    { name: "霜脊狼", type: "灵宠", grade: "初品", desc: "通体灰白，毛色如霜，擅长在雪地中隐匿行踪。", effect: "可骑乘，战斗、追踪", source: "雪山", detail: "" },
+    { name: "草鸡", type: "灵宠", grade: "初品", desc: "体型比普通鸡小一圈，枯草色羽毛参差不齐。", effect: "可啄食寄生体/蛊虫", source: "未知", detail: "不爱理人但会跟随。对携带寄生体或孢子印记的人有明显兴趣。" },
+    { name: "时隙幽影", type: "灵宠", grade: "良品", desc: "往日已逝执念与时间相融合产生的特异存在没有固定形态。", effect: "操纵影子，主隐匿控制，可以对鬼魂造成伤害。", source: "未知", detail: "讨厌光亮，升阶可以克服。" },
+    { name: "弥星妖精", type: "灵宠", grade: "良品", desc: "荧光与空间的宠儿，通常为巴掌大小的小光人，没有固定形态。", effect: "转化光，辅助治疗", source: "未知", detail: "在夜晚也闪闪发光。" },        
+    { name: "苍冥猿", type: "灵宠", grade: "优品", desc: "灰白色长臂猴，在枯枝间翻腾跳跃，不惧人", source: "溟泽古林·树冠", detail: "小猴会挂在藤条上歪头打量来者，吱吱喳喳，像是在问：你怎么上来了？\n使用效果：可驯养为灵宠，擅长攀爬、荡跃，在树冠、悬崖等复杂地形中行动自如。感知敏锐，对危险有直觉，能提前预警。" }        
+
+], 
+    
+    // 特殊数据库
+    special: [
+    {
+        name: "飞舟",
+        type: "特殊",
+        grade: "特殊",
+        desc: "十枚沙舟碎片可合成",
+        effect: "合成方式核心功能可随意改变外形，可在飞舟上建设建筑",
+        source: "合成/宗门建设",
+        detail: "宗门二级与灵脉直接联系，出现天上宗门，不影响\n灵脉传输\n副本功能进入副本时可带宗门一群人领取奖励（哪怕未参加）\n宗门三级飞舟内核于灵器内，可打造浮岛仙山\n三级即满"
+    }
+    ],
+
+    };
+
+// 辅助函数：从物品名称中提取基础名称和数量
+function parseItemNameWithCount(rawName) {
+    const match = rawName.match(/(.+?)(?:[×xX*](\d+))?$/);
+    if (match && match[2]) {
+        return { baseName: match[1].trim(), count: parseInt(match[2], 10) };
+    }
+    return { baseName: rawName, count: null };
+}
+
+// 从数据库中查找物品（若找不到则返回特殊占位）
+function findItemInDatabase(itemNameWithCount) {
+    const { baseName, count } = parseItemNameWithCount(itemNameWithCount);
+    // 遍历所有分类查找
+    for (let cat in itemDatabase) {
+        const found = itemDatabase[cat].find(item => item.name === baseName);
+        if (found) {
+            return { item: found, count: count, category: cat };
+        }
+    }
+    // 未找到：归为“特殊”类别，显示暂无
+    const specialItem = {
+        name: baseName,
+        type: "特殊",
+        grade: "特殊",
+        desc: "暂无",
+        effect: "暂无",
+        source: "未知",
+        detail: ""
+    };
+    return { item: specialItem, count: count, category: "special" };
+}
+
+    let currentItemCat = "consumable";
+    let currentKeyword = '';   // 搜索关键词
+function renderItemGrid(cat, keyword = '') {
+    let grid = document.getElementById('itemGrid');
+    if (!grid) return;
+    let items = itemDatabase[cat] || [];
+    // 过滤
+    if (keyword && keyword.trim() !== '') {
+        const kw = keyword.trim().toLowerCase();
+        items = items.filter(item => {
+            return (item.name && item.name.toLowerCase().includes(kw)) ||
+                   (item.desc && item.desc.toLowerCase().includes(kw)) ||
+                   (item.effect && item.effect.toLowerCase().includes(kw)) ||
+                   (item.source && item.source.toLowerCase().includes(kw)) ||
+                   (item.detail && item.detail.toLowerCase().includes(kw));
+        });
+    }
+    if (items.length === 0) {
+        grid.innerHTML = '<div style="grid-column:span 2; text-align:center; padding:2rem; color:#bc8f62;">✨ 暂无匹配物品 ✨</div>';
+        return;
+    }
+    grid.innerHTML = items.map(it => `<div class="item-card" data-item='${JSON.stringify(it)}'><div class="item-name">${it.name}<span class="item-tag">${it.grade || it.type}</span></div><div class="item-desc">${it.desc || it.effect || ''}</div></div>`).join('');
+    document.querySelectorAll('#itemGrid .item-card').forEach(card => {
+        card.addEventListener('click', () => {
+            let raw = card.getAttribute('data-item');
+            if (raw) try { showItemDetail(JSON.parse(raw)); } catch(e) {}
+        });
+    });
+}
+    function showItemDetail(it) {
+    let modal = document.getElementById('itemModal');
+    let titleHtml = `
+        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;">
+            ${it.name}
+            <span style="font-size:0.8rem; background:#e8dac6; padding:2px 10px; border-radius:40px;">${it.grade || it.type}</span>
+        </div>
+    `;
+    document.getElementById('itemModalTitle').innerHTML = titleHtml;
+    document.getElementById('itemModalContent').innerHTML = `
+        <div><strong>介绍：</strong> ${it.desc || '暂无'}</div>
+        <div><strong>效果：</strong> ${it.effect || '无特殊效果'}</div>
+        <div><strong>产出地：</strong> ${it.source || '未知'}</div>
+        ${it.detail ? `<div><strong>详细内容：</strong>\n${it.detail}</div>` : ''}
+    `;
+    modal.classList.add('active');
+    }
+    function initSettingTabs() {
+    let tabs = document.querySelectorAll('.setting-tab'),
+        panels = {
+            cultivate: document.getElementById('cultivatePanel'),
+            item: document.getElementById('itemPanel'),
+            sect: document.getElementById('sectPanel'),
+            marriage: document.getElementById('marriagePanel')
+        };
+    tabs.forEach(t => {
+        t.addEventListener('click', () => {
+            let tar = t.getAttribute('data-tab');
+            tabs.forEach(tt => tt.classList.remove('active'));
+            t.classList.add('active');
+            Object.values(panels).forEach(p => p?.classList.remove('active'));
+            if (panels[tar]) panels[tar].classList.add('active');
+            if (tar === 'item') {
+                renderItemGrid(currentItemCat, currentKeyword);
+                document.querySelectorAll('.item-cat').forEach(b => {
+                    if (b.getAttribute('data-cat') === currentItemCat) b.classList.add('active');
+                    else b.classList.remove('active');
+                });
+            }
+        });
+    });
+    }
+
+    function initItemCategories() {
+    let cats = document.querySelectorAll('.item-cat');
+    cats.forEach(btn => {
+        btn.addEventListener('click', () => {
+            let cat = btn.getAttribute('data-cat');
+            if (!cat) return;
+            currentItemCat = cat;
+            cats.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderItemGrid(currentItemCat, currentKeyword);
+        });
+    });
+    }
+    function initModalCloseItems() { let modal=document.getElementById('itemModal'); document.querySelector('.item-modal-close').addEventListener('click',()=>modal.classList.remove('active')); modal.addEventListener('click',e=>{ if(e.target===modal) modal.classList.remove('active'); }); }
+    function watchSettingPanel() {
+    let sp = document.getElementById('settingPage');
+    if (!sp) return;
+    new MutationObserver(() => {
+        if (sp.classList.contains('active-page')) {
+            let ap = document.querySelector('#settingPage .setting-panel.active');
+            if (ap && ap.id === 'itemPanel' && document.getElementById('itemGrid').children.length === 0) {
+                renderItemGrid(currentItemCat, currentKeyword);
+            }
+        }
+    }).observe(sp, { attributes: true, attributeFilter: ['class'] });
+    }
+    // 姻缘数据（与之前一致）
+    // 姻缘数据
+const marriageList = [
+    { couple: "裁枝 & 清羽", token: "（暂无）", verse: "一世风霜皆为你，半生情念只予人。" },
+    { couple: "皇翎九霄 & 苍恒", token: "（暂无）", verse: "朱衣踏雪入苍茫，云烟一瞥误终生～" },
+    { couple: "苏轻青 & 谢今安", token: "（暂无）", verse: "苏影含情逢轻青，谢心落笔许今安。" },
+    { couple: "季鸢 & 夙玄溟", token: "（暂无）", verse: "红尘里来看千遍，一眼便能定万年" },
+    { couple: "王源 & 渡昭", token: "（无）", verse: "渡月昭光映王影，风源共守此长生。" },
+    { couple: "观仰止 & 叙", token: "（无）", verse: "云揽花间金镶玉，相叙高山不渡川。" },
+    { couple: "姬时愿 & 陈以宁", token: "（暂无）", verse: "江海藏情时时愿，云途执手念念宁。" },
+    { couple: "程颂柒 & 宋锶苏", token: "（暂无）", verse: "宋玉微澜映雪锖，扶苏影里见君遥。" },
+    { couple: "梓卿 & 朝珩筠", token: "（暂无）", verse: "日为朝，月为暮，卿为朝朝暮暮。" },
+    { couple: "霁鸢 & 墨渊", token: "（暂无）", verse: "金风玉露一相逢，便胜却人间无数。" }
+];
+
+function renderMarriagePanel() {
+    const container = document.getElementById('marriageGrid');
+    if (!container) return;
+    let html = '';
+    marriageList.forEach(m => {
+        html += `
+            <div class="marriage-card">
+                <div class="couple-names">${m.couple}</div>
+                <div class="couple-token">信物：${m.token}</div>
+                <div class="couple-verse">${m.verse}</div>
+            </div>
+        `;
+    });
+    container.innerHTML = html;
+}
+
+// 在设定页面切换到姻缘面板时自动渲染，同时初始加载也渲染
+function initMarriagePanel() {
+    renderMarriagePanel();
+}
+
+function closeMarriageModal() {
+    const modal = document.getElementById('marriageModal');
+    if (modal) modal.classList.remove('active');
+}
+
+function startMarriagePetals() {
+    const container = document.getElementById('marriagePetals');
+    if (!container) return;
+    // 清空旧花瓣
+    container.innerHTML = '';
+    function addPetal() {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        const size = 6 + Math.random() * 10;
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size * 1.3}px`;
+        petal.style.left = `${Math.random() * 100}%`;
+        petal.style.animationDuration = `${5 + Math.random() * 7}s`;
+        petal.style.animationDelay = `${Math.random() * 3}s`;
+        petal.style.opacity = 0.4 + Math.random() * 0.4;
+        container.appendChild(petal);
+        setTimeout(() => petal.remove(), 9000);
+    }
+    // 生成约20片花瓣
+    for (let i = 0; i < 25; i++) setTimeout(addPetal, i * 80);
+    // 持续添加
+    if (window._marriageInterval) clearInterval(window._marriageInterval);
+    window._marriageInterval = setInterval(() => {
+        if (document.getElementById('marriageModal')?.classList.contains('active')) {
+            addPetal();
+        } else {
+            clearInterval(window._marriageInterval);
+        }
+    }, 600);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initSettingTabs();
+    initItemCategories();
+    initModalCloseItems();
+    watchSettingPanel();
+    // 渲染姻缘面板（内嵌）
+    if (typeof renderMarriagePanel === 'function') {
+        renderMarriagePanel();
+    }
+    // 渲染道具网格
+    if (document.getElementById('itemGrid')) {
+        renderItemGrid(currentItemCat, currentKeyword);
+    }
+    // 搜索框监听
+    const searchInput = document.getElementById('itemSearchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            currentKeyword = e.target.value;
+            const activeCat = document.querySelector('.item-cat.active');
+            if (activeCat) {
+                currentItemCat = activeCat.getAttribute('data-cat');
+                renderItemGrid(currentItemCat, currentKeyword);
+            }
+        });
+    }
+});
+    // 宗门界面功能
+function initSectPanel() {
+    const sectBtns = document.querySelectorAll('.sect-btn');
+    const contentArea = document.getElementById('sectContentArea');
+    if (!sectBtns.length) return;
+    
+    const panels = {
+        info: `<div class="sect-info-panel">
+                <h4>溯命垣</h4>
+                <p>灵脉等级：地阶上品</p>
+                <p>宗门底蕴：传承千年，专研命理推演</p>
+                <p>现任宗主：1</p>
+                <p>宗门人数：18人</p>
+              </div>`,
+        members: `<div class="member-list">
+                    <div class="member-item"><span>1</span><span>宗主 · 元婴一层</span></div>
+                    <div class="member-item"><span>2</span><span>大长老 · 金丹九层</span></div>
+                    <div class="member-item"><span>3</span><span>二长老 · 金丹七层</span></div>
+                    <div class="member-item"><span>4</span><span>三长老 · 金丹五层</span></div>
+                    <div class="member-item"><span>5</span><span>核心弟子 · 筑基九层</span></div>
+                  </div>`,
+        warehouse: `<div class="warehouse-list">
+                     <div class="warehouse-item">培元丹 × 15</div>
+                     <div class="warehouse-item">灵泉露 × 8</div>
+                     <div class="warehouse-item">火灵精 × 3</div>
+                     <div class="warehouse-item">云澜剑（仿品） × 1</div>
+                   </div>`,
+        skills: `<div class="skill-list">
+                   <div class="skill-item">太虚引气篇（玄阶上品）</div>
+                   <div class="skill-item">溯命推演诀（地阶中品）</div>
+                   <div class="skill-item">寒冰真解（玄阶中品）</div>
+                 </div>`,
+        map: `<div style="text-align:center; padding:1rem;">🗺️ 宗门地图（示意）<br/>主峰 · 演武场 · 藏经阁 · 灵兽园</div>`,
+        residence: `<div style="padding:1rem;">
+                      <p><strong>1的洞府</strong></p>
+                      <p>灵气浓度：地阶中品</p>
+                      <p>配套设施：修炼室、丹房、灵药圃</p>
+                      <p>居所加成：修炼速度+10%</p>
+                    </div>`
+    };
+    
+    function showPanel(panelId) {
+        contentArea.innerHTML = panels[panelId] || panels.info;
+    }
+    
+    sectBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-sect-panel');
+            sectBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            showPanel(target);
+        });
+    });
+    // 默认激活第一个按钮和面板
+    sectBtns[0]?.classList.add('active');
+    showPanel('info');
+}
+
+// 在设定页面可见时调用初始化
+function watchSectInit() {
+    const settingPage = document.getElementById('settingPage');
+    if (!settingPage) return;
+    const observer = new MutationObserver(() => {
+        if (settingPage.classList.contains('active-page')) {
+            const sectPanel = document.getElementById('sectPanel');
+            if (sectPanel && sectPanel.classList.contains('active')) {
+                // 确保宗门按钮只绑定一次
+                if (!window._sectInited) {
+                    initSectPanel();
+                    window._sectInited = true;
+                }
+            }
+        }
+    });
+    observer.observe(settingPage, { attributes: true, attributeFilter: ['class'] });
+}
+// 调用观察
+watchSectInit();
+
+</script>
+</body>
+</html>
