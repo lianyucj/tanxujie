@@ -826,273 +826,2999 @@ body {
 </div>
 
 <script>
-    // 个人面板数据
-    const chenData = {
-    name: "陈以宁",
-    daoName: "长生道",
-    realmLevel: "元婴八层",
-    cultivation: 634,
-    sect: "溯命垣",
-    sectPosition: "四长老",
-    breakthroughCount: 3
-};
 
 // 人物数据库（用于个人搜索）
 const peopleDatabase = [
-        // ========== 化神主要人物 ==========
-    { name: "褚修叶", daoName: "暂无", realmLevel: "化神九层", cultivation: 1146, sect: "溯命垣", sectPosition: "宗主", checkDays: 57, totalCultivation: 570, breakthroughCount: 4 },
-    { name: "九酒", daoName: "暂无", realmLevel: "化神八层", cultivation: 1073, sect: "相思门", sectPosition: "宗主", checkDays: 56, totalCultivation: 560, breakthroughCount: 4 },
-    { name: "皇翎九霄", daoName: "暂无", realmLevel: "化神七层", cultivation: 1062, sect: "帝庭", sectPosition: "宗主", checkDays: 54, totalCultivation: 540, breakthroughCount: 4 },
-    { name: "程颂柒", daoName: "暂无", realmLevel: "化神四层", cultivation: 888, sect: "溯命垣", sectPosition: "无", checkDays: 21, totalCultivation: 210, breakthroughCount: 4 },
-    { name: "骁彻", daoName: "暂无", realmLevel: "化神一层", cultivation: 714, sect: "散修", sectPosition: "无", checkDays: 52, totalCultivation: 520, breakthroughCount: 4 },
-    { name: "苏轻青", daoName: "暂无", realmLevel: "化神一层", cultivation: 710, sect: "相思门", sectPosition: "弟子", checkDays: 56, totalCultivation: 560, breakthroughCount: 3 },
-    { name: "姬时愿", daoName: "暂无", realmLevel: "化神一层", cultivation: 707, sect: "溯命垣", sectPosition: "弟子", checkDays: 52, totalCultivation: 520, breakthroughCount: 3 },
-    { name: "杨建设", daoName: "暂无", realmLevel: "化神一层", cultivation: 720, sect: "散修", sectPosition: "无", checkDays: 46, totalCultivation: 460, breakthroughCount: 3 },
-// ========== 元婴主要人物 ==========
-    { name: "谢今安", daoName: "暂无", realmLevel: "元婴十层", cultivation: 671, sect: "相思门", sectPosition: "弟子", checkDays: 54, totalCultivation: 540, breakthroughCount: 3 },
-    { name: "季鸢", daoName: "暂无", realmLevel: "元婴九层", cultivation: 660, sect: "相思门", sectPosition: "弟子", checkDays: 47, totalCultivation: 470, breakthroughCount: 3 },
-    { name: "王源", daoName: "暂无", realmLevel: "元婴九层", cultivation: 660, sect: "帝庭", sectPosition: "弟子", checkDays: 52, totalCultivation: 520, breakthroughCount: 3 },
-    { name: "陈以宁", daoName: "长生道", realmLevel: "元婴九层", cultivation: 664, sect: "溯命垣", sectPosition: "四长老", checkDays: 20, totalCultivation: 200, breakthroughCount: 3 },
-    { name: "梳翎", daoName: "暂无", realmLevel: "元婴八层", cultivation: 625, sect: "散修", sectPosition: "无", checkDays: 31, totalCultivation: 310, breakthroughCount: 3 },
-    { name: "执久", daoName: "暂无", realmLevel: "元婴七层", cultivation: 598, sect: "散修", sectPosition: "无", checkDays: 44, totalCultivation: 440, breakthroughCount: 3 },
-    { name: "任决", daoName: "暂无", realmLevel: "元婴六层", cultivation: 571, sect: "散修", sectPosition: "无", checkDays: 50, totalCultivation: 500, breakthroughCount: 3 },
-    { name: "云知微", daoName: "暂无", realmLevel: "元婴六层", cultivation: 562, sect: "溯命垣", sectPosition: "无", checkDays: 51, totalCultivation: 510, breakthroughCount: 3 },
-    { name: "轩辕", daoName: "暂无", realmLevel: "元婴五层", cultivation: 523, sect: "散修", sectPosition: "无", checkDays: 27, totalCultivation: 270, breakthroughCount: 3 },
-    { name: "澹台净尘", daoName: "暂无", realmLevel: "元婴三层", cultivation: 470, sect: "散修", sectPosition: "无", checkDays: 38, totalCultivation: 380, breakthroughCount: 3 },
-    { name: "观仰止", daoName: "暂无", realmLevel: "元婴一层", cultivation: 430, sect: "溯命垣", sectPosition: "无", checkDays: 42, totalCultivation: 420, breakthroughCount: 2 },
-    { name: "梓卿", daoName: "暂无", realmLevel: "元婴一层", cultivation: 417, sect: "溯命垣", sectPosition: "无", checkDays: 34, totalCultivation: 340, breakthroughCount: 2 },
-    { name: "江愿", daoName: "暂无", realmLevel: "元婴一层", cultivation: 410, sect: "散修", sectPosition: "无", checkDays: 38, totalCultivation: 380, breakthroughCount: 2 },
-    { name: "单纯", daoName: "暂无", realmLevel: "元婴一层", cultivation: 410, sect: "散修", sectPosition: "无", checkDays: 52, totalCultivation: 520, breakthroughCount: 2 },
-        // ========== 金丹主要人物 ==========
-    { name: "夜烬", daoName: "暂无", realmLevel: "元婴一层", cultivation: 410, sect: "散修", sectPosition: "无", checkDays: 53, totalCultivation: 530, breakthroughCount: 2 },
-    { name: "初妆", daoName: "暂无", realmLevel: "金丹九层", cultivation: 376, sect: "散修", sectPosition: "无", checkDays: 31, totalCultivation: 310, breakthroughCount: 2 },
-    { name: "凌水芸", daoName: "暂无", realmLevel: "金丹9层", cultivation: 370, sect: "散修", sectPosition: "无", checkDays: 38, totalCultivation: 380, breakthroughCount: 2 },
-    { name: "羲和", daoName: "暂无", realmLevel: "金丹七层", cultivation: 340, sect: "散修", sectPosition: "无", checkDays: 32, totalCultivation: 320, breakthroughCount: 2 },
-    { name: "洛冕", daoName: "暂无", realmLevel: "金丹七层", cultivation: 336, sect: "散修", sectPosition: "无", checkDays: 29, totalCultivation: 290, breakthroughCount: 2 },
-    { name: "渡昭", daoName: "暂无", realmLevel: "金丹七层", cultivation: 323, sect: "帝庭", sectPosition: "弟子", checkDays: 20, totalCultivation: 200, breakthroughCount: 2 },
-    { name: "简长生", daoName: "暂无", realmLevel: "金丹六层", cultivation: 311, sect: "散修", sectPosition: "无", checkDays: 24, totalCultivation: 240, breakthroughCount: 2 },
-    { name: "许青埃", daoName: "暂无", realmLevel: "金丹五层", cultivation: 294, sect: "散修", sectPosition: "无", checkDays: 14, totalCultivation: 140, breakthroughCount: 2 },
-    { name: "南宫临阙", daoName: "暂无", realmLevel: "金丹五层", cultivation: 290, sect: "散修", sectPosition: "无", checkDays: 24, totalCultivation: 240, breakthroughCount: 2 },
-    { name: "古月星恒", daoName: "暂无", realmLevel: "金丹三层", cultivation: 260, sect: "散修", sectPosition: "无", checkDays: 21, totalCultivation: 210, breakthroughCount: 2 },
-    { name: "封拙安", daoName: "暂无", realmLevel: "金丹一层", cultivation: 216, sect: "散修", sectPosition: "无", checkDays: 22, totalCultivation: 220, breakthroughCount: 1 },
-        // ========== 筑基主要人物 ==========
-    { name: "慈洲屿", daoName: "暂无", realmLevel: "筑基十层", cultivation: 200, sect: "散修", sectPosition: "无", checkDays: 35, totalCultivation: 350, breakthroughCount: 1 },
-    { name: "陌池", daoName: "暂无", realmLevel: "筑基十层", cultivation: 200, sect: "散修", sectPosition: "无", checkDays: 24, totalCultivation: 240, breakthroughCount: 1 },
-    { name: "夙玄溟", daoName: "暂无", realmLevel: "筑基十层", cultivation: 200, sect: "散修", sectPosition: "无", checkDays: 26, totalCultivation: 260, breakthroughCount: 1 },
-    { name: "灵汐", daoName: "暂无", realmLevel: "筑基十层", cultivation: 200, sect: "散修", sectPosition: "无", checkDays: 13, totalCultivation: 130, breakthroughCount: 1 },
-    { name: "夜羽", daoName: "暂无", realmLevel: "筑基十层", cultivation: 200, sect: "散修", sectPosition: "无", checkDays: 18, totalCultivation: 180, breakthroughCount: 1 },
-    { name: "际渊", daoName: "暂无", realmLevel: "筑基八层", cultivation: 180, sect: "散修", sectPosition: "无", checkDays: 15, totalCultivation: 150, breakthroughCount: 1 },
-    { name: "霁鸢", daoName: "暂无", realmLevel: "筑基六层", cultivation: 158, sect: "散修", sectPosition: "无", checkDays: 9, totalCultivation: 90, breakthroughCount: 0 },
-    { name: "藤霖", daoName: "暂无", realmLevel: "筑基五层", cultivation: 155, sect: "散修", sectPosition: "无", checkDays: 23, totalCultivation: 230, breakthroughCount: 1 },
-    { name: "凌霄", daoName: "暂无", realmLevel: "筑基五层", cultivation: 150, sect: "散修", sectPosition: "无", checkDays: 14, totalCultivation: 140, breakthroughCount: 0 },
-    { name: "晏川", daoName: "暂无", realmLevel: "筑基四层", cultivation: 150, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
-    { name: "墨渊", daoName: "暂无", realmLevel: "筑基四层", cultivation: 132, sect: "散修", sectPosition: "无", checkDays: 9, totalCultivation: 90, breakthroughCount: 0 },
-        // ========== 练气十层人物 ==========
-    { name: "朝珩筠", daoName: "暂无", realmLevel: "筑基一层", cultivation: 110, sect: "散修", sectPosition: "无", checkDays: 9, totalCultivation: 90, breakthroughCount: 0 },
-    { name: "顾思言", daoName: "暂无", realmLevel: "筑基一层", cultivation: 110, sect: "散修", sectPosition: "无", checkDays: 13, totalCultivation: 130, breakthroughCount: 0 },
-    { name: "洛言川", daoName: "暂无", realmLevel: "筑基一层", cultivation: 110, sect: "散修", sectPosition: "无", checkDays: 12, totalCultivation: 120, breakthroughCount: 0 },
-    { name: "眠安", daoName: "暂无", realmLevel: "筑基一层", cultivation: 110, sect: "散修", sectPosition: "无", checkDays: 13, totalCultivation: 130, breakthroughCount: 0 },
-    { name: "墨珏", daoName: "暂无", realmLevel: "筑基一层", cultivation: 110, sect: "散修", sectPosition: "无", checkDays: 13, totalCultivation: 130, breakthroughCount: 0 },
-    { name: "勿忘卿", daoName: "暂无", realmLevel: "筑基一层", cultivation: 110, sect: "散修", sectPosition: "无", checkDays: 7, totalCultivation: 70, breakthroughCount: 0 },
-    { name: "依妍", daoName: "暂无", realmLevel: "筑基一层", cultivation: 110, sect: "散修", sectPosition: "无", checkDays: 9, totalCultivation: 90, breakthroughCount: 0 },
-    { name: "银岑", daoName: "暂无", realmLevel: "筑基一层", cultivation: 110, sect: "散修", sectPosition: "无", checkDays: 9, totalCultivation: 90, breakthroughCount: 0 },
-    { name: "白夙", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
-    { name: "百里瑾", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 8, totalCultivation: 80, breakthroughCount: 0 },
-    { name: "槐玄", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 10, totalCultivation: 100, breakthroughCount: 0 },
-    { name: "离煜", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 10, totalCultivation: 100, breakthroughCount: 0 },
-    { name: "李木羊", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 10, totalCultivation: 100, breakthroughCount: 0 },
-    { name: "刘政安", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 21, totalCultivation: 210, breakthroughCount: 0 },
-    { name: "南靡", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 20, totalCultivation: 200, breakthroughCount: 0 },
-    { name: "念欢", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 23, totalCultivation: 230, breakthroughCount: 0 },
-    { name: "青严", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 19, totalCultivation: 190, breakthroughCount: 0 },
-    { name: "阮穗", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 23, totalCultivation: 230, breakthroughCount: 0 },
-    { name: "邬稔", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 9, totalCultivation: 90, breakthroughCount: 0 },
-    { name: "谢沉喻", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 19, totalCultivation: 190, breakthroughCount: 0 },
-    { name: "夜璃", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 17, totalCultivation: 170, breakthroughCount: 0 },
-    { name: "尹宿泱", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 12, totalCultivation: 120, breakthroughCount: 0 },
-    { name: "虞悠悠", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 12, totalCultivation: 120, breakthroughCount: 0 },
-    { name: "月衔枝", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 10, totalCultivation: 100, breakthroughCount: 0 },
-    { name: "云言深", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 10, totalCultivation: 100, breakthroughCount: 0 },
-    { name: "程喻", daoName: "暂无", realmLevel: "炼气十层", cultivation: 95, sect: "散修", sectPosition: "无", checkDays: 8, totalCultivation: 80, breakthroughCount: 0 },
-    { name: "长生", daoName: "暂无", realmLevel: "炼气十层", cultivation: 95, sect: "散修", sectPosition: "无", checkDays: 0, totalCultivation: 0, breakthroughCount: 0 },
-    { name: "江逸", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 7, totalCultivation: 70, breakthroughCount: 0 },
-    { name: "宋锶苏", daoName: "暂无", realmLevel: "炼气十层", cultivation: 100, sect: "散修", sectPosition: "无", checkDays: 11, totalCultivation: 110, breakthroughCount: 0 },
-        // ========== 练气十层以下人物 ==========
-    { name: "凤清林", daoName: "暂无", realmLevel: "炼气九层", cultivation: 90, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "云间月", daoName: "暂无", realmLevel: "炼气九层", cultivation: 90, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "长云浮", daoName: "暂无", realmLevel: "炼气九层", cultivation: 85, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "萧承彦", daoName: "暂无", realmLevel: "炼气八层", cultivation: 80, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "桃夭", daoName: "暂无", realmLevel: "炼气八层", cultivation: 79, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "江书舒", daoName: "暂无", realmLevel: "炼气八层", cultivation: 73, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "白稚", daoName: "暂无", realmLevel: "炼气六层", cultivation: 60, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "安陵清梧", daoName: "暂无", realmLevel: "炼气六层", cultivation: 55, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "宋守真", daoName: "暂无", realmLevel: "炼气六层", cultivation: 53, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "苏箐禾", daoName: "暂无", realmLevel: "炼气六层", cultivation: 52, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "程与年", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "梁念桉", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "铃湘桦", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "祁正武", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "沈烬", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "塔沙维尔", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "玄鸳", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "叶凡", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "鱼日", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "云沐泠", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "云瑶", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "筝渡", daoName: "暂无", realmLevel: "炼气五层", cultivation: 50, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "柳生", daoName: "暂无", realmLevel: "炼气五层", cultivation: 46, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "蓝夜", daoName: "暂无", realmLevel: "炼气五层", cultivation: 45, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "许易安", daoName: "暂无", realmLevel: "炼气五层", cultivation: 43, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "黎绥禾", daoName: "暂无", realmLevel: "炼气五层", cultivation: 42, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "夜星", daoName: "暂无", realmLevel: "炼气五层", cultivation: 42, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "何寻笙", daoName: "暂无", realmLevel: "炼气五层", cultivation: 41, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "薄青", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "陈锦归", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "坊青殿", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "江薄枝", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "洛歌梦", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "魏澜沉", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "云曦瑶", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "张乌山", daoName: "暂无", realmLevel: "炼气四层", cultivation: 40, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "皎皎", daoName: "暂无", realmLevel: "炼气四层", cultivation: 38, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "安渡", daoName: "暂无", realmLevel: "炼气四层", cultivation: 34, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "白无月", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "独夫", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "公孙玲", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "柳安", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "裴知禾", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "柒茉", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "清心辞", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "万毅卿", daoName: "暂无", realmLevel: "炼气三层", cultivation: 30, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "晏无墟", daoName: "暂无", realmLevel: "炼气三层", cultivation: 27, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "晨璇", daoName: "暂无", realmLevel: "炼气二层", cultivation: 20, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "池暮星", daoName: "暂无", realmLevel: "炼气二层", cultivation: 20, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "李飞羽", daoName: "暂无", realmLevel: "炼气二层", cultivation: 20, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "罗岐", daoName: "暂无", realmLevel: "炼气二层", cultivation: 20, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "商欣辞", daoName: "暂无", realmLevel: "炼气二层", cultivation: 20, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "斯諦凡", daoName: "暂无", realmLevel: "炼气二层", cultivation: 20, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "向姊", daoName: "暂无", realmLevel: "炼气二层", cultivation: 20, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "叶泠鸢", daoName: "暂无", realmLevel: "炼气二层", cultivation: 20, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "东方见秋", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "江晚烟", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "姜庆瑶", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "姜十三", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "姜醉", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "堇鸢", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "君寄雪", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "乐正欢", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "柳俞", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "落安", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "莫忧", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "慕容溪", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "亓岁", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "秦宓", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "清辞", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "上官瑾瑜", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "沈渊", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "孙傅黎", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "谢无渡", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "玄卿", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "厌清", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "羽湘容", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "云尘", daoName: "暂无", realmLevel: "炼气一层", cultivation: 10, sect: "散修", sectPosition: "无", breakthroughCount: 0 },
-    { name: "染灵钰", daoName: "暂无", realmLevel: "炼气一层", cultivation: 5, sect: "散修", sectPosition: "无", breakthroughCount: 0 }
+      {
+    "behaviorCultivation": {
+      "写戏认证": 416,
+      "奇遇": 14,
+      "道具使用": 64,
+      "额外修为": 90
+      },
+    "breaks": 4,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 620,
+    "checkInDays": 62,
+    "cultivation": 1204,
+    "layer": 1,
+    "name": "褚修叶",
+    "realm": "问心"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 166,
+      "奇遇": 0,
+      "道具使用": 300,
+      "额外修为": 90
+      },
+    "breaks": 4,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 610,
+    "checkInDays": 61,
+    "cultivation": 1166,
+    "layer": 10,
+    "name": "九酒",
+    "realm": "化神"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 329,
+      "奇遇": 56,
+      "道具使用": 83,
+      "额外修为": 49
+      },
+    "breaks": 4,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 590,
+    "checkInDays": 59,
+    "cultivation": 1107,
+    "layer": 9,
+    "name": "皇翎九霄",
+    "realm": "化神"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 113,
+      "奇遇": 5,
+      "道具使用": 0,
+      "额外修为": 182
+      },
+    "breaks": 4,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 510,
+    "checkInDays": 51,
+    "cultivation": 810,
+    "layer": 3,
+    "name": "杨建设",
+    "realm": "化神"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 222,
+      "奇遇": 0,
+      "道具使用": 53,
+      "额外修为": 247
+      },
+    "breaks": 4,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 260,
+    "checkInDays": 26,
+    "cultivation": 782,
+    "layer": 2,
+    "name": "陈以宁",
+    "realm": "化神"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 119,
+      "奇遇": 1,
+      "道具使用": 16,
+      "额外修为": 63
+      },
+    "breaks": 4,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 580,
+    "checkInDays": 58,
+    "cultivation": 779,
+    "layer": 2,
+    "name": "姬时愿",
+    "realm": "化神"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 70,
+      "奇遇": 8,
+      "道具使用": 64,
+      "额外修为": -1
+      },
+    "breaks": 4,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 620,
+    "checkInDays": 62,
+    "cultivation": 761,
+    "layer": 2,
+    "name": "苏轻青",
+    "realm": "化神"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 154,
+      "奇遇": 3,
+      "道具使用": 33,
+      "额外修为": -3
+      },
+    "breaks": 4,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 560,
+    "checkInDays": 56,
+    "cultivation": 747,
+    "layer": 1,
+    "name": "骁彻",
+    "realm": "化神"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 57,
+      "奇遇": 0,
+      "道具使用": 56,
+      "额外修为": -4
+      },
+    "breaks": 4,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 620,
+    "checkInDays": 62,
+    "cultivation": 729,
+    "layer": 1,
+    "name": "谢今安",
+    "realm": "化神"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 147,
+      "奇遇": 6,
+      "道具使用": 0,
+      "额外修为": 17
+      },
+    "breaks": 3,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 530,
+    "checkInDays": 53,
+    "cultivation": 700,
+    "layer": 1,
+    "name": "季鸢",
+    "realm": "化神"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 86,
+      "奇遇": 2,
+      "道具使用": 7,
+      "额外修为": 25
+      },
+    "breaks": 3,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 580,
+    "checkInDays": 58,
+    "cultivation": 700,
+    "layer": 1,
+    "name": "王源",
+    "realm": "化神"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 47,
+      "奇遇": 7,
+      "道具使用": 35,
+      "额外修为": 224
+      },
+    "breaks": 3,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 360,
+    "checkInDays": 36,
+    "cultivation": 673,
+    "layer": 10,
+    "name": "梳翎",
+    "realm": "元婴"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 125,
+      "奇遇": 3,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 3,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 500,
+    "checkInDays": 50,
+    "cultivation": 638,
+    "layer": 8,
+    "name": "执久",
+    "realm": "元婴"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 74,
+      "奇遇": 2,
+      "道具使用": 45,
+      "额外修为": -50
+      },
+    "breaks": 3,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 530,
+    "checkInDays": 53,
+    "cultivation": 601,
+    "layer": 7,
+    "name": "任决",
+    "realm": "元婴"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 59,
+      "奇遇": 0,
+      "道具使用": 17,
+      "额外修为": -41
+      },
+    "breaks": 3,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 530,
+    "checkInDays": 53,
+    "cultivation": 565,
+    "layer": 6,
+    "name": "云知微",
+    "realm": "元婴"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 23,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 210
+      },
+    "breaks": 3,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 330,
+    "checkInDays": 33,
+    "cultivation": 563,
+    "layer": 6,
+    "name": "轩辕",
+    "realm": "元婴"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 38,
+      "奇遇": 0,
+      "道具使用": 27,
+      "额外修为": 4
+      },
+    "breaks": 3,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 450,
+    "checkInDays": 45,
+    "cultivation": 519,
+    "layer": 4,
+    "name": "澹台净尘",
+    "realm": "元婴"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 27,
+      "奇遇": 1,
+      "道具使用": 23,
+      "额外修为": -27
+      },
+    "breaks": 3,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 470,
+    "checkInDays": 47,
+    "cultivation": 494,
+    "layer": 4,
+    "name": "观仰止",
+    "realm": "元婴"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 12,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -2
+      },
+    "breaks": 3,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 440,
+    "checkInDays": 44,
+    "cultivation": 450,
+    "layer": 2,
+    "name": "江愿",
+    "realm": "元婴"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -160
+      },
+    "breaks": 2,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 580,
+    "checkInDays": 58,
+    "cultivation": 420,
+    "layer": 1,
+    "name": "单纯",
+    "realm": "元婴"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 52,
+      "奇遇": 0,
+      "道具使用": 7,
+      "额外修为": -49
+      },
+    "breaks": 2,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 410,
+    "checkInDays": 41,
+    "cultivation": 420,
+    "layer": 1,
+    "name": "梓卿",
+    "realm": "元婴"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 29,
+      "奇遇": 0,
+      "道具使用": 8,
+      "额外修为": 12
+      },
+    "breaks": 2,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 370,
+    "checkInDays": 37,
+    "cultivation": 419,
+    "layer": 1,
+    "name": "初祓",
+    "realm": "元婴"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 25,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -55
+      },
+    "breaks": 2,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 440,
+    "checkInDays": 44,
+    "cultivation": 410,
+    "layer": 1,
+    "name": "凌水芸",
+    "realm": "元婴"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 14,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -174
+      },
+    "breaks": 2,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 560,
+    "checkInDays": 56,
+    "cultivation": 400,
+    "layer": 1,
+    "name": "夜烬",
+    "realm": "元婴"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 8,
+      "奇遇": 0,
+      "道具使用": 10,
+      "额外修为": -18
+      },
+    "breaks": 2,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 380,
+    "checkInDays": 38,
+    "cultivation": 380,
+    "layer": 10,
+    "name": "羲和",
+    "realm": "金丹"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 44,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 2,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 290,
+    "checkInDays": 29,
+    "cultivation": 344,
+    "layer": 8,
+    "name": "简长生",
+    "realm": "金丹"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 115,
+      "奇遇": 0,
+      "道具使用": 5,
+      "额外修为": 17
+      },
+    "breaks": 2,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 200,
+    "checkInDays": 20,
+    "cultivation": 337,
+    "layer": 7,
+    "name": "许青埃",
+    "realm": "金丹"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 40,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -10
+      },
+    "breaks": 1,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 200,
+    "checkInDays": 20,
+    "cultivation": 230,
+    "layer": 2,
+    "name": "灵汐",
+    "realm": "金丹"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -20
+      },
+    "breaks": 1,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 250,
+    "checkInDays": 25,
+    "cultivation": 230,
+    "layer": 2,
+    "name": "夜羽",
+    "realm": "金丹"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 5,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -65
+      },
+    "breaks": 1,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 270,
+    "checkInDays": 27,
+    "cultivation": 210,
+    "layer": 1,
+    "name": "夙玄溟",
+    "realm": "金丹"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 41,
+      "奇遇": 0,
+      "道具使用": 12,
+      "额外修为": -93
+      },
+    "breaks": 1,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 240,
+    "checkInDays": 24,
+    "cultivation": 200,
+    "layer": 1,
+    "name": "封拙安",
+    "realm": "金丹"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 8,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -48
+      },
+    "breaks": 1,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 240,
+    "checkInDays": 24,
+    "cultivation": 200,
+    "layer": 1,
+    "name": "陌池",
+    "realm": "金丹"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 7,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -157
+      },
+    "breaks": 1,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 340,
+    "checkInDays": 34,
+    "cultivation": 190,
+    "layer": 10,
+    "name": "慈洲屿",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 1,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 180,
+    "checkInDays": 18,
+    "cultivation": 190,
+    "layer": 10,
+    "name": "际渊",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 6,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 4
+      },
+    "breaks": 1,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 180,
+    "checkInDays": 18,
+    "cultivation": 190,
+    "layer": 10,
+    "name": "旻川",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 1,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -11
+      },
+    "breaks": 1,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 190,
+    "checkInDays": 19,
+    "cultivation": 180,
+    "layer": 9,
+    "name": "凌霄",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 20,
+      "奇遇": 0,
+      "道具使用": 5,
+      "额外修为": -100
+      },
+    "breaks": 1,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 230,
+    "checkInDays": 23,
+    "cultivation": 155,
+    "layer": 6,
+    "name": "霡霂",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 10,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 1,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 130,
+    "checkInDays": 13,
+    "cultivation": 150,
+    "layer": 6,
+    "name": "勿忘卿",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 1,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 120,
+    "checkInDays": 12,
+    "cultivation": 130,
+    "layer": 4,
+    "name": "江逸",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 130,
+    "checkInDays": 13,
+    "cultivation": 130,
+    "layer": 4,
+    "name": "云间月",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 120,
+    "checkInDays": 12,
+    "cultivation": 120,
+    "layer": 3,
+    "name": "凤清林",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 130,
+    "checkInDays": 13,
+    "cultivation": 120,
+    "layer": 3,
+    "name": "槐玄",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -70
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 190,
+    "checkInDays": 19,
+    "cultivation": 120,
+    "layer": 3,
+    "name": "眠安",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -70
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 190,
+    "checkInDays": 19,
+    "cultivation": 120,
+    "layer": 3,
+    "name": "墨珏",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -100
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 220,
+    "checkInDays": 22,
+    "cultivation": 120,
+    "layer": 3,
+    "name": "南靡",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 8,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 2
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 110,
+    "checkInDays": 11,
+    "cultivation": 120,
+    "layer": 3,
+    "name": "长生",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 3,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 100,
+    "checkInDays": 10,
+    "cultivation": 113,
+    "layer": 2,
+    "name": "江书舒",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 1,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 100,
+    "checkInDays": 10,
+    "cultivation": 110,
+    "layer": 2,
+    "name": "银岑",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 110,
+    "checkInDays": 11,
+    "cultivation": 110,
+    "layer": 2,
+    "name": "百里瑾",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -40
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 150,
+    "checkInDays": 15,
+    "cultivation": 110,
+    "layer": 2,
+    "name": "洛言川",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -130
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 240,
+    "checkInDays": 24,
+    "cultivation": 110,
+    "layer": 2,
+    "name": "念欢",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 100,
+    "checkInDays": 10,
+    "cultivation": 110,
+    "layer": 2,
+    "name": "萧承彦",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -10
+      },
+    "breaks": 1,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 110,
+    "checkInDays": 11,
+    "cultivation": 100,
+    "layer": 1,
+    "name": "依妍",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 2,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -232
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 330,
+    "checkInDays": 33,
+    "cultivation": 100,
+    "layer": 1,
+    "name": "白凩",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 3,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -23
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 120,
+    "checkInDays": 12,
+    "cultivation": 100,
+    "layer": 1,
+    "name": "朝珩筠",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -70
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 170,
+    "checkInDays": 17,
+    "cultivation": 100,
+    "layer": 1,
+    "name": "顾思言",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 8,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -18
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 110,
+    "checkInDays": 11,
+    "cultivation": 100,
+    "layer": 1,
+    "name": "离煜",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 10,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -20
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 110,
+    "checkInDays": 11,
+    "cultivation": 100,
+    "layer": 1,
+    "name": "李木羊",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 18,
+      "奇遇": 3,
+      "道具使用": 0,
+      "额外修为": -131
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 210,
+    "checkInDays": 21,
+    "cultivation": 100,
+    "layer": 1,
+    "name": "刘政安",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 1,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -101
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 200,
+    "checkInDays": 20,
+    "cultivation": 100,
+    "layer": 1,
+    "name": "青严",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 16,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -6
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 90,
+    "checkInDays": 9,
+    "cultivation": 100,
+    "layer": 1,
+    "name": "邬稔",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -90
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 190,
+    "checkInDays": 19,
+    "cultivation": 100,
+    "layer": 1,
+    "name": "谢沉喻",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -70
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 170,
+    "checkInDays": 17,
+    "cultivation": 100,
+    "layer": 1,
+    "name": "夜璃",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 2,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -22
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 120,
+    "checkInDays": 12,
+    "cultivation": 100,
+    "layer": 1,
+    "name": "尹宿泱",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -20
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 120,
+    "checkInDays": 12,
+    "cultivation": 100,
+    "layer": 1,
+    "name": "虞悠悠",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 100,
+    "checkInDays": 10,
+    "cultivation": 100,
+    "layer": 1,
+    "name": "月衔枝",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 5,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -5
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 100,
+    "checkInDays": 10,
+    "cultivation": 100,
+    "layer": 1,
+    "name": "云言深",
+    "realm": "筑基"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 15,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 80,
+    "checkInDays": 8,
+    "cultivation": 95,
+    "layer": 10,
+    "name": "程喻",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 80,
+    "checkInDays": 8,
+    "cultivation": 90,
+    "layer": 10,
+    "name": "塔沙维尔",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 25,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 50,
+    "checkInDays": 5,
+    "cultivation": 85,
+    "layer": 9,
+    "name": "长云浮",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 2,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 80,
+    "checkInDays": 8,
+    "cultivation": 82,
+    "layer": 9,
+    "name": "苏箐禾",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 80,
+    "checkInDays": 8,
+    "cultivation": 80,
+    "layer": 9,
+    "name": "沈烬",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 70,
+    "checkInDays": 7,
+    "cultivation": 80,
+    "layer": 9,
+    "name": "云瑶",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 5,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 50,
+    "checkInDays": 5,
+    "cultivation": 65,
+    "layer": 7,
+    "name": "蓝夜",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 3,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 50,
+    "checkInDays": 5,
+    "cultivation": 63,
+    "layer": 7,
+    "name": "宋守真",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 60,
+    "checkInDays": 6,
+    "cultivation": 60,
+    "layer": 7,
+    "name": "白稚",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 50,
+    "checkInDays": 5,
+    "cultivation": 60,
+    "layer": 7,
+    "name": "程与年",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 60,
+    "checkInDays": 6,
+    "cultivation": 60,
+    "layer": 7,
+    "name": "李飞羽",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 50,
+    "checkInDays": 5,
+    "cultivation": 60,
+    "layer": 7,
+    "name": "铃湘桦",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 50,
+    "checkInDays": 5,
+    "cultivation": 60,
+    "layer": 7,
+    "name": "玄鸳",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 60,
+    "checkInDays": 6,
+    "cultivation": 60,
+    "layer": 7,
+    "name": "筝渡",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 8,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 50,
+    "checkInDays": 5,
+    "cultivation": 58,
+    "layer": 6,
+    "name": "皎皎",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 5,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 50,
+    "checkInDays": 5,
+    "cultivation": 55,
+    "layer": 6,
+    "name": "安陵清梧",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 2,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 40,
+    "checkInDays": 4,
+    "cultivation": 52,
+    "layer": 6,
+    "name": "黎绥禾",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 11,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 40,
+    "checkInDays": 4,
+    "cultivation": 51,
+    "layer": 6,
+    "name": "樊螭",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 50,
+    "checkInDays": 5,
+    "cultivation": 50,
+    "layer": 6,
+    "name": "薄青",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 50,
+    "checkInDays": 5,
+    "cultivation": 50,
+    "layer": 6,
+    "name": "坊青殿",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 40,
+    "checkInDays": 4,
+    "cultivation": 50,
+    "layer": 6,
+    "name": "柳安",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 50,
+    "checkInDays": 5,
+    "cultivation": 50,
+    "layer": 6,
+    "name": "祁正武",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 50,
+    "checkInDays": 5,
+    "cultivation": 50,
+    "layer": 6,
+    "name": "叶凡",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 50,
+    "checkInDays": 5,
+    "cultivation": 50,
+    "layer": 6,
+    "name": "鱼日",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 50,
+    "checkInDays": 5,
+    "cultivation": 50,
+    "layer": 6,
+    "name": "云沐泠",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 6,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 40,
+    "checkInDays": 4,
+    "cultivation": 46,
+    "layer": 5,
+    "name": "柳生",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 3,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 30,
+    "checkInDays": 3,
+    "cultivation": 43,
+    "layer": 5,
+    "name": "许易安",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 1,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 40,
+    "checkInDays": 4,
+    "cultivation": 41,
+    "layer": 5,
+    "name": "何寻笙",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 40,
+    "checkInDays": 4,
+    "cultivation": 40,
+    "layer": 5,
+    "name": "陈锦归",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 40,
+    "checkInDays": 4,
+    "cultivation": 40,
+    "layer": 5,
+    "name": "江薄枝",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 40,
+    "checkInDays": 4,
+    "cultivation": 40,
+    "layer": 5,
+    "name": "罗岐",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": -20
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 60,
+    "checkInDays": 6,
+    "cultivation": 40,
+    "layer": 5,
+    "name": "洛歌梦",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 40,
+    "checkInDays": 4,
+    "cultivation": 40,
+    "layer": 5,
+    "name": "商欣辞",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 40,
+    "checkInDays": 4,
+    "cultivation": 40,
+    "layer": 5,
+    "name": "沈渊",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 40,
+    "checkInDays": 4,
+    "cultivation": 40,
+    "layer": 5,
+    "name": "魏澜沉",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 40,
+    "checkInDays": 4,
+    "cultivation": 40,
+    "layer": 5,
+    "name": "张乌山",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 14,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 20,
+    "checkInDays": 2,
+    "cultivation": 34,
+    "layer": 4,
+    "name": "安渡",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 30,
+    "checkInDays": 3,
+    "cultivation": 30,
+    "layer": 4,
+    "name": "白无月",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 30,
+    "checkInDays": 3,
+    "cultivation": 30,
+    "layer": 4,
+    "name": "独夫",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 20,
+    "checkInDays": 2,
+    "cultivation": 30,
+    "layer": 4,
+    "name": "公孙玲",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 10
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 20,
+    "checkInDays": 2,
+    "cultivation": 30,
+    "layer": 4,
+    "name": "裴知禾",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 30,
+    "checkInDays": 3,
+    "cultivation": 30,
+    "layer": 4,
+    "name": "柒茉",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 30,
+    "checkInDays": 3,
+    "cultivation": 30,
+    "layer": 4,
+    "name": "清心辞",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 30,
+    "checkInDays": 3,
+    "cultivation": 30,
+    "layer": 4,
+    "name": "万毅卿",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 7,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 20,
+    "checkInDays": 2,
+    "cultivation": 27,
+    "layer": 3,
+    "name": "晏无墟",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 2,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 20,
+    "checkInDays": 2,
+    "cultivation": 22,
+    "layer": 3,
+    "name": "归凌空",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 20,
+    "checkInDays": 2,
+    "cultivation": 20,
+    "layer": 3,
+    "name": "江清雪",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 20,
+    "checkInDays": 2,
+    "cultivation": 20,
+    "layer": 3,
+    "name": "堇鸢",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 20,
+    "checkInDays": 2,
+    "cultivation": 20,
+    "layer": 3,
+    "name": "柳贯一",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 20,
+    "checkInDays": 2,
+    "cultivation": 20,
+    "layer": 3,
+    "name": "斯諦凡",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 20,
+    "checkInDays": 2,
+    "cultivation": 20,
+    "layer": 3,
+    "name": "向姊",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 20,
+    "checkInDays": 2,
+    "cultivation": 20,
+    "layer": 3,
+    "name": "许尽欢",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 20,
+    "checkInDays": 2,
+    "cultivation": 20,
+    "layer": 3,
+    "name": "宴逐风",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 20,
+    "checkInDays": 2,
+    "cultivation": 20,
+    "layer": 3,
+    "name": "叶泠鸢",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 3,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 13,
+    "layer": 2,
+    "name": "妘虞",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "陈墨",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "东方见秋",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "花间",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "江晚烟",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "姜庆瑶",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "姜十三",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "姜醉",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "君寄雪",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "乐正欢",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "柳俞",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "落安",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "莫忧",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "慕容溪",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "南华觉",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "亓岁",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "秦宓",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "清辞",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "清灵",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "上官瑾瑜",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "孙傅黎",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "谢无渡",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "玄卿",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "厌清",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "羽湘容",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "云尘",
+    "realm": "炼气"
+    },
+    {
+    "behaviorCultivation": {
+      "写戏认证": 0,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 10,
+    "checkInDays": 1,
+    "cultivation": 10,
+    "layer": 2,
+    "name": "赵清梧",
+    "realm": "炼气"
+    },
+      {
+    "behaviorCultivation": {
+      "写戏认证": 5,
+      "奇遇": 0,
+      "道具使用": 0,
+      "额外修为": 0
+      },
+    "breaks": 0,
+    "breakthroughTriggerTime": null,
+    "canBreakthrough": false,
+    "checkInCult": 0,
+    "checkInDays": 0,
+    "cultivation": 5,
+    "layer": 1,
+    "name": "染灵钰",
+    "realm": "炼气"
+    }
+ 
     ]
-// 个人已拥有的背包物品
+
+
+// 个人已拥有的背包物品x
 const personInventoryMap = {
-    "褚修叶": ["荧惑", "恒石星陨", "火之本源", "冰渊髓晶", "冰心照渊", "仙门残锋x2", "风残石", 
-            "宗门储物袋", "灵脉心脏", "沙舟碎片x10", "赤曜沙晶x2", "飞舟", "云露精华", "个人储物袋x2",
-            "双生源石x2", "冰火玄晶", "脉息石", "熔岩火虫", "镜破", "冰心碎片x11", "龙骨相", "潭果", 
-            "冰聚石", "阴嚎狼心", "幻墟衍灵髓", "青鸾", "风聚石", "霜脊狼骨", "时隙幽影", "渡灵灯芯", 
-            "冰魄心核", "灵脉碎晶", "折柳", "时影珠", "空明晶", "阴影的许诺","变异混沌石"],
+  "安陵清梧": [
+    "云露精华"
+    ],
+  "褚修叶": [
+    "荧惑",
+    "恒石星陨",
+    "火之本源",
+    "冰渊髓晶",
+    "冰魄心核",
+    "溟元果×2",
+    "风残石",
+    "宗门储物袋",
+    "灵脉心脏",
+    "沙舟碎片×11",
+    "霜玄叶",
+    "灵脉感应",
+    "飞舟×2",
+    "云露精华",
+    "个人储物袋×2",
+    "双生源石×2",
+    "冰火玄晶",
+    "弥月灵兔×2",
+    "熔岩火虫",
+    "镜破",
+    "冰心碎片×11",
+    "龙骨相",
+    "潭果",
+    "冰聚石",
+    "变异混沌石·暗",
+    "阴嚎狼心",
+    "幻墟衍灵髓",
+    "青鸾",
+    "风聚石",
+    "霜脊狼骨",
+    "时隙幽影",
+    "渡灵灯芯×2",
+    "破冰",
+    "极地梭鱼",
+    "折柳",
+    "焚石碎片",
+    "时影珠×10",
+    "阴影的许诺"
+    ],
+  "梳翎": [
+    "琥珀"
+    ],
+  "南靡": [
+    "阶梯尘晶"
+    ],
+  "任决": [
+    "欲烬余温",
+    "雪挽剑"
+    ],
+  "苏轻青": [
+    "青冥剑",
+    "幻梦灵露",
+    "沙舟碎片×3",
+    "灵脉碎晶×2",
+    "冰心招式",
+    "汇灵结晶",
+    "枯木根茎"
+    ],
+  "骁彻": [
+    "天擎",
+    "沙舟碎片×3",
+    "抗火功法",
+    "灵果",
+    "雾纱丝×2",
+    "焚石碎片",
+    "幻墟衍灵髓",
+    "渡灵灯芯",
+    "录时珠",
+    "破冰",
+    "灵气结晶",
+    "天梯石髓",
+    "幻梦灵露×2",
+    "凝气露×2",
+    "焚石碎片"
+    ],
+  "谢今安": [
+    "汇灵结晶×2",
+    "弥月灵兔",
+    "沼泽蜈蚣",
+    "发光果实",
+    "白蛇印记"
+    ],
+  "羲和": [
+    "灵泉水",
+    "虚妄尘晶×2",
+    "沼泽蜈蚣",
+    "霜脊狼骨"
+    ],
+  "百里瑾": [
+    "云隐诀"
+    ],
+  "简长生": [
+    "弥月灵兔×1",
+    "云雾凝珠",
+    "幻墟衍灵髓",
+    "攀君",
+    "冰毒绿莲",
+    "天梯石髓×2",
+    "冰晶记忆",
+    "碧落果",
+    "雾纱丝",
+    "天梯石髓"
+    ],
+  "观仰止": [
+    "仙门残锋",
+    "空明晶",
+    "枯木灵"
+    ],
+  "姬时愿": [
+    "食铁兽×2",
+    "心眼",
+    "冰魄心核×4",
+    "储物袋",
+    "星辰眼",
+    "青鸾×2",
+    "时影珠×4",
+    "水灵脉",
+    "风残石",
+    "镜破",
+    "仙门残锋×2",
+    "赤曜沙晶×2",
+    "冰心照渊",
+    "欲烬余温",
+    "空明晶",
+    "脉息石",
+    "灵舟",
+    "冰心碎片×2",
+    "弥月灵兔×2",
+    "幻梦灵露×2",
+    "发光果实",
+    "鸳鸯",
+    "极地梭鱼"
+    ],
+  "皇翎九霄": [
+    "冰心碎片×4",
+    "脉息石×2",
+    "欲烬余温",
+    "灵果×2",
+    "奔雷破空",
+    "阴嚎狼心",
+    "宗门储物袋",
+    "青鸾",
+    "时影珠×8",
+    "空明晶",
+    "发光果实",
+    "飞舟×2",
+    "冰火玄晶",
+    "枯木灵×2",
+    "弥月灵兔",
+    "攀君",
+    "逆鳞七斩",
+    "龙髓珠",
+    "火沙蝗虫",
+    "虚妄尘晶",
+    "沙舟碎片",
+    "鸡羽",
+    "兽语录",
+    "发光果实",
+    "破冰",
+    "龙骨相",
+    "冰魄心核",
+    "恒石星陨",
+    "冰渊髓晶",
+    "冰心照渊",
+    "灵气结晶",
+    "云露精华",
+    "变异混沌石·光",
+    "渡灵灯芯",
+    "赤耀沙晶",
+    "苍冥猿",
+    "古丹残液",
+    "幻梦灵露",
+    "灵脉",
+    "脉纹石",
+    "汇灵结晶"
+    ],
+  "杨建设": [
+    "汇灵结晶×2",
+    "天龙",
+    "女鬼的衣物",
+    "玄元护罩",
+    "鸡羽",
+    "飞舟",
+    "蝗虫",
+    "枯木藤",
+    "沙舟碎片",
+    "灵果",
+    "武器",
+    "福泽灵语",
+    "风残石",
+    "枯木灵",
+    "云山凝露",
+    "幻梦灵露",
+    "殍爻",
+    "灵脉",
+    "脉石碎片",
+    "逆鳞七斩",
+    "空明晶",
+    "雾里摘尘",
+    "冰聚石",
+    "沙舟碎片×2",
+    "灵脉碎晶",
+    "渡灵灯芯",
+    "熊猫",
+    "草鸡",
+    "冰心碎片×2"
+    ],
+  "刘政安": [
+    "幻梦灵露×3",
+    "登阶灵叶"
+    ],
+  "白无月": [
+    "冰渊寒气"
+    ],
+  "白凩": [
+    "虚妄尘晶×2"
+    ],
+  "顾思言": [
+    "赤耀沙晶",
+    "发光果实",
+    "枯木灵"
+    ],
+  "王源": [
+    "唤针术",
+    "冰渊髓晶",
+    "草鸡"
+    ],
+  "长云浮": [
+    "雾纱丝",
+    "雾里摘尘"
+    ],
+  "许青埃": [
+    "弥月灵兔",
+    "福泽灵语",
+    "攀君",
+    "枯木根茎",
+    "蛇脱残片",
+    "枯木藤",
+    "食铁兽"
+    ],
+  "执久": [
+    "熔岩余烬",
+    "法典",
+    "碧鳞蛇",
+    "发光果实",
+    "沙舟碎片",
+    "枯木灵",
+    "草鸡",
+    "山髓结晶"
+    ],
+  "澹台净尘": [
+    "草鸡",
+    "发光果实",
+    "恒石星陨",
+    "宗门储物袋",
+    "枯木灵",
+    "赤耀沙晶",
+    "渡灵灯芯",
+    "焚石碎片",
+    "溟元果×3"
+    ],
+  "季鸢": [
+    "雾里摘尘",
+    "风信",
+    "冰心招式",
+    "霜脊狼",
+    "熔岩火虫",
+    "时影珠×6",
+    "弥光精灵",
+    "雪狼幼崽",
+    "莲下鱼×2",
+    "碧鳞蛇",
+    "极地梭鱼",
+    "沼泽蜈蚣",
+    "青鸾",
+    "枯木灵",
+    "欲烬余温",
+    "云隐诀",
+    "青穗鼠",
+    "弥月灵兔",
+    "食铁兽",
+    "攀君"
+    ],
+  "九酒": [
+    "赤曜沙晶",
+    "枯木灵"
+    ],
+  "江愿": [
+    "灵果×5"
+    ],
+  "霡霂": [
+    "烈焰器魂诀"
+    ],
+  "陌池": [
+    "发光果实"
+    ],
+  "叙": [
+    "个人储物袋",
+    "梦幻灵露",
+    "发光果实×2",
+    "白蛇逆鳞",
+    "霜玄叶"
+    ],
+  "云言深": [
+    "冰魄心核"
+    ],
+  "单纯": [
+    "梦幻灵露"
+    ],
+  "樊螭": [
+    "枯木灵",
+    "火沙蝗虫",
+    "汇灵结晶"
+    ],
+  "梓卿": [
+    "沙舟碎片",
+    "食铁兽",
+    "幽嚎兽",
+    "枯木藤",
+    "青鸾",
+    "福泽灵语",
+    "弥月灵兔",
+    "冰渊髓晶",
+    "镜破",
+    "渡灵灯芯",
+    "阴嚎狼",
+    "风缚丝",
+    "苍冥猿"
+    ],
+  "云知微": [
+    "霜脊狼",
+    "冰渊寒气",
+    "沼泽蜈蚣",
+    "霜狼幼崽",
+    "弥月灵兔",
+    "食铁兽",
+    "枯木藤",
+    "枯木灵",
+    "沙舟碎片",
+    "青穗鼠",
+    "沙潜蝎",
+    "雾纱丝",
+    "幽嚎兽",
+    "青鸾",
+    "风缚丝",
+    "食铁兽",
+    "镜破"
+    ],
+  "轩辕": [
+    "碧鳞蛇",
+    "土聚石",
+    "变异藤蔓",
+    "龙骨锻体",
+    "龙骨尘",
+    "辟邪丹",
+    "冰渊髓晶",
+    "镜破"
+    ],
+  "陈以宁": [
+    "食铁兽",
+    "碧鳞蛇",
+    "幻墟衍灵髓",
+    "枯木藤",
+    "焚石碎片×2",
+    "弥月灵兔",
+    "沙舟碎片×6",
+    "沼泽蜈蚣",
+    "枯木根茎",
+    "潭果",
+    "冰心碎片×5",
+    "草鸡",
+    "风残石",
+    "土聚石",
+    "冰火玄晶×2",
+    "冰渊寒气",
+    "熔岩余烬",
+    "魂质",
+    "变异混沌石·冰",
+    "镜破×2",
+    "鸳鸯",
+    "极地梭鱼",
+    "灵脉碎晶"
+    ],
+  "江逸": [
+    "霜脊狼骨"
+    ],
+  "夜璃": [
+    "灵气结晶",
+    "幽嚎兽",
+    "熔岩火虫",
+    "鬼牙方天戟"
+    ],
+  "宴逐风": [
+    "脉息石"
+    ],
+  "夙玄溟": [
+    "时影珠×4",
+    "空明晶",
+    "天梯石髓"
+    ],
+  "邬稔": [
+    "暗河引",
+    "幽嚎兽",
+    "弥月灵兔",
+    "攀君",
+    "镜破",
+    "枯荣枝"
+    ],
+  "皎皎": [
+    "攀君",
+    "弥月灵兔"
+    ],
+  "灵汐": [
+    "风残石",
+    "弥月灵兔"
+    ],
+  "勿忘卿": [
+    "福泽灵语",
+    "风残石",
+    "霜脊狼骨"
+    ],
+  "池暮星": [
+    "青鸾"
+    ],
+  "长生": [
+    "霜狼脊骨",
+    "沙潜蝎",
+    "风缚丝",
+    "灵气结晶"
+    ],
+  "阙青坞": [
+    "弥月灵兔",
+    "枯木灵"
+    ],
+  "依妍": [
+    "云滋草"
+    ],
+  "凌霄": [
+    "霜玄叶"
+    ],
+  "江书舒": [
+    "弥月灵兔"
+    ],
+  "李飞羽": [
+    "青穗鼠"
+  ]
 
-    "梳翎": ["琥珀",],
-    "南靡": ["阶梯尘晶"],
-    "任决": ["欲烬余温", "火沙蝗虫", "雪挽剑", "青鸾"],
-    "苏轻青": ["青冥剑", "幻梦灵露", "沙舟碎片", "凝雪灵气", "冰心招式", "枯木根茎"],
-
-    "骁彻": ["天擎", "沙舟碎片", "抗火功法", "灵果", "雾纱丝", "赤曜沙晶", "幻墟衍灵髓",
-            "渡灵灯芯","录时珠",],
-
-    "谢今安": ["梦幻灵露", "弥月灵兔", "沼泽蜈蚣", "发光果实", "白蛇印记"],
-    "羲和": ["灵泉水", "虚妄尘晶x2", "沼泽蜈蚣", "霜脊狼骨"],
-    "百里瑾": [],
-    "简长生": ["弥月灵兔", "云雾凝珠", "幻墟衍灵髓", "攀君", "冰毒绿莲", "天梯石髓", "冰晶记忆","碧落果"],
-    "观仰止": ["仙门残锋", "发光果实", "时影珠", "空明晶", "枯木灵","幻梦灵露"],
-    "姬时愿": ["食铁兽", "心眼", "冰魄心核", "储物袋", "脉息石", "星辰眼", "沙舟碎片", "时影珠", "水灵脉", "风残石", "镜破"],
-    
-    "皇翎九霄": ["冰心碎片", "脉息石", "欲烬余温", "灵果", "奔雷破空", "阴嚎狼心", "宗门储物袋", 
-                "青鸾", "时影珠", "空明晶", "发光果实", "飞舟", "冰火玄晶", "枯木灵", "弥月灵兔", "攀君", 
-                "逆鳞七斩", "龙髓珠", "火沙蝗虫", "虚妄尘晶", "食铁兽", "鸡羽", "兽语录", "龙骨相", "冰魄心核", 
-                "恒石星陨", "冰渊髓晶", "冰心照渊", "灵气结晶", "云露精华", "渡灵灯芯", "赤曜沙晶", "古丹残液", 
-                "幻梦灵露", "脉纹石", "破冰", "变异混沌石"],
-
-    "杨建设": ["冰渊寒气", "天龙", "女鬼的衣物", "玄元护罩", "魂质", "鸡羽", "赤曜沙晶", "飞舟", "蝗虫", "枯木藤", 
-                "沙舟碎片", "灵果", "君子", "福泽灵语", "风残石", "熔岩余烬", "枯木灵", "云山凝露", "幻梦灵露",
-                "冰火玄晶", ],
-
-    "刘政安": ["幻梦灵露", "登阶灵叶"],
-    "白无月": ["冰渊寒气"],
-    "白凩": ["虚妄尘晶"],
-    "南宫临阙": ["灵气结晶", "青鸾", "焚石碎片", "镜破", "弥月灵兔"],
-    "王源": ["唤针术", "冰渊髓晶", "草鸡"],
-    "长云浮": ["雾纱丝", "雾里摘尘"],
-    "许青埃": ["弥月灵兔", "福泽灵语", "攀君", "枯木根茎", "蛇脱残片", "枯木藤", "冰火玄晶", "食铁兽"],
-    "执久": ["熔岩余烬", "法典", "碧鳞蛇", "发光果实", "沙舟碎片", "枯木灵", "草鸡", "山髓结晶"],
-
-    "澹台净尘": ["草鸡", "发光果实", "恒石星陨", "枯木灵", "赤曜沙晶", "渡灵灯芯", 
-                "焚石碎片","溟元果x3"],
-    
-    "季鸢": ["雾里摘尘","冰心招式","青穗鼠","云隐决","溟元果x2",
-            "风信", "星光的祝福", "霜脊狼", "熔岩火虫", "时影珠", "弥光精灵", "雪狼幼崽", 
-            "莲下鱼", "碧鳞蛇", "沼泽蜈蚣", "青鸾", "冰魄心核", "欲烬余温"],
-
-    "九酒": ["宗门储物袋", "汇灵结晶"],
-    "江愿": ["灵果"],
-    "霡霂": ["烈焰器魂诀"],
-    "陌池": ["发光果实"],
-    "叙": ["储物袋", "梦幻灵露", "发光果实", "白蛇逆鳞"],
-    "云言深": ["冰魄心核"],
-    "单纯": ["梦幻灵露"],
-    "殷祀念": ["梦幻灵露"],
-
-    "梓卿": ["沙舟碎片", "食铁兽", "幽嚎兽", "枯木藤", "青鸾", "福泽灵语", "弥月灵兔", "冰渊髓晶", "镜破", 
-            "渡灵灯芯","阴嚎狼心"],
-
-    "云知微": ["冰渊寒气x1", "霜狼幼崽", "弥月灵兔x1", "食铁兽", "枯木藤x1", "枯木灵x1", "沙舟碎片x1", "青穗鼠", "沙潜蝎",
-             "雾纱丝", "幽嚎兽", "青鸾"],
-
-    "轩辕": ["碧鳞蛇", "土聚石x2", "变异藤蔓x3", "龙骨锻体", "龙骨尘x1", "辟邪丹", "冰渊髓晶"],   
-
-    "陈以宁": ["食铁兽", "碧鳞蛇", "幻墟衍灵髓x1", "枯木藤x1", "焚石碎片", "弥月灵兔", "沙舟碎片x4", "沼泽蜈蚣", "枯木根茎",
-                "潭果", "冰心碎片x3", "草鸡", "土聚石", "风残石"],
-
-    "古月墨恒": ["云隐决", "空银瓶x1", "青穗鼠", "天梯石髓"],
-    "夜璃": ["灵气结晶", "幽嚎兽"],
-    "封拙安": ["风缚丝", "天梯石髓", "熔岩火虫", "雾纱丝"],
-    "夙玄溟": ["时影珠", "空明晶", "天梯石髓x1"],
-
-    "程颂柒": ["弥月灵兔", "镜破", "灵脉", "脉石碎片x1", "逆鳞七斩", "空明晶x1", "雾里摘尘", "沙舟碎片x2", 
-                "灵脉碎晶", "渡灵灯芯", "熊猫", "草鸡", "冰心碎片x2","冰魄心核","风残石","冰聚石"],
-
-    "初鿆": ["暗河引", "幽嚎兽", "弥月灵兔", "攀君", "镜破"],
-    "邬稔": ["攀君", "弥月灵兔"],
-    "宋锶苏": ["弥月灵兔"],
-    "洛冕": ["天梯石髓x1", "脉息石", "赤曜沙晶", "发光果实"],
-    "渡昭": ["弥月灵兔", "食铁兽", "风缚丝", "沼泽蜈蚣", "霜脊狼"],
-    "秦凯泽": ["凝气露x2"],
-    "皎皎": ["风残石"],
-    "灵汐": ["福泽灵语", "风残石", "霜脊狼骨"],
-    "墨渊": ["梦幻灵露", "食铁兽","破冰"],
-    "勿忘卿": ["青鸾x1"],
-    "霁鸢": ["玉片"],
-    "桃夭": [],
-    "长生": ["云滋草",],
-    "云间月": ["霜狼脊骨", "沙潜蝎", "风缚丝", "灵气结晶"],
-    "梁念桉": ["攀君"],
-    "云曦瑶": ["弥月灵兔"],
-    "池暮星": ["弥月灵兔", "枯木灵"],
-    "阙青坞": ["霜玄叶"],
     };
 let currentBagCat = "consumable";
 
@@ -1322,17 +4048,13 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
             <div class="personal-panel">
                 <div class="attr-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 0.8rem; margin-bottom: 1rem; background: #fffaf0; border-radius: 24px; padding: 0.8rem; border: 1px solid #efe1ca; text-align: center;">
                 <div class="attr-item"><span class="attr-label">名字：</span><span class="attr-value">${data.name}</span></div>
-                    <div class="attr-item"><span class="attr-label">大道名称：</span><span class="attr-value">${data.daoName}</span></div>
-                    <div class="attr-item"><span class="attr-label">境界层数：</span><span class="attr-value">${data.realmLevel}</span></div>
-                    <div class="attr-item"><span class="attr-label">修为：</span><span class="attr-value">${data.cultivation}</span></div>
-                    <div class="attr-item"><span class="attr-label">宗门：</span><span class="attr-value">${data.sect}</span></div>
-                    <div class="attr-item"><span class="attr-label">宗门职位：</span><span class="attr-value">${data.sectPosition}</span></div>
-                    <div class="attr-item"><span class="attr-label">突破次数：</span><span class="attr-value">${data.breakthroughCount}</span></div>
+                <div class="attr-item"><span class="attr-label">境界层数：</span><span class="attr-value">${data.realm}${data.layer}层</span></div>
+                <div class="attr-item"><span class="attr-label">修为：</span><span class="attr-value">${data.cultivation}</span></div>
+                <div class="attr-item"><span class="attr-label">突破次数：</span><span class="attr-value">${data.breaks}</span></div>
                 </div>
+
                 <div class="personal-tabs">
                     <button class="personal-tab active" data-tab="bag">背包</button>
-                    <button class="personal-tab" data-tab="sect">宗门</button>
-                    <button class="personal-tab" data-tab="relation">关系</button>
                 </div>
                 <div id="personalTabContent" class="personal-tab-content"></div>
             </div>
@@ -1349,7 +4071,7 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
                 const inventory = personInventoryMap[data.name] || [];
                 setTimeout(() => {
                 renderBagSubTabs(inventory);
-                }, 50);
+                  }, 50);
                 }
                     else if (target === 'sect') {
                     renderSectContent();
@@ -1362,7 +4084,7 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
         const inventory = personInventoryMap[data.name] || [];
         setTimeout(() => {
         renderBagSubTabs(inventory);
-        }, 50);
+          }, 50);
     }
 
     // ---------- 搜索与初始化 ----------
@@ -1395,38 +4117,38 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
 </script>
 
 <script>
-    // 世界、设定等原有脚本（完整保留）
+    // 世界、设定等
     let regions = [
-        { id: "lianqi", name: "清霄原", realm: "练气", status: "已开辟", pioneer: "未知", desc: "地势平缓，灵气温弱。草甸延绵，初踏道途之根基。", x: 210, y: 370, rx: 96, ry: 70, colorType: "lightgreen" },
-        { id: "zhuji", name: "云澜涧", realm: "筑基", status: "已开辟", pioneer: "柳谬", desc: "云气绕山，灵溪潺潺，灵气渐浓。飞瀑藏道韵，筑基佳所。", x: 390, y: 270, rx: 100, ry: 74, colorType: "lightblue" },
-        { id: "jindan", name: "赤曜荒原", realm: "金丹", status: "已开辟", pioneer: "执久", desc: "火海刀山、寸草不生、堆金积玉。地火汹涌，奇遇与凶险并存。", x: 620, y: 410, rx: 104, ry: 76, colorType: "orange" },
-        { id: "yuanying", name: "玉镜寒潭", realm: "元婴", status: "已开辟", pioneer: "褚修叶", desc: "镜花水月、迷魂夺魄、如堕烟海。幻阵天成，破妄方证元婴。", x: 750, y: 230, rx: 98, ry: 70, colorType: "default" },
-        { id: "huashen", name: "苍断山脉", realm: "化神", status: "已开辟", pioneer: "陈以宁", desc: "万古苍莽，断岳凌空。灵粹化龙，化神之巅隐仙痕。", x: 520, y: 120, rx: 108, ry: 78, colorType: "default" }
+          { id: "lianqi", name: "清霄原", realm: "练气", status: "已开辟", pioneer: "未知", desc: "地势平缓，灵气温弱。草甸延绵，初踏道途之根基。", x: 210, y: 370, rx: 96, ry: 70, colorType: "lightgreen" },
+          { id: "zhuji", name: "云澜涧", realm: "筑基", status: "已开辟", pioneer: "柳谬", desc: "云气绕山，灵溪潺潺，灵气渐浓。飞瀑藏道韵，筑基佳所。", x: 390, y: 270, rx: 100, ry: 74, colorType: "lightblue" },
+          { id: "jindan", name: "赤曜荒原", realm: "金丹", status: "已开辟", pioneer: "执久", desc: "火海刀山、寸草不生、堆金积玉。地火汹涌，奇遇与凶险并存。", x: 620, y: 410, rx: 104, ry: 76, colorType: "orange" },
+          { id: "yuanying", name: "玉镜寒潭", realm: "元婴", status: "已开辟", pioneer: "褚修叶", desc: "镜花水月、迷魂夺魄、如堕烟海。幻阵天成，破妄方证元婴。", x: 750, y: 230, rx: 98, ry: 70, colorType: "default" },
+          { id: "huashen", name: "苍断山脉", realm: "化神", status: "已开辟", pioneer: "陈以宁", desc: "万古苍莽，断岳凌空。灵粹化龙，化神之巅隐仙痕。", x: 520, y: 120, rx: 108, ry: 78, colorType: "default" }
     ];
     function getRegionFill(r) { if (r.colorType==="lightgreen") return "#daf3d2"; if (r.colorType==="lightblue") return "#cdecf7"; if (r.colorType==="orange") return "#fde6c4"; return "#efe3cf"; }
     function getRegionStroke(r) { if (r.colorType==="lightgreen") return "#9cc282"; if (r.colorType==="lightblue") return "#86b5d1"; if (r.colorType==="orange") return "#d6a468"; return "#cb9f6b"; }
     const chapters = [
-        { id: 1, title: "缘起篇 · 第一只妖", summary: "天道从未沉睡", content: "天道从未沉睡，它注视着这片废墟百亿年，静候第一个挣脱凡尘的生灵。\n终于，有一只狸猫，在轮回之中灵智初开。\n天道当即降下点化，赐其灵识、启其神智。狸猫能思、能言、能感知天地灵气，成为纪元以来第一只妖。\n天道托付于它：去引世人触碰壁垒，踏入探墟界，重启仙路。\n狸猫领命而行。\n它奔走人间，带无数生灵至世界壁垒之前。然而凡尘蒙昧，无人能悟，无人能入。人们只觉气血翻涌，以为是妖邪作祟，反将此地封为禁地，立碑而退。\n狸猫怒，亦不退。\n它守在壁垒前，谁来便一爪拍入其中。\n一人坠入，两人坠入，十人坠入。\n终于，有人在灵气乍泄的废墟之中，引气入体，悟得修行之道。\n——那不是诅咒，那是仙路之门。\n一人悟道，百人随之。灵气如潮水般涌回人间，功法代代相传。\n探墟界的辉煌纪元，从这一爪开始。\n天道不移，静候有缘。\n狸猫一爪，拍开仙路。\n从此凡尘可登天，废墟之中证长生。" },
-        { id: 2, title: "第二篇 · 拓荒时代", summary: "仙门既开，世人涌入", content: "仙门既开，世人涌入。\n然而最初，无人敢走远。\n人们只敢在壁垒附近游荡，小心翼翼引气入体，生怕一步踏错，万劫不复。\n也不是没人试过前往更深处。\n有人鼓起勇气，踏入那片云气缭绕的涧谷。不过数息，便觉气血翻涌如沸，经脉鼓胀欲裂，险些当场爆体而亡。\n那人狼狈逃回，修养数月才得复原。\n但这一次，没有人再喊“妖邪作祟”。\n因为他们分明感知到——那不是诅咒，不是禁制，而是灵气太浓，凡躯承受不住。\n原来，危险的不是禁区，而是自己太弱。\n于是，人们给已开辟的地方取名清霄原，意为清气初生之地。给那片遥不可及的涧谷取名云澜涧，意为云气如澜、可望不可及。\n有人不甘，日日探寻。\n有人精于术算，推演天地格局，最终得出一个惊人的结论：\n壁垒之外，还有天。天外，仍有天。\n以当前可观测的灵气波动与天道威压推算，前方地图不止一处。每一道壁垒之后，都藏着一片全新的天地。\n世人沸腾了。\n探寻之心日益炽烈，有人铤而走险深入险地，有人静心修炼等待突破。得机缘者，一跃登高；失机缘者，磨砺再战。\n拓荒的时代，没有坦途，只有不断向前的脚步。\n只是，那只狸猫的身影，再未出现过。\n有人说它完成了天道的托付，已然归去。有人说它仍在某处，静静看着世人成长。\n唯有演武场地的深处，偶尔传来几声——\n喵。\n清霄起，云澜望。\n天外有天，路未尽。\n猫隐世间，喵声犹在。" },
-        { id: 3, title: "支线篇 · 清霄灵窟 ", summary: "清霄原上，人们忙着开辟洞府，安身立命", content: "清霄原上，人们忙着开辟洞府，安身立命。 \n有人选在山脚，有人选在溪畔，有人偏往深处走，想寻一处僻静之地，独享清修。 \n那一日，一名修士在山壁之间凿石开路，一锤落下，岩壁竟轰然塌陷，露出一个幽深的洞口。 \n他还来不及反应，脚下一空，整个人坠了进去。 坠落不过数息，却仿佛穿越了另一层天地。 \n扑通—— 他落入水中。 冰凉，但不刺骨。清澈，却不见底。 \n修士挣扎着爬上岸，抬起头，怔住了。 洞窟之内，竟是另一番天地。 \n石壁上爬满了不知名的藤蔓与青苔，绿意盎然，郁郁葱葱。点点荧光从石缝、叶间、水中升起，如星河倒悬，洒落一室清辉。\n水潭清澈见底，水波微漾，隐隐透出灵气。捧一口饮下，竟觉经脉舒畅，丹田微暖。 \n——这不是普通的水，这是灵泉。 消息传开，世人蜂拥而至。 \n有人说是上古遗脉，有人说是天道馈赠。不论如何，清霄原有了第一处真正的修行宝地。 \n人们将它唤作—— 清霄灵窟。 洞中一日，世上已千年。 灵泉洗髓，绿光引路。 探墟之路，从此多了一处落脚之地。" },
-        { id: 4, title: "第三篇 · 平原惊鸿", summary: "秘境散去后，洞窟石门再次被推开了", content: "秘境散去后，洞窟石门再次被推开了。\n不是一个人，是一群人。他们合力凿开那些残破的石缝，撬动沉重的门扉。\n然而门后，什么也没有。\n没有仙门，没有废墟，没有丛林，没有壁画。\n只有一片辽阔的平原，在阳光下静静铺展，一眼望不到头。\n众人愣在原地。\n有人回头看了一眼身后的洞窟，又看了看脚下的泥土，恍然大悟——原来整座仙门废墟，都嵌在山壁之上。推开石门，不是深入山腹，而是翻过了山。\n门后，是另一片天地。\n有人第一个冲了出去，踩上松软的草地，仰头深吸一口气。\n“是风！是真的风！”\n更多的人涌了出来。他们在平原上奔跑、翻滚、大喊大叫。从洞窟里钻出来的人，太久没见过这样开阔的天空了。\n有人躺在草地上，有人爬上矮丘眺望远方，有人干脆闭眼晒太阳。\n撒欢。\n那是真正的撒欢。\n就在这时，幽光从石门中飘了出来。\n那些在洞窟深处、在废墟之间沉睡了不知多少年的荧光，像是被惊醒了。它们纷纷从门缝中涌出，飘向平原，在空中飞舞盘旋，如星河倾泻，如梦如幻。\n幽光越聚越多，仿佛也有了自己的欢喜。\n它们掠过草地，草叶微微发亮；它们掠过溪流，水面泛起粼粼波光。有几团幽光钻入水中，竟将水中的鱼带出了水面。\n鱼群在幽光的包裹下，缓缓升空，在天空中游动。\n银鳞闪烁，尾鳍轻摆，仿佛它们本就应该在天上游，而不是在水中。\n人们仰头看着这一幕，久久无言。\n鱼在天上飞，光在地上舞，人在平原上奔跑。\n幽光玩够了，渐渐散入平原各处，像是一群找到了新家的孩子。\n而人们知道，这片平原，从此不再是荒野。\n石门开，秘境现。\n门后再无仙宫，唯有天地宽。\n幽光逐鱼上九天，人在平原笑开颜。" },
-        { id: 5, title: "平原篇 · 筑造天梯", summary: "人们在平原上撒欢了数日，渐渐摸清了这片天地的轮廓", content: "人们在平原上撒欢了数日，渐渐摸清了这片天地的轮廓。\n四面环山。\n清霄原并非真正的平原，而是一个巨大的盆地。远处山峦起伏，将这片土地围拢其中，只在头顶留下一方天空。\n有人抬头望去，发现了一件令人震撼的事。\n云澜涧，在高处。\n那道曾经可望不可即的灵气壁垒，那座传说中的筑基秘境，就悬在盆地的边缘之上，远远高出平原的地面。云雾缭绕之间，隐约可见山涧轮廓，仿佛在俯瞰着盆地中的一切。\n“原来我们一直在山下。”\n“云澜涧，在上头。”\n云澜涧在山巅。想要踏足那片更高的天地，必须先翻过这四面环抱的山峦。\n有人提议绕路，沿着山脚寻找缓坡。走了数日，发现山势陡峭，处处绝壁，无路可上。\n有人试图攀爬，爬到半途便力竭而退，险些坠落。\n最后，有人站在盆地中央，环顾四周，说了一句改变一切的话：\n“上不去，就修上去。”\n于是，筑梯开始了。\n人们从山脚搬来石块，垒成第一级台阶。一人动手，十人跟上，百人加入。没有法器，没有神通，只有凡人的双手和一颗向上的心。\n阶梯一寸一寸地延伸，从山脚蜿蜒而上，贴附着陡峭的山壁，向着云澜涧的方向攀爬。\n有人凿石，有人搬运，有人垒砌，有人加固。\n累了就坐在台阶上歇息，渴了饮一口清泉，伤了互相包扎。\n没有人催促，没有人退缩。\n因为他们知道，阶梯的尽头，是筑基的机缘，是更广阔的天地，是仙路的下一程。\n阶梯越修越长，从山脚延伸到山腰，从山腰延伸到云雾之中。\n远远望去，像是一条石龙盘踞在山壁之上，龙头隐入云端。\n人们给它取了一个名字——\n天梯。\n四面山围盆底宽，云澜高处不可攀。\n凡人无有登天术，一阶一石筑山峦。" },
-        { id: 6, title: "第四篇 · 守界人", summary: "天梯蜿蜒向上，行至半途，山势忽然开阔", content: "天梯蜿蜒向上，行至半途，山势忽然开阔。\n\n人们这才看清，盆地的山体并非直上直下，而是分作两重阶梯。\n\n第一阶梯，是脚下这座高山，巍峨雄浑，草木葱茏，灵气比盆底浓郁数倍。站在山脊上眺望，隐约可见深处藏着一片仙门遗迹\n残殿、断柱、坍塌的楼阁，历历在目，仿佛在诉说上古的辉煌。\n\n第二阶梯，才是云澜涧的门前。那座山更高，更险，云雾缭绕，天道微压从上方倾泻而下，压得人喘不过气。\n\n第一阶梯，像是一座桥。桥的这一头，是清霄原；桥的那一头，是云澜涧。\n\n而桥上，满是机缘。\n\n有人在山脊上发现了灵草丛，有人在山涧中找到了灵泉，有人捡到了散落的古器碎片。第一阶梯仿佛在告诉每一个人：机缘在此，只等你来取。\n\n人们走下天梯，踏上山体，向第一阶梯的深处探索。\n\n然后，他们遇到了灵物。\n\n那是一头如山般巨大的妖兽，盘踞在山谷之中，身躯之庞大，远超任何人想象。它只是趴在那里，便占据了大半个山谷。\n\n这是修士们第一次遇到真正的灵物。\n\n在此之前，清霄原只有微灵兽，体型不过豺狼虎豹，虽有灵性，却无甚威胁。而眼前这头巨兽，虽也不过练气境界，却凭借庞大的肉身，拥有了碾压性的力量。\n\n一尾扫过，山石崩裂。\n\n一息喷出，灵气激荡。\n\n修士们围攻了三天三夜，死伤无数，才终于摸清了它的底细\n\n它也是壁垒复苏后从凡间误入此地的生灵。不过是一头凡蛇，误闯灵域，被灵气滋养了数月，便长成了这般模样。\n\n练气境。没有神通，没有术法，只有一身蛮力。\n\n可就是这一身蛮力，让数十名修士束手无策。\n\n就在众人准备再度围攻之时，有人站了出来。\n\n那是一条白蛇。\n\n身长三米，通体纯白无杂，鳞片如霜雪凝就，竖瞳赤红如熔玉，游动时有水泽灵气萦绕周身。他从人群中缓缓游出，不疾不徐，仿佛面前那头如山巨蛇不过是一块顽石。\n\n他没有拔刀。\n\n他只是抬起头，赤红的竖瞳凝视着那头巨蛇，一言不发。\n\n一人一蛇，对视良久。\n\n没有人知道那天发生了什么。\n\n只知道巨蛇缓缓低下头，伏在地上，再也没有攻击过任何人。\n\n白蛇转身，他的声音很淡，淡得像山涧的薄雾：\n\n“它只是迷路了。和你们一样，从凡间来，想找一条修行的路。”\n\n“我带你们进去。”\n\n如今，\n修士们给它取了一个名字——\n\n清霄守界人。\n\n有人说，大蛇是被他点化了。\n\n也有人说，他本就不是来争什么的，只是恰好路过，恰好能帮，恰好愿意。\n\n无论如何，清霄原有了第一位守护者。\n\n一条白蛇，带着一条大蛇，守着一条路，等着一群人。\n\n天梯半程见双阶，一重山水一重天。\n白蛇出灵泽，赤瞳守人间。\n巨蛇横卧非为阻，清霄守界待君前。" },
-        { id: 7, title: "支线篇 · 文明初立", summary: "那条通体纯白、赤瞳如焰的蛇，镇守一方，护凡民安好", content: "那条通体纯白、赤瞳如焰的蛇，镇守一方，护凡民安好。有人翻遍古籍，寻到了女娲伏羲的传说，人首蛇身，上古正神，创世造人，补天救世。\n\n“白蛇护我们，可是神明后裔？”\n\n“即便不是，也是神明之姿。”\n\n于是，人们开始尊称他为清霄守界人，有虔诚者，已悄悄在心中将他奉为一方神明。\n\n白蛇不知这些。\n\n他只是看着人们风餐露宿，夜来蜷缩在山石之间，白日里啃着干涩的野果。天梯虽成，落脚之处却依旧简陋。\n\n他抬起尾尖，灵力涌动，泥土自行翻涌，凝成方正的土块。\n\n一块，两块，十块。\n\n垒起来，便成了墙。\n\n他忽然停下了动作。\n\n“何不，教他们自己造？”\n\n这个念头升起的一瞬，天地骤变。\n\n云层翻涌，一道流光从天而降，不偏不倚，落于白蛇掌心。那是一枚碎片，通体莹白，刻着古篆二字：\n\n云澜。\n\n天降异象，云澜钥匙碎片，择主而降。\n\n白蛇握紧碎片，沉默良久。隔日一早，他将众人召集到山脊平地上，声音不重，却清晰传遍每一个人耳中：\n\n“我们要在此地，开展第一份文明。”\n\n“从搭建开始。”\n\n他抬手，灵力在地面上勾勒出一座建筑的轮廓，飞檐、石阶、殿门、回廊。\n\n“此为白蛇庙宇。”\n\n“每人皆可绘制图纸，按己心所想，筑此一方水土。”\n\n“写得好者，名震四方。”\n\n众人面面相觑，随即眼中燃起了光。\n\n那是文明的火焰。\n\n白蛇凝土欲成家，天降云澜碎片斜。\n召来众人开笔会，一纸庙宇定风华。" },
-        { id: 8, title: "第五篇 · 云澜门前", summary: "白蛇庙宇落成之日，云雾散开，阳光第一次完整地落在了盆地的半山腰上", content: "白蛇庙宇落成之日，云雾散开，阳光第一次完整地落在了盆地的半山腰上。\n\n那座庙太大了。\n\n飞檐凌空，石阶铺陈，殿宇层层叠叠，从山腰一直延伸到山脊。每一块砖石都经过精心打磨，每一根梁柱都刻着灵纹。壁画上的白蛇栩栩如生，仿佛随时会从墙上游下。殿前的香炉青烟袅袅，日夜不熄。\n\n远远望去，整座庙宇像一头蛰伏的巨兽，盘踞在山壁之上，俯瞰着整个清霄原。\n\n天梯，终于有了焦点。\n\n人们整顿完毕，将庙宇托付给留守之人，便继续向上攀登。\n\n这一次，修士们的心性大不相同。\n\n在白蛇庙宇修筑的日子里，他们学会了耐心，学会了协作，学会了在一砖一瓦中打磨自己的道心。那些曾经浮躁的、急切的、恨不得一步登天的人，如今都已沉了下来。\n\n天梯越来越高，越来越陡。\n\n但没有人觉得累。\n\n天道微压依然在，从云澜涧的方向倾泻而下，无形的山压在肩头。可这一次，没有人气喘如牛，没有人寸步难行。\n\n他们只是走着。\n\n一步一步，不疾不徐。\n\n有人回头看了一眼白蛇庙宇，忽然明白了什么。\n\n“白蛇不是在教我们修庙。”\n\n“他是在教我们修心。”\n\n众人沉默，继续向上。\n\n第一个登顶的人，站在天梯尽头，面前是一道无形的屏障。\n\n云澜涧就在眼前，云雾缭绕，灵溪潺潺，他甚至能感受到那股浓郁的灵气扑面而来。\n\n但进不去。\n\n一道狂风凭空而起，将他生生挡在了门外。那风不是凡风，裹挟着天道威压，吹在脸上如刀割，吹在身上如锤击。\n\n他试了又试，退了又退，始终无法踏入半步。\n\n于是，他等。\n\n等了一天，两天，三天。\n\n终于，有几个练气修士堪堪爬了上来。他们还来不及欢喜，便被那狂风吹了个正着。其中一人脚下一滑，整个人被掀飞出去，若不是旁边的人眼疾手快拽住衣角，怕是已经跌下天梯，粉身碎骨。\n\n人救回来了，但重伤。\n\n众人看着那道无形的屏障，脸色铁青。\n\n这一幕太熟悉了。\n\n清霄壁垒初开时，所有人都是这样——气血翻涌，头晕目眩，凡躯承受不住灵气的冲击。那时候他们以为是不祥，是诅咒。\n\n后来才知道，只是太弱。\n\n如今，云澜涧前，又是一样的情景。\n\n“这里，”有人艰难开口，“怕是只有筑基境才能进去。”\n\n消息必须传下去。\n\n当即有人转身，沿着天梯一路狂奔而下，将云澜门前的状况一五一十传回了白蛇庙宇。\n\n消息传开，众人聚在殿前，七嘴八舌。\n\n“白蛇给的那枚钥匙，是不是用来开这道门的？”\n\n有人这样问。\n\n殿中沉默了一瞬。\n\n然后，人群中不知是谁，冷冷说了一句：\n\n“他当然得开。”\n\n“不然，就杀掉。”\n\n殿外的风忽然停了。\n\n殿内的香，依旧袅袅。\n\n庙成道心齐，再向云澜西。\n风狂门难入，钥在谁敢欺。" },
-        { id: 9, title: "第六篇 · 云澜门开", summary: "只见一位小蛇带着钥匙，跟上了人群", content: "只见一位小蛇带着钥匙，跟上了人群。\n他太小了，青碧色的身躯在石阶上蜿蜒，没有人低头看他一眼。\n“不开，就杀掉。”\n他听见了。\n没有回头，只是继续向上爬。\n到了天梯顶部，独自游向那道无形的屏障。没有人注意它，没有人帮他。\n带着钥匙，进去了。\n没有排斥，没有狂风。云澜门，开了。\n云雾翻涌，向两侧退去，像一双无形的巨手缓缓拉开了一道天幕。阳光从云隙间倾泻而下，落在山峦之上，将整片天地染成了淡淡的金色。\n云澜涧，终于现出了它的真容。\n云气绕山，如轻纱漫卷，一层一层将山峦裹住，又一层一层散开。山在云中隐现，云在山间游走，仿佛天地在此处放慢了呼吸。灵溪从高处跌落，在岩石间跳跃，水声潺潺，如琴如瑟。溪水清冽，映着天光云影，一路向下奔流，汇入雾气深处，不知去向。\n灵气比清霄原浓郁了数倍，却不狂暴，温和地弥漫在每一寸空气中，沁入经脉，滋养丹田。深吸一口，便觉四肢百骸都舒展开来，仿佛每一个毛孔都在呼吸。\n天道微压初现。不重，不烈，只是轻轻地压在肩头，像一只手搭在肩上，提醒着每一个踏入此境的人：这里，不一样了。\n山势崎岖，峰回路转。灵溪两岸，石壁上爬满了青苔与蕨类，水珠从叶尖滴落，溅起细碎的水花，在阳光下闪烁如碎银。远处有瀑布从山崖上跌落，水声轰鸣，白练悬空，雾气从潭底升起，弥漫成一片朦胧的云烟。\n就在这云烟之中，有一只猫。\n它蹲在一块被青苔覆盖的岩石上，竖瞳微阖，似醒非醒，尾巴慵懒地垂在石沿，一动不动。\n人来不迎，人去不送。\n小蛇从它身边游过，它连眼皮都没抬一下。\n仿佛是感觉到了目光，那只猫才缓缓睁开眼，瞥了小蛇一眼，又懒懒地合上。\n这只猫不知何时进的，不知怎么进的。它只是来了，找了一块舒服的石头，便卧了下来。云澜涧灵气浓郁，风景如画，于它而言，不过是一个更大的、更舒服的睡觉的地方。\n这里是云澜涧。\n筑基之境，道基可固，灵脉可梳。\n钥在身侧蛇独行，云澜一开门自明。\n山绕轻纱水绕雾，猫卧石台懒理人。" },
-        { id: 10, title: "第七篇 · 灵脉初现", summary: "沼泽密林的尽头，树木渐渐稀疏", content: "沼泽密林的尽头，树木渐渐稀疏。\n脚下的泥泞变成了碎石，碎石变成了青石板似的岩面。头顶的枝叶不再遮天，阳光成片地洒落下来，刺得人眼睛微眯。\n\n然后，豁然开朗。\n所有人都在那一刻停下了脚步。\n眼前的天地，像是被谁一刀劈开了。\n群山拔地而起，不是清霄原那种平缓的丘陵，而是陡峭的、锋利的、一柱一柱直插云霄的山峰。山体如削，石壁如镜，云雾缠绕在半山腰间，将山尖托举在云海之上，仿佛是天与地之间的立柱。\n瀑布从山巅坠落。\n不是一条，是无数条。高处的山涧、崖壁的裂缝、云雾之中不知名的源头，水流从四面八方倾泻而下，有的如白练悬空，有的如碎玉飞溅，有的细如丝线，在半空中就被风吹散成水雾，在阳光下折射出淡淡的虹光。\n水声轰鸣，却不喧嚣。山与山之间回荡着瀑布的回响，一层叠一层，远的如鼓，近的如雷，汇成一首没有尽头的交响。\n雾气从谷底升起，在山间游走，时聚时散。聚时如海，将山淹成孤岛；散时如纱，露出层层叠叠的峰峦。阳光从云隙间漏下，一束一束，落在山壁上，落在瀑布上，落在水潭上，光影交错，明暗流转。\n\n灵气。\n浓郁的灵气。\n从每一寸土地、每一块岩石、每一条溪流中向外涌出。深吸一口气，灵气便顺着经脉灌入丹田，仿佛连呼吸都在修行。\n有人蹲下身，将手掌按在地面上。\n地下的灵气如江河般奔涌，脉络清晰可辨。不是散乱的、零星的灵点，而是一条完整的、连绵不绝的灵脉，从群山深处延伸而出，向着云澜更深处蜿蜒而去。\n“这是……什么。”\n白蛇道\n“完整的灵脉。”\n所有人都在那一刻明白了。\n清霄原是起点，是凡尘踏入仙途的第一步。云澜是根基，是修士真正扎根的地方。\n而这群山之间，藏着云澜的心脏。\n灵脉在此，修行可期。\n\n远处，瀑布轰鸣，云雾翻涌。\n群山不语，却已将最大的馈赠，摆在了世人面前。\n\n林尽山出万峰起，瀑布如练挂云间。\n雾绕青峰光落处，灵脉初现天地宽。" },
-        { id: 11, title: "第八篇 · 火山异象", summary: "云澜涧的高处，一座宗门正在拔地而起", content: "虽未完全建成，轮廓已显。飞檐斗拱，石阶层层，殿宇依山而建，气势恢宏。远远望去，鹤立鸡群，整片云澜的灵气好似都在向此处汇聚。\n山门下，修士排成了长龙。慕名而来的，想抢先机的，只为看一眼这灵脉之上的宗门究竟是何等模样。人声鼎沸，队伍从山门蜿蜒到山腰，不见尽头。\n轰——\n地动山摇。地底深处传来剧烈的翻涌，山石滚落，人群东倒西歪，御器升空。\n巨响从远处传来。像是什么东西在地底撕裂、喷涌而出。\n飞尘漫天，遮天蔽日。灰白的粉尘从远处飘来，落在衣袍上，落在山石上。\n目力过人的修士穿透飞尘，望见了远方。\n一座雪山。\n山覆盖着皑皑白雪，在阳光下泛着冷白的光。赤红的岩浆正从高处中喷涌，滚滚而下，如一条巨大的火龙，吞噬着所过之处的一切。\n雪与火，在同一条山上并存。\n有人转身就跑，有人呆立原地，有人盘算着自己的洞府是否安全。但过了很久，岩浆没有过来——它朝着另一个方向流去，浩浩荡荡，不可阻挡，与云澜的方向背道而驰。\n修士们登上最高处的观景台，望着那座雪山，望着那条火龙，一言不发。罗盘翻转，灵气测算距离与范围，地面上勾画出火山的轮廓。\n计算的结果让所有人沉默。\n不是巧合，是地理。\n那座山的地势、灵脉走向、地气流转，形成了一道天然的屏障。岩浆被引导着，朝云澜的反方向奔涌而去。一半是雪，一半是荒。\n岩浆流向的尽头，是一片赤红的平原，与云澜隔山相望。有人认出那片颜色，先人推算的地图上标注过这个地方。\n“赤曜。”\n赤曜荒原。\n赤流东去分天地，半落赤曜半云澜。" },
-        { id: 12, title: "第九篇 · 赤曜遥望", summary: "云澜的人们，已经很久没有见过钥匙了", content: "云澜的人们，已经很久没有见过钥匙了。\n没有新的钥匙降世，没有天降祥瑞，没有任何征兆。\n人们开始恐慌。\n那扇门——通往下一境的门，该怎么开？\n有人每日仰望雪山，试图从云雾中找到答案。有人翻阅从墟境仙门带出的残破玉简，试图从上古文字中寻得线索。有人跪在白蛇庙宇前，焚香叩首，祈请指引。\n但没有人敢轻举妄动。\n那场火山喷发，所有人都看在眼里。雪山虽然安静了，但岩浆的痕迹还在——焦黑的岩石、龟裂的大地、空气中若有若无的硫磺味。\n没有人敢动雪山的地形。\n生怕一锤下去，地脉失衡，岩浆改道，朝着云澜的方向涌来。到那时，宗门、天梯、白蛇庙宇……一切都会化为灰烬。\n于是人们只是望着。\n望着那座火山戈壁。\n赤曜荒原。\n如今已经可以看清了。不再是模糊的、遥远的、藏在云雾中的一抹赤色。\n阳光落在戈壁上，反射出细碎的光芒，亮晶晶的，像撒了一地的宝石。红的热烈，金的耀眼，铺满了整个荒原，仿佛大地裂开了一道缝隙，露出了地底的宝藏。\n那是高温融化的结晶吗？\n有人低声问。\n没有人知道。\n但他们知道，这样的东西，在凡间，是价值连城的。一块赤曜结晶，足以让凡人一世无忧。而那里，遍地都是。\n有人吞了吞口水。\n有人握紧了拳头。\n“别动。”\n一个声音拦住众人。不是命令，是提醒。\n“想去，这个地形一看就非常的炽热，我们或许可以找一找别的通道，而不是只从这里进去。”\n沉默。\n风吹过雪山，带来彻骨的寒意。远处，赤曜荒原依旧亮晶晶的，像是在招手，又像是在嘲笑。\n而人们也常常看见，一蛇二猫，蹲在那道无形的壁垒前。\n清羽，裁枝，还有那只叫池爻的黑猫。\n一个比一个不耐烦。\n清羽用尾巴尖戳了戳壁垒，没反应。裁枝绕来绕去，像是想找条缝钻进去。池爻直接伸爪子挠，挠得嘶嘶作响，然后气得甩尾巴走人。\n过一会儿，又回来挠。\n再走，再来。\n日复一日。\n仿佛在替所有人着急，又仿佛在说——\n这门，怎么还不开？\n吉兆久不降，人心渐彷徨。\n雪山唯恐动，灾难祸及乡。" },        
-        { id: 13, title: "支线篇 · 龙宫现世", summary: "清霄洞窟，异动传来", content: "清霄洞窟，异动传来。\n灵泉不再平静。水面剧烈震颤，涟漪层层扩散，像是有什么东西在水底翻涌。修士们闻讯而来，围在灵泉边，面面相觑。\n有人仗着灵力护体，纵身跃入水中。\n水下并无不适。灵泉经年累月被灵力滋养，水质温润，入水如浸温汤，呼吸自如，仿佛水已不再是水，而是一片柔和的灵力之海。\n那人睁眼望去。\n水底深处，有东西在上升。\n缓慢的，沉重的，不可阻挡的。像是沉睡了千万年的巨兽终于醒来，从地底缓缓浮起。\n轰——\n一声闷响，水浪冲天。\n洞顶被撞碎了。不是塌陷，是碎裂。岩石向外翻开，露出一个巨大的、完整的轮廓。\n一座宫殿。庞然大物般从水下升起，殿顶先出，然后是飞檐、斗拱、石柱、台阶……通体由不知名的深色石料筑成，古朴肃穆。\n水从殿顶倾泻而下，如万道银瀑。\n人们呆立当场。\n宫殿完全升起的那一刻，一条小蛇从殿门内游出。\n有人认出了他。\n“柳谬！”\n是那条第一个打开云澜壁垒的小蛇。人们纷纷行礼，神色恭敬。小蛇化为人形。\n“不必惊慌。”他声音不大，却清晰传遍全场，“异动乃灵脉降世，已被我驯服。”\n他侧身，引众人看向那座宫殿。\n“水下宫殿，即为修士开拓第一步路。”\n清霄洞窟从此不再是幽暗的洞穴。\n洞顶碎裂之后，天光直落，照亮了整片水域。灵泉不再是一潭，而是一汪大湖，碧波万顷，倒映着天光云影。\n而那座宫殿，就在湖底。\n想去清霄平原，不必再走崎岖山路。从宫殿内部穿堂而过，另一头的出口，便是清霄平原的开阔地。\n这是第一个驿站。也是最壮观、最漂亮的一个。\n蛇被人称为龙。\n是对了不起的修士的认可。" },        
-        { id: 14, title: "第十篇 · 赤曜开境", summary: "赤曜荒原，开了", content: "赤曜荒原，开了。\n通道打通的那一刻，滚烫的热浪如同挣脱牢笼的猛兽，从地底翻涌而出，迎面扑向每一个站在壁垒前的修士。空气扭曲如波浪，呼吸之间，喉咙像是被火舌舔过。\n入眼，是一片荒芜。\n赤红的大地龟裂如蛛网，寸草不生。岩浆在不远处缓缓流淌，赤金色的光芒映照着整片荒原，仿佛大地还在燃烧。但那些岩浆，正在汇聚——沿着执久开辟的通道两侧，缓慢而有序地汇入地底深处，不再四散奔涌。\n而在赤曜的边缘，雪山的融水潺潺而下，汇成细流，在荒芜之中滋养出一小片绿洲。草木虽不繁茂，却青翠欲滴，与周围的赤红大地形成了鲜明对比。赤曜唯一的绿洲。修士们在这里停下脚步，歇息整顿。有人掬一捧清泉洗去满脸沙尘，有人倚着岩石大口喘气，有人盘膝而坐，运转功法抵御燥热。\n“据观测，再往前，就是大峡谷了。”有人指着远方。\n赤曜荒原的尽头，大地裂开了一道巨大的缝隙。峡谷幽深，从边缘往下望去，只见阴影叠嶂，不见底端。与地面上的酷热不同，峡谷里吹上来的风，竟是凉的。\n有人在研究阵法，试图在赤曜与云澜之间架设永久的传送通道，让往来不再艰险。有人已经冲了出去，在荒原上奔跑、挖掘、拾取。赤曜结晶散落满地，在阳光下折射出耀眼的火光。一块、两块、十块……有人抱了满怀，汗水浸透衣袍，却笑得合不拢嘴。\n狂沙滚滚，遮天蔽日。\n陆陆续续，有人抱着宝物往回走。穿过通道，回到云澜，将赤曜结晶献于宗门，换取资源与地位。也有人站在天梯上，望着清霄原的方向，犹豫了很久——然后，继续往下走。回归凡间，当个富豪。这一趟，已经够了。\n而更多的人，选择了峡谷。\n时过境迁\n大峡谷内，阴凉幽深，与地表宛若两个世界。阳光从峡谷顶端的缝隙漏下，在岩壁上投下斑驳光影。风从谷底吹上来，带着潮湿的、古老的气息。\n渐渐出现了摊位。石台、木架、布棚……有人在卖赤曜结晶，有人在卖岩浆冷却后形成的黑曜石，有人在卖从地底捡到的器物碎片。\n吆喝声、讨价还价声、偶尔爆发的争执声，在峡谷中回荡。\n这是最大的商路，也是探墟界第一条成型的商路。人们在峡谷两侧凿石为屋，安家落户，简陋的棚屋渐渐连成一片，有了街道的雏形。烟火气在荒芜之地升起，热闹而嘈杂。\n赤曜开门热浪翻，荒芜大地赤光漫。\n雪山融水成绿洲，狂沙滚滚宝满盘。" },        
-        { id: 15, title: "第十一篇 · 黄金河", summary: "赤曜峡谷之上，有一条河", content: "赤曜峡谷之上，有一条河。\n不是水，是沙。\n不知从何时起，峡谷上方的流沙便开始缓缓流转，如一条金色的大河，从地平线的一头延伸到另一头。沙粒细如粉尘，在阳光下泛着柔软的光泽，远远望去，像是大地披了一层流动的金纱。风起时，沙面泛起细密的波纹，一圈推着一圈，无声无息，却又永不停歇。\n河流平缓，不急不躁。\n沙浪轻轻翻涌，推着金沙向前，偶尔卷起一个小小的漩涡，又慢慢散开，像是大地在呼吸。修士越过毫不费力，灵气护体，足尖轻点，便可凌行。\n慎。此地热浪灼人，灵气狂暴，筑基以下之躯根本承受不住。轻则经脉灼伤、灵力逆流，重则丹田焚毁、气血蒸干，活活渴死在黄沙之中。\n流沙行至峡谷边缘，便倾泻而下。\n如瀑布，如金帘。亿万吨沙粒从高处坠落，拉出千万道细密的金线，在阳光下划出一道道耀眼的弧线，落入峡谷深处，激起漫天沙雾。雾气被风一吹，便散成一层薄薄的金色烟云，飘荡在峡谷上空，久久不散，像是一层永不收拢的纱帐。\n人们叫它黄金河。\n有人站在峡谷边缘，看了很久。\n“是什么让这些沙子一直在流？”\n沙在流，风在吹，峡谷深处依旧传来悠悠的阴嚎伴随着草鸡撒欢的声音。有人说沙子底下压着古时的风穴，有人说流沙深处藏着沉睡的灵兽，有人说这是天地自己的呼吸，不需要理由。\n没有人说得清。\n但每个人都想知道——这黄金河的尽头，是否藏着什么。\n或许只是沙子。\n或许，是下一场奇遇的开端。\n赤曜有河不是水，金沙缓缓自流转。\n修士凌越挽金沙，倾入峡谷作金帘。" },        
-        { id: 16, title: "第十三篇 · 寒祸初临", summary: "峡谷被开发之后，幽嚎声渐渐不再让人恐惧", content: "峡谷被开发之后，幽嚎声渐渐不再让人恐惧。人们习惯了那悠悠的长鸣，甚至觉得有几分安详——像是风在哼歌，像是大地在打鼾。\n更让人安心的，是那些草鸡。\n不知从何时起，峡谷深处诞生出一种奇异的草鸡，专以枯木寄生体和缠人藤蔓为食。它们咯咯叫着，悠哉悠哉地在摊位间穿行，啄啄石缝，刨刨沙土，偶尔仰头啼鸣一声，清脆响亮，驱散峡谷中最后一丝阴冷。\n草鸡成了此地的守护兽。\n有人给它们喂食，有人给它们搭窝，有人把它们绣上旗帜——咯咯声中，赤曜仿佛真的变成了人间乐土。\n黄金瀑布日夜倾泻，金沙如帘，璀璨夺目。\n瀑布旁边，酒楼开了一家又一家。雕栏玉砌，红灯笼高挂，酒香从窗口飘出，混着沙尘和烟火气，熏得人微醺。修士们来来往往，任务前喝一碗，凯旋后再喝三碗。\n人人来此，都要去看一眼黄金河。\n不为别的，就为了讨个彩头——财源滚滚。\n日子安逸得像一场不会醒的梦。\n直到那一天。\n帝庭宗门正在准备收铺，打算关闭这一轮的探索任务。弟子们说说笑笑，盘点着收获，商量着回云澜后去哪里庆祝。\n急报传来。\n所有人愣在原地。\n宗门弟子抬着一副担架冲进营地，担架上躺着一个年轻人——帝庭宗门自家弟子，青衣染血，双目圆睁，表情凝固在惊恐的瞬间。\n他被冻住了。\n通体冰封，像一座冰雕。那不是普通的冰，晶莹剔透，却坚不可摧。刀砍不动，火烧不化，灵力探入如泥牛入海，连宗门传送令牌都来不及触发——人就没了。\n是谁杀了他？\n不知道。\n是什么时候？\n不知道。\n人们围在担架旁，沉默着，看着冰中那张扭曲的脸。他看到了什么？遇到了什么？为什么会来不及逃？\n没有人能回答。\n宗门立刻封锁消息召开会议，一大批修士开始前往峡谷深处。\n草鸡咯咯镇幽谷，黄金瀑布映酒楼。\n忽报一夕寒祸至，冰封弟子死无由。" },        
-        { id: 17, title: "第十四篇 · 玉镜寒潭", summary: "门开了", content: "门开了。\n入眼便是阴霾。灰白色的雾气铺天盖地，像是整片天地都被浸在了浓稠的浆液中。目光所及不过数尺，更远处只有模糊的灰白，分不清是天，是地，还是虚空。空气湿润得仿佛能拧出水来，黏腻地贴在皮肤上。\n远处有风。无数阵风从四面八方涌来，在雾中撕扯、翻滚、咆哮。那风不烈，却冷得刻骨——从骨髓深处往外渗，元婴修士站在风口，也忍不住蜷起了身子。\n玉镜寒潭，是一片无边无际的冰原。\n冰面平整如镜，光滑得没有一丝裂纹，像一整块被精心打磨过的玉石铺在大地上。雾气在冰面上方翻涌，却落不到冰面之上——那层冰，干净得像是另一个世界的窗户。\n人走上去，低头，便看见了自己。\n不是模糊的倒影，是清晰的、分毫不差的自己。眉眼、衣袍、发丝，每一个细节都映在冰面之下，仿佛冰层里藏着另一个自己，正仰头回望。\n但冰面之下的世界，是反的。\n重力相反。倒影中的人，头朝下，脚朝上，像是站在天的另一边。如果你盯着看太久，会恍惚觉得自己才是倒过来的那个。\n试着伸手触碰冰面。指尖触及的瞬间，冰面下的倒影也伸出了手。两只手在冰层两侧重合，指尖对指尖，掌纹对掌纹。然后——\n一股力量从冰下传来。不重，却不可抗拒。像是有什么东西在下面轻轻托了一下，又像是重力在那一瞬间颠倒了过来。身体轻了一瞬，又落回原地。\n这片冰原的下面，是另一个空间。重力相反，上下相反。如果掉下去，你不会坠落，你会——上升。上升到一个没有光、没有声音、只有你自己的世界里。\n是这片冰原本身。\n每一块冰面都映着你的样子，但你永远分不清——冰下的人是倒影，还是你自己走错了方向。走着走着，你会开始怀疑脚下的路是否真实。明明直直往前走，却发现自己绕回了原地。明明记得来时的方向，转过一道冰脊，一切都变得陌生。\n看不见的远方。\n雾气把天地收窄到数尺之内，脚下只有自己的倒影。风声从四面八方涌来，把方向感搅得粉碎。\n有人说，这片冰原会把人的心困住。\n当你只能看见自己的时候，你就会开始怀疑自己。\n而在这片冰原的更深处，雾气最浓、风声最杂、冰面最薄的地方，隐约可以感知到什么东西在呼吸。很慢，很沉，像大地本身在喘息。冰面下的倒影，偶尔会有一瞬不跟着你动了。它就站在冰层下面，隔着那层透明的墙，静静地看着你。\n只是一瞬。\n然后它又动了。和你同步，和你一模一样，分毫不差。\n但你知道它动过。\n你知道它在看你。\n玉镜寒潭，是一片比故土还要广袤的冰原。潭是冰，冰是镜，镜是迷宫。冰面之下，重力相反，倒影会活。而路的尽头，还没有人走到过。\n冰原万里镜中天，一步一影一重渊。\n倒悬之人隔冰望，不知是我还是仙。" },        
-        { id: 18, title: "第十五篇 · 时停领域", summary: "赤曜在上，玉镜在下", content: "风沙从赤曜荒原吹落，裹挟着金色的沙粒，坠入玉镜寒潭的冰原。按理说，沙会落，会堆积，会被风吹散。但这里的沙，被冻住了。\n不是冰封，是停滞。\n沙粒悬在半空，停在坠落途中，停在风刃削去棱角的那一瞬，停在阳光最后一次照亮它的时刻。无数沙粒，无数个静止的瞬间，密密麻麻地悬浮在冰原上空，像一幅被按了暂停的画。\n有人好奇，走进那片黄沙。\n便再也没有出来。\n后来，人们学会了远远地看。看久了才发现，那些沙粒并非永远静止。有时，它们会突然动起来——不是缓慢地飘落，而是像被按了快进键，一闪便到了下一个位置，然后再次凝固。跳跃，停滞；再跳跃，再停滞。\n像时间的脉搏。一下，一下，维持着某种脆弱的平衡。\n有人盯着看了一整天，眼睛都不敢眨。\n“那不是风沙被冻住了，”他说，“是时间被停住了。”\n时停领域。\n没有人能走进去再走出来。进去的人，会和那些沙粒一样，凝滞在某一个瞬间，永远困在那里。他们的表情还停留在踏入黄沙的那一刻，有的好奇，有的谨慎，有的回头想喊一声——但声音永远留在了喉咙里。\n影子不受影响。\n修士们让影子走入那片黄沙，去探路。影子回来时带回的消息不多，但每一条都让人沉默：那片领域是天然形成的，是环境所化。那些沙粒，那些静止的瞬间，那些被时停的风，诡异又结局不了\n但也不是完全没有办法。\n每一个静止的沙粒后面，都可能是前人留下的秘境入口。因为时停原因一直保留，但进去之后能不能出来，出来之后会落在哪里——全凭运气。\n有的人进去，一炷香便回来了，手里多了一件法器。\n有的人进去，再也没有出来。影子说，他们也在里面，和那些沙粒一样，停在了某一个瞬间。\n没有人知道那些秘境里有什么。\n没有人知道走完一条路需要多久。\n赤曜沙落玉镜寒，沙悬半空时已残。" },        
-        { id: 19, title: "第十六篇 · 苍溟碑", summary: "时停领域的深处，风沙凝滞如琥珀", content: "时停领域的深处，风沙凝滞如琥珀。\n那些悬在半空的沙粒不知何时开始震颤，细密的嗡鸣声从地底传来，像是有什么东西在沉睡中翻身。沙面裂开一道幽深的裂隙，不宽，只容一人侧身通过，却有风从下方涌上来，温热的，干燥的，带着一股从未闻过的气息。\n不是赤曜的灼烫，不是寒潭的冰冷。\n是另一种风，古老的，沉睡了不知多少万年的风。\n有人下去了。\n裂隙之下，是一片开阔的秘境。穹顶极高，目不能及。地面平坦，覆着细细的沙砾，踩上去沙沙作响。远处隐约有石柱的轮廓，走近才看清\n不是石柱，是碑。\n两座方碑。\n一碑刻着“苍”，一碑刻着“溟”。碑身斑驳，石面被风沙啃噬了千万年，棱角早已磨圆，唯有这两个古字深深嵌在石中，笔画遒劲，如刀削斧凿。字迹间有微光流转，极淡，不注意根本看不见。\n碑面无字。\n只有这两个字。苍。溟。\n风声在碑间穿行，发出低沉的嗡鸣，像古老的诵经声。站在碑前，会不由自主地闭上眼，不是困倦，是被某种力量牵引着，沉入自己的道心。每个人感受到的都不同。有人看到茫茫云海，有人听到潮水拍岸，有人觉得自己变成了一粒沙，在风中漂泊了许久许久。\n没有人参透“苍”与“溟”的含义。\n但所有人都隐约感知到，若悟透这两个字，便能开辟通往下一界的路。碑在那里。路也在那里。只差一个悟道的人。\n时停深处裂地开，双碑矗立字苍溟。\n风穿碑孔如诵经，悟得真意路自明。" },        
-        { id: 20, title: "第十七篇 · 苍断山开", summary: "碑前的女修睁开眼", content: "碑前的女修睁开眼。\n“苍”字笔画间的微光暗了下去。不是熄灭，是收敛，像一盏灯被人拧小了火，只余一线余温在石纹深处游走。她站在原地，乌发被风吹散了几缕，贴在脸侧，她没有拂。\n“苍”。她好像懂了一点——不是大地的苍茫，是天的苍。无垠，空旷，万物从中来，万物归中去。苍断山脉的“苍”，不是颜色，是状态。是天地未分时的混沌，也是天地已分后那片永远沉默的穹顶。它不断，不裂，不指引，也不拒绝。它只是在那里。等人走过去。\n消息传开，修士们聚拢过来。有人观碑，有人叩问，有人远远站着，感受那股从碑中渗出的、古老而沉重的气息。\n另一座碑前也有人。但“溟”字安静如常，笔画间的微光不增不减，水气没有渗出，地面没有震颤。它只是在听。听风声，听人声，听那些靠近的脚步又远去的脚步。它不急，也不等。它知道自己的时候还没有到。\n两碑之间，地面忽然震颤。\n不是地动，是灵气在底下改道，像一条沉睡了万年的河终于找到了出口。沙石向两侧退去，露出一道向下延伸的石阶。每一级都刻着细密的纹路，被风沙填平了不知多少年，模糊得像老人掌心的纹。风从下方涌上来，干燥，空旷，带着一股陌生的气息——不是赤曜的热，不是寒潭的冷，是从很远很远的地方吹来的风，吹了很久很久，终于吹到了这里。\n有修士沿着石阶往下走。一级，两级，十级。雾气从下方漫上来，漫过脚踝，漫过膝盖，漫过肩膀，淹没了身形。脚步声在石阶上回响，越来越远，越来越轻，像一颗石子坠入深井，回声渐渐被黑暗吞没。\n然后是一声极轻的脆响。像冰裂，像花开，像某本厚重的史书翻开了新的一页。\n石阶尽头的雾散开了。\n那不是平原，不是河谷，不是任何被驯服过的土地。是山脉。\n山峰从雾里长出来，不是拔地而起的雄伟，是缓缓浮现的沉静，像一艘艘巨船从海底浮上水面，无声无息，带着万古的重量。峰顶在云层之上，被日光镀成极淡的金色，像一顶顶沉睡的王冠。山腰以下是暗青色，覆着厚苔和不知名的藤蔓，那些藤蔓垂下来，在风中轻轻晃荡，像无数条犹豫的手，不知道该不该欢迎来者。\n山与山之间没有路。只有铁索。粗如手臂，横跨断壑，连接两座不知相距多远的山峰。有的绷得笔直，有的微微下垂，被风一吹，发出低沉的嗡鸣。铁索上铺着木板，木板已经朽了大半，露出下面空荡荡的深渊。有些地方木板连影子都不剩，只剩两条铁索赤裸裸地横在那里，等着人踩上去。\n断壑纵横。裂缝宽到看不见对岸，只能听见风声从谷底涌上来，呜呜咽咽，像千万张嘴在同时叹气。风里有水汽，也有沙尘，有不知名的草木气息，还有一丝极淡的、像是什么东西烧焦了的味道。\n灵气扑面而来。\n不是清霄原的温和，不是云澜涧的平缓——是乱的，碎的，尖锐的。像无数看不见的刀刃在空中交错，割着皮肤，钻着毛孔。吸入一口，经脉微微胀痛，像被什么东西撑开了。第二口，胀痛变成了温热，灵力在经脉中奔涌，比平时快了近一倍。\n有人站在山脉边缘，攥着拳头，没敢迈步。有人已经踏上了第一条铁索，木板在脚下咯吱作响，铁索轻轻晃动。风从谷底吹上来，掀得衣袍猎猎飞舞。\n那女修站在人群之后，没有急着上前。她看着那片山脉，想起碑中那片无边的白。她走过去，路就出来了。\n苍断山脉，开了。\n双碑一默一开疆，石阶尽处雾作裳。\n铁索横空连断壁，灵气如刀淬骨凉。" },        
-        { id: 21, title: "溟泽古林 · 溟海", summary: "溟碑开的那一刻，雾气没有散，只是让开了一条路", content: "溟碑开的那一刻，雾气没有散，只是让开了一条路。\n第一批踏入的修士站在入口，没有人敢迈出第一步。因为他们看见的不是地面，不是山石，不是任何可以落脚的地方。是海。无边无际的、由树根织成的海。\n那些根不是死的。它们在动。缓慢地、沉重地、不知疲倦地翻涌。粗的如千年古木的躯干，细的如人的手指，根与根交错缠绕，堆叠成起伏的波涛。不是水做的浪，是木做的浪。一浪推着一浪，从脚下延伸到目不可及的远方，直到雾气吞没了一切。没有声音。没有波涛的轰鸣，没有水流的潺潺。只有根与根摩擦时发出的低频闷响，像沉在地底的心跳。\n根海的表面不是平的。有隆起如山丘的根团，有凹陷如深渊的根坑。偶尔有气泡从根缝中翻涌上来，不是空气，是灰白色的雾，浓稠的、带着腐朽甜味的雾。雾散得很慢，像溺亡者最后一口呼吸。远处，隐约可见巨树的轮廓。不是一棵，是无数棵。树干从根海中拔起，直刺向灰蒙蒙的天穹。树与树之间没有空隙，枝叶交织成一张密不透风的网，把天遮得严严实实。树皮是深褐色的，覆着灰白色的菌斑，像溃烂的皮肤。有些树已经枯死了，枝干光秃秃的，像无数只干枯的手伸向天空。有些树还活着，却活得很勉强——树根被根海裹挟着向上拉扯，像是随时会被拖入深处。\n没有风。只有根在动，雾在飘，偶尔有枯枝断裂的声音从远处传来，沉闷的、遥远的，然后被雾气吞掉。安静到能听见自己的心跳。这就是溟海。不是水做的海，是根做的海。活的、沉的、不知疲倦地在古林深处翻涌。走上去的人，脚下不是实地，是无数条正在缓慢蠕动的根。站着不动，能感觉到根在脚下缓缓拱起、下沉、扭曲。走着走着，会发现自己在不知不觉中转到了另一个方向。不是迷路，是根在替你选路。\n没有人知道溟海的尽头是什么。也没有人知道根海的下面埋着什么。但所有人都知道——踏上去的那一刻，就已经不属于自己了。\n根海无波自翻涌，古木擎天不见空。\n一步踏入溟深处，从此身是雾中翁。" },        
+          { id: 1, title: "缘起篇 · 第一只妖", summary: "天道从未沉睡", content: "天道从未沉睡，它注视着这片废墟百亿年，静候第一个挣脱凡尘的生灵。\n终于，有一只狸猫，在轮回之中灵智初开。\n天道当即降下点化，赐其灵识、启其神智。狸猫能思、能言、能感知天地灵气，成为纪元以来第一只妖。\n天道托付于它：去引世人触碰壁垒，踏入探墟界，重启仙路。\n狸猫领命而行。\n它奔走人间，带无数生灵至世界壁垒之前。然而凡尘蒙昧，无人能悟，无人能入。人们只觉气血翻涌，以为是妖邪作祟，反将此地封为禁地，立碑而退。\n狸猫怒，亦不退。\n它守在壁垒前，谁来便一爪拍入其中。\n一人坠入，两人坠入，十人坠入。\n终于，有人在灵气乍泄的废墟之中，引气入体，悟得修行之道。\n——那不是诅咒，那是仙路之门。\n一人悟道，百人随之。灵气如潮水般涌回人间，功法代代相传。\n探墟界的辉煌纪元，从这一爪开始。\n天道不移，静候有缘。\n狸猫一爪，拍开仙路。\n从此凡尘可登天，废墟之中证长生。" },
+          { id: 2, title: "第二篇 · 拓荒时代", summary: "仙门既开，世人涌入", content: "仙门既开，世人涌入。\n然而最初，无人敢走远。\n人们只敢在壁垒附近游荡，小心翼翼引气入体，生怕一步踏错，万劫不复。\n也不是没人试过前往更深处。\n有人鼓起勇气，踏入那片云气缭绕的涧谷。不过数息，便觉气血翻涌如沸，经脉鼓胀欲裂，险些当场爆体而亡。\n那人狼狈逃回，修养数月才得复原。\n但这一次，没有人再喊“妖邪作祟”。\n因为他们分明感知到——那不是诅咒，不是禁制，而是灵气太浓，凡躯承受不住。\n原来，危险的不是禁区，而是自己太弱。\n于是，人们给已开辟的地方取名清霄原，意为清气初生之地。给那片遥不可及的涧谷取名云澜涧，意为云气如澜、可望不可及。\n有人不甘，日日探寻。\n有人精于术算，推演天地格局，最终得出一个惊人的结论：\n壁垒之外，还有天。天外，仍有天。\n以当前可观测的灵气波动与天道威压推算，前方地图不止一处。每一道壁垒之后，都藏着一片全新的天地。\n世人沸腾了。\n探寻之心日益炽烈，有人铤而走险深入险地，有人静心修炼等待突破。得机缘者，一跃登高；失机缘者，磨砺再战。\n拓荒的时代，没有坦途，只有不断向前的脚步。\n只是，那只狸猫的身影，再未出现过。\n有人说它完成了天道的托付，已然归去。有人说它仍在某处，静静看着世人成长。\n唯有演武场地的深处，偶尔传来几声——\n喵。\n清霄起，云澜望。\n天外有天，路未尽。\n猫隐世间，喵声犹在。" },
+          { id: 3, title: "支线篇 · 清霄灵窟 ", summary: "清霄原上，人们忙着开辟洞府，安身立命", content: "清霄原上，人们忙着开辟洞府，安身立命。 \n有人选在山脚，有人选在溪畔，有人偏往深处走，想寻一处僻静之地，独享清修。 \n那一日，一名修士在山壁之间凿石开路，一锤落下，岩壁竟轰然塌陷，露出一个幽深的洞口。 \n他还来不及反应，脚下一空，整个人坠了进去。 坠落不过数息，却仿佛穿越了另一层天地。 \n扑通—— 他落入水中。 冰凉，但不刺骨。清澈，却不见底。 \n修士挣扎着爬上岸，抬起头，怔住了。 洞窟之内，竟是另一番天地。 \n石壁上爬满了不知名的藤蔓与青苔，绿意盎然，郁郁葱葱。点点荧光从石缝、叶间、水中升起，如星河倒悬，洒落一室清辉。\n水潭清澈见底，水波微漾，隐隐透出灵气。捧一口饮下，竟觉经脉舒畅，丹田微暖。 \n——这不是普通的水，这是灵泉。 消息传开，世人蜂拥而至。 \n有人说是上古遗脉，有人说是天道馈赠。不论如何，清霄原有了第一处真正的修行宝地。 \n人们将它唤作—— 清霄灵窟。 洞中一日，世上已千年。 灵泉洗髓，绿光引路。 探墟之路，从此多了一处落脚之地。" },
+          { id: 4, title: "第三篇 · 平原惊鸿", summary: "秘境散去后，洞窟石门再次被推开了", content: "秘境散去后，洞窟石门再次被推开了。\n不是一个人，是一群人。他们合力凿开那些残破的石缝，撬动沉重的门扉。\n然而门后，什么也没有。\n没有仙门，没有废墟，没有丛林，没有壁画。\n只有一片辽阔的平原，在阳光下静静铺展，一眼望不到头。\n众人愣在原地。\n有人回头看了一眼身后的洞窟，又看了看脚下的泥土，恍然大悟——原来整座仙门废墟，都嵌在山壁之上。推开石门，不是深入山腹，而是翻过了山。\n门后，是另一片天地。\n有人第一个冲了出去，踩上松软的草地，仰头深吸一口气。\n“是风！是真的风！”\n更多的人涌了出来。他们在平原上奔跑、翻滚、大喊大叫。从洞窟里钻出来的人，太久没见过这样开阔的天空了。\n有人躺在草地上，有人爬上矮丘眺望远方，有人干脆闭眼晒太阳。\n撒欢。\n那是真正的撒欢。\n就在这时，幽光从石门中飘了出来。\n那些在洞窟深处、在废墟之间沉睡了不知多少年的荧光，像是被惊醒了。它们纷纷从门缝中涌出，飘向平原，在空中飞舞盘旋，如星河倾泻，如梦如幻。\n幽光越聚越多，仿佛也有了自己的欢喜。\n它们掠过草地，草叶微微发亮；它们掠过溪流，水面泛起粼粼波光。有几团幽光钻入水中，竟将水中的鱼带出了水面。\n鱼群在幽光的包裹下，缓缓升空，在天空中游动。\n银鳞闪烁，尾鳍轻摆，仿佛它们本就应该在天上游，而不是在水中。\n人们仰头看着这一幕，久久无言。\n鱼在天上飞，光在地上舞，人在平原上奔跑。\n幽光玩够了，渐渐散入平原各处，像是一群找到了新家的孩子。\n而人们知道，这片平原，从此不再是荒野。\n石门开，秘境现。\n门后再无仙宫，唯有天地宽。\n幽光逐鱼上九天，人在平原笑开颜。" },
+          { id: 5, title: "平原篇 · 筑造天梯", summary: "人们在平原上撒欢了数日，渐渐摸清了这片天地的轮廓", content: "人们在平原上撒欢了数日，渐渐摸清了这片天地的轮廓。\n四面环山。\n清霄原并非真正的平原，而是一个巨大的盆地。远处山峦起伏，将这片土地围拢其中，只在头顶留下一方天空。\n有人抬头望去，发现了一件令人震撼的事。\n云澜涧，在高处。\n那道曾经可望不可即的灵气壁垒，那座传说中的筑基秘境，就悬在盆地的边缘之上，远远高出平原的地面。云雾缭绕之间，隐约可见山涧轮廓，仿佛在俯瞰着盆地中的一切。\n“原来我们一直在山下。”\n“云澜涧，在上头。”\n云澜涧在山巅。想要踏足那片更高的天地，必须先翻过这四面环抱的山峦。\n有人提议绕路，沿着山脚寻找缓坡。走了数日，发现山势陡峭，处处绝壁，无路可上。\n有人试图攀爬，爬到半途便力竭而退，险些坠落。\n最后，有人站在盆地中央，环顾四周，说了一句改变一切的话：\n“上不去，就修上去。”\n于是，筑梯开始了。\n人们从山脚搬来石块，垒成第一级台阶。一人动手，十人跟上，百人加入。没有法器，没有神通，只有凡人的双手和一颗向上的心。\n阶梯一寸一寸地延伸，从山脚蜿蜒而上，贴附着陡峭的山壁，向着云澜涧的方向攀爬。\n有人凿石，有人搬运，有人垒砌，有人加固。\n累了就坐在台阶上歇息，渴了饮一口清泉，伤了互相包扎。\n没有人催促，没有人退缩。\n因为他们知道，阶梯的尽头，是筑基的机缘，是更广阔的天地，是仙路的下一程。\n阶梯越修越长，从山脚延伸到山腰，从山腰延伸到云雾之中。\n远远望去，像是一条石龙盘踞在山壁之上，龙头隐入云端。\n人们给它取了一个名字——\n天梯。\n四面山围盆底宽，云澜高处不可攀。\n凡人无有登天术，一阶一石筑山峦。" },
+          { id: 6, title: "第四篇 · 守界人", summary: "天梯蜿蜒向上，行至半途，山势忽然开阔", content: "天梯蜿蜒向上，行至半途，山势忽然开阔。\n\n人们这才看清，盆地的山体并非直上直下，而是分作两重阶梯。\n\n第一阶梯，是脚下这座高山，巍峨雄浑，草木葱茏，灵气比盆底浓郁数倍。站在山脊上眺望，隐约可见深处藏着一片仙门遗迹\n残殿、断柱、坍塌的楼阁，历历在目，仿佛在诉说上古的辉煌。\n\n第二阶梯，才是云澜涧的门前。那座山更高，更险，云雾缭绕，天道微压从上方倾泻而下，压得人喘不过气。\n\n第一阶梯，像是一座桥。桥的这一头，是清霄原；桥的那一头，是云澜涧。\n\n而桥上，满是机缘。\n\n有人在山脊上发现了灵草丛，有人在山涧中找到了灵泉，有人捡到了散落的古器碎片。第一阶梯仿佛在告诉每一个人：机缘在此，只等你来取。\n\n人们走下天梯，踏上山体，向第一阶梯的深处探索。\n\n然后，他们遇到了灵物。\n\n那是一头如山般巨大的妖兽，盘踞在山谷之中，身躯之庞大，远超任何人想象。它只是趴在那里，便占据了大半个山谷。\n\n这是修士们第一次遇到真正的灵物。\n\n在此之前，清霄原只有微灵兽，体型不过豺狼虎豹，虽有灵性，却无甚威胁。而眼前这头巨兽，虽也不过练气境界，却凭借庞大的肉身，拥有了碾压性的力量。\n\n一尾扫过，山石崩裂。\n\n一息喷出，灵气激荡。\n\n修士们围攻了三天三夜，死伤无数，才终于摸清了它的底细\n\n它也是壁垒复苏后从凡间误入此地的生灵。不过是一头凡蛇，误闯灵域，被灵气滋养了数月，便长成了这般模样。\n\n练气境。没有神通，没有术法，只有一身蛮力。\n\n可就是这一身蛮力，让数十名修士束手无策。\n\n就在众人准备再度围攻之时，有人站了出来。\n\n那是一条白蛇。\n\n身长三米，通体纯白无杂，鳞片如霜雪凝就，竖瞳赤红如熔玉，游动时有水泽灵气萦绕周身。他从人群中缓缓游出，不疾不徐，仿佛面前那头如山巨蛇不过是一块顽石。\n\n他没有拔刀。\n\n他只是抬起头，赤红的竖瞳凝视着那头巨蛇，一言不发。\n\n一人一蛇，对视良久。\n\n没有人知道那天发生了什么。\n\n只知道巨蛇缓缓低下头，伏在地上，再也没有攻击过任何人。\n\n白蛇转身，他的声音很淡，淡得像山涧的薄雾：\n\n“它只是迷路了。和你们一样，从凡间来，想找一条修行的路。”\n\n“我带你们进去。”\n\n如今，\n修士们给它取了一个名字——\n\n清霄守界人。\n\n有人说，大蛇是被他点化了。\n\n也有人说，他本就不是来争什么的，只是恰好路过，恰好能帮，恰好愿意。\n\n无论如何，清霄原有了第一位守护者。\n\n一条白蛇，带着一条大蛇，守着一条路，等着一群人。\n\n天梯半程见双阶，一重山水一重天。\n白蛇出灵泽，赤瞳守人间。\n巨蛇横卧非为阻，清霄守界待君前。" },
+          { id: 7, title: "支线篇 · 文明初立", summary: "那条通体纯白、赤瞳如焰的蛇，镇守一方，护凡民安好", content: "那条通体纯白、赤瞳如焰的蛇，镇守一方，护凡民安好。有人翻遍古籍，寻到了女娲伏羲的传说，人首蛇身，上古正神，创世造人，补天救世。\n\n“白蛇护我们，可是神明后裔？”\n\n“即便不是，也是神明之姿。”\n\n于是，人们开始尊称他为清霄守界人，有虔诚者，已悄悄在心中将他奉为一方神明。\n\n白蛇不知这些。\n\n他只是看着人们风餐露宿，夜来蜷缩在山石之间，白日里啃着干涩的野果。天梯虽成，落脚之处却依旧简陋。\n\n他抬起尾尖，灵力涌动，泥土自行翻涌，凝成方正的土块。\n\n一块，两块，十块。\n\n垒起来，便成了墙。\n\n他忽然停下了动作。\n\n“何不，教他们自己造？”\n\n这个念头升起的一瞬，天地骤变。\n\n云层翻涌，一道流光从天而降，不偏不倚，落于白蛇掌心。那是一枚碎片，通体莹白，刻着古篆二字：\n\n云澜。\n\n天降异象，云澜钥匙碎片，择主而降。\n\n白蛇握紧碎片，沉默良久。隔日一早，他将众人召集到山脊平地上，声音不重，却清晰传遍每一个人耳中：\n\n“我们要在此地，开展第一份文明。”\n\n“从搭建开始。”\n\n他抬手，灵力在地面上勾勒出一座建筑的轮廓，飞檐、石阶、殿门、回廊。\n\n“此为白蛇庙宇。”\n\n“每人皆可绘制图纸，按己心所想，筑此一方水土。”\n\n“写得好者，名震四方。”\n\n众人面面相觑，随即眼中燃起了光。\n\n那是文明的火焰。\n\n白蛇凝土欲成家，天降云澜碎片斜。\n召来众人开笔会，一纸庙宇定风华。" },
+          { id: 8, title: "第五篇 · 云澜门前", summary: "白蛇庙宇落成之日，云雾散开，阳光第一次完整地落在了盆地的半山腰上", content: "白蛇庙宇落成之日，云雾散开，阳光第一次完整地落在了盆地的半山腰上。\n\n那座庙太大了。\n\n飞檐凌空，石阶铺陈，殿宇层层叠叠，从山腰一直延伸到山脊。每一块砖石都经过精心打磨，每一根梁柱都刻着灵纹。壁画上的白蛇栩栩如生，仿佛随时会从墙上游下。殿前的香炉青烟袅袅，日夜不熄。\n\n远远望去，整座庙宇像一头蛰伏的巨兽，盘踞在山壁之上，俯瞰着整个清霄原。\n\n天梯，终于有了焦点。\n\n人们整顿完毕，将庙宇托付给留守之人，便继续向上攀登。\n\n这一次，修士们的心性大不相同。\n\n在白蛇庙宇修筑的日子里，他们学会了耐心，学会了协作，学会了在一砖一瓦中打磨自己的道心。那些曾经浮躁的、急切的、恨不得一步登天的人，如今都已沉了下来。\n\n天梯越来越高，越来越陡。\n\n但没有人觉得累。\n\n天道微压依然在，从云澜涧的方向倾泻而下，无形的山压在肩头。可这一次，没有人气喘如牛，没有人寸步难行。\n\n他们只是走着。\n\n一步一步，不疾不徐。\n\n有人回头看了一眼白蛇庙宇，忽然明白了什么。\n\n“白蛇不是在教我们修庙。”\n\n“他是在教我们修心。”\n\n众人沉默，继续向上。\n\n第一个登顶的人，站在天梯尽头，面前是一道无形的屏障。\n\n云澜涧就在眼前，云雾缭绕，灵溪潺潺，他甚至能感受到那股浓郁的灵气扑面而来。\n\n但进不去。\n\n一道狂风凭空而起，将他生生挡在了门外。那风不是凡风，裹挟着天道威压，吹在脸上如刀割，吹在身上如锤击。\n\n他试了又试，退了又退，始终无法踏入半步。\n\n于是，他等。\n\n等了一天，两天，三天。\n\n终于，有几个练气修士堪堪爬了上来。他们还来不及欢喜，便被那狂风吹了个正着。其中一人脚下一滑，整个人被掀飞出去，若不是旁边的人眼疾手快拽住衣角，怕是已经跌下天梯，粉身碎骨。\n\n人救回来了，但重伤。\n\n众人看着那道无形的屏障，脸色铁青。\n\n这一幕太熟悉了。\n\n清霄壁垒初开时，所有人都是这样——气血翻涌，头晕目眩，凡躯承受不住灵气的冲击。那时候他们以为是不祥，是诅咒。\n\n后来才知道，只是太弱。\n\n如今，云澜涧前，又是一样的情景。\n\n“这里，”有人艰难开口，“怕是只有筑基境才能进去。”\n\n消息必须传下去。\n\n当即有人转身，沿着天梯一路狂奔而下，将云澜门前的状况一五一十传回了白蛇庙宇。\n\n消息传开，众人聚在殿前，七嘴八舌。\n\n“白蛇给的那枚钥匙，是不是用来开这道门的？”\n\n有人这样问。\n\n殿中沉默了一瞬。\n\n然后，人群中不知是谁，冷冷说了一句：\n\n“他当然得开。”\n\n“不然，就杀掉。”\n\n殿外的风忽然停了。\n\n殿内的香，依旧袅袅。\n\n庙成道心齐，再向云澜西。\n风狂门难入，钥在谁敢欺。" },
+          { id: 9, title: "第六篇 · 云澜门开", summary: "只见一位小蛇带着钥匙，跟上了人群", content: "只见一位小蛇带着钥匙，跟上了人群。\n他太小了，青碧色的身躯在石阶上蜿蜒，没有人低头看他一眼。\n“不开，就杀掉。”\n他听见了。\n没有回头，只是继续向上爬。\n到了天梯顶部，独自游向那道无形的屏障。没有人注意它，没有人帮他。\n带着钥匙，进去了。\n没有排斥，没有狂风。云澜门，开了。\n云雾翻涌，向两侧退去，像一双无形的巨手缓缓拉开了一道天幕。阳光从云隙间倾泻而下，落在山峦之上，将整片天地染成了淡淡的金色。\n云澜涧，终于现出了它的真容。\n云气绕山，如轻纱漫卷，一层一层将山峦裹住，又一层一层散开。山在云中隐现，云在山间游走，仿佛天地在此处放慢了呼吸。灵溪从高处跌落，在岩石间跳跃，水声潺潺，如琴如瑟。溪水清冽，映着天光云影，一路向下奔流，汇入雾气深处，不知去向。\n灵气比清霄原浓郁了数倍，却不狂暴，温和地弥漫在每一寸空气中，沁入经脉，滋养丹田。深吸一口，便觉四肢百骸都舒展开来，仿佛每一个毛孔都在呼吸。\n天道微压初现。不重，不烈，只是轻轻地压在肩头，像一只手搭在肩上，提醒着每一个踏入此境的人：这里，不一样了。\n山势崎岖，峰回路转。灵溪两岸，石壁上爬满了青苔与蕨类，水珠从叶尖滴落，溅起细碎的水花，在阳光下闪烁如碎银。远处有瀑布从山崖上跌落，水声轰鸣，白练悬空，雾气从潭底升起，弥漫成一片朦胧的云烟。\n就在这云烟之中，有一只猫。\n它蹲在一块被青苔覆盖的岩石上，竖瞳微阖，似醒非醒，尾巴慵懒地垂在石沿，一动不动。\n人来不迎，人去不送。\n小蛇从它身边游过，它连眼皮都没抬一下。\n仿佛是感觉到了目光，那只猫才缓缓睁开眼，瞥了小蛇一眼，又懒懒地合上。\n这只猫不知何时进的，不知怎么进的。它只是来了，找了一块舒服的石头，便卧了下来。云澜涧灵气浓郁，风景如画，于它而言，不过是一个更大的、更舒服的睡觉的地方。\n这里是云澜涧。\n筑基之境，道基可固，灵脉可梳。\n钥在身侧蛇独行，云澜一开门自明。\n山绕轻纱水绕雾，猫卧石台懒理人。" },
+          { id: 10, title: "第七篇 · 灵脉初现", summary: "沼泽密林的尽头，树木渐渐稀疏", content: "沼泽密林的尽头，树木渐渐稀疏。\n脚下的泥泞变成了碎石，碎石变成了青石板似的岩面。头顶的枝叶不再遮天，阳光成片地洒落下来，刺得人眼睛微眯。\n\n然后，豁然开朗。\n所有人都在那一刻停下了脚步。\n眼前的天地，像是被谁一刀劈开了。\n群山拔地而起，不是清霄原那种平缓的丘陵，而是陡峭的、锋利的、一柱一柱直插云霄的山峰。山体如削，石壁如镜，云雾缠绕在半山腰间，将山尖托举在云海之上，仿佛是天与地之间的立柱。\n瀑布从山巅坠落。\n不是一条，是无数条。高处的山涧、崖壁的裂缝、云雾之中不知名的源头，水流从四面八方倾泻而下，有的如白练悬空，有的如碎玉飞溅，有的细如丝线，在半空中就被风吹散成水雾，在阳光下折射出淡淡的虹光。\n水声轰鸣，却不喧嚣。山与山之间回荡着瀑布的回响，一层叠一层，远的如鼓，近的如雷，汇成一首没有尽头的交响。\n雾气从谷底升起，在山间游走，时聚时散。聚时如海，将山淹成孤岛；散时如纱，露出层层叠叠的峰峦。阳光从云隙间漏下，一束一束，落在山壁上，落在瀑布上，落在水潭上，光影交错，明暗流转。\n\n灵气。\n浓郁的灵气。\n从每一寸土地、每一块岩石、每一条溪流中向外涌出。深吸一口气，灵气便顺着经脉灌入丹田，仿佛连呼吸都在修行。\n有人蹲下身，将手掌按在地面上。\n地下的灵气如江河般奔涌，脉络清晰可辨。不是散乱的、零星的灵点，而是一条完整的、连绵不绝的灵脉，从群山深处延伸而出，向着云澜更深处蜿蜒而去。\n“这是……什么。”\n白蛇道\n“完整的灵脉。”\n所有人都在那一刻明白了。\n清霄原是起点，是凡尘踏入仙途的第一步。云澜是根基，是修士真正扎根的地方。\n而这群山之间，藏着云澜的心脏。\n灵脉在此，修行可期。\n\n远处，瀑布轰鸣，云雾翻涌。\n群山不语，却已将最大的馈赠，摆在了世人面前。\n\n林尽山出万峰起，瀑布如练挂云间。\n雾绕青峰光落处，灵脉初现天地宽。" },
+          { id: 11, title: "第八篇 · 火山异象", summary: "云澜涧的高处，一座宗门正在拔地而起", content: "虽未完全建成，轮廓已显。飞檐斗拱，石阶层层，殿宇依山而建，气势恢宏。远远望去，鹤立鸡群，整片云澜的灵气好似都在向此处汇聚。\n山门下，修士排成了长龙。慕名而来的，想抢先机的，只为看一眼这灵脉之上的宗门究竟是何等模样。人声鼎沸，队伍从山门蜿蜒到山腰，不见尽头。\n轰——\n地动山摇。地底深处传来剧烈的翻涌，山石滚落，人群东倒西歪，御器升空。\n巨响从远处传来。像是什么东西在地底撕裂、喷涌而出。\n飞尘漫天，遮天蔽日。灰白的粉尘从远处飘来，落在衣袍上，落在山石上。\n目力过人的修士穿透飞尘，望见了远方。\n一座雪山。\n山覆盖着皑皑白雪，在阳光下泛着冷白的光。赤红的岩浆正从高处中喷涌，滚滚而下，如一条巨大的火龙，吞噬着所过之处的一切。\n雪与火，在同一条山上并存。\n有人转身就跑，有人呆立原地，有人盘算着自己的洞府是否安全。但过了很久，岩浆没有过来——它朝着另一个方向流去，浩浩荡荡，不可阻挡，与云澜的方向背道而驰。\n修士们登上最高处的观景台，望着那座雪山，望着那条火龙，一言不发。罗盘翻转，灵气测算距离与范围，地面上勾画出火山的轮廓。\n计算的结果让所有人沉默。\n不是巧合，是地理。\n那座山的地势、灵脉走向、地气流转，形成了一道天然的屏障。岩浆被引导着，朝云澜的反方向奔涌而去。一半是雪，一半是荒。\n岩浆流向的尽头，是一片赤红的平原，与云澜隔山相望。有人认出那片颜色，先人推算的地图上标注过这个地方。\n“赤曜。”\n赤曜荒原。\n赤流东去分天地，半落赤曜半云澜。" },
+          { id: 12, title: "第九篇 · 赤曜遥望", summary: "云澜的人们，已经很久没有见过钥匙了", content: "云澜的人们，已经很久没有见过钥匙了。\n没有新的钥匙降世，没有天降祥瑞，没有任何征兆。\n人们开始恐慌。\n那扇门——通往下一境的门，该怎么开？\n有人每日仰望雪山，试图从云雾中找到答案。有人翻阅从墟境仙门带出的残破玉简，试图从上古文字中寻得线索。有人跪在白蛇庙宇前，焚香叩首，祈请指引。\n但没有人敢轻举妄动。\n那场火山喷发，所有人都看在眼里。雪山虽然安静了，但岩浆的痕迹还在——焦黑的岩石、龟裂的大地、空气中若有若无的硫磺味。\n没有人敢动雪山的地形。\n生怕一锤下去，地脉失衡，岩浆改道，朝着云澜的方向涌来。到那时，宗门、天梯、白蛇庙宇……一切都会化为灰烬。\n于是人们只是望着。\n望着那座火山戈壁。\n赤曜荒原。\n如今已经可以看清了。不再是模糊的、遥远的、藏在云雾中的一抹赤色。\n阳光落在戈壁上，反射出细碎的光芒，亮晶晶的，像撒了一地的宝石。红的热烈，金的耀眼，铺满了整个荒原，仿佛大地裂开了一道缝隙，露出了地底的宝藏。\n那是高温融化的结晶吗？\n有人低声问。\n没有人知道。\n但他们知道，这样的东西，在凡间，是价值连城的。一块赤曜结晶，足以让凡人一世无忧。而那里，遍地都是。\n有人吞了吞口水。\n有人握紧了拳头。\n“别动。”\n一个声音拦住众人。不是命令，是提醒。\n“想去，这个地形一看就非常的炽热，我们或许可以找一找别的通道，而不是只从这里进去。”\n沉默。\n风吹过雪山，带来彻骨的寒意。远处，赤曜荒原依旧亮晶晶的，像是在招手，又像是在嘲笑。\n而人们也常常看见，一蛇二猫，蹲在那道无形的壁垒前。\n清羽，裁枝，还有那只叫池爻的黑猫。\n一个比一个不耐烦。\n清羽用尾巴尖戳了戳壁垒，没反应。裁枝绕来绕去，像是想找条缝钻进去。池爻直接伸爪子挠，挠得嘶嘶作响，然后气得甩尾巴走人。\n过一会儿，又回来挠。\n再走，再来。\n日复一日。\n仿佛在替所有人着急，又仿佛在说——\n这门，怎么还不开？\n吉兆久不降，人心渐彷徨。\n雪山唯恐动，灾难祸及乡。" },        
+          { id: 13, title: "支线篇 · 龙宫现世", summary: "清霄洞窟，异动传来", content: "清霄洞窟，异动传来。\n灵泉不再平静。水面剧烈震颤，涟漪层层扩散，像是有什么东西在水底翻涌。修士们闻讯而来，围在灵泉边，面面相觑。\n有人仗着灵力护体，纵身跃入水中。\n水下并无不适。灵泉经年累月被灵力滋养，水质温润，入水如浸温汤，呼吸自如，仿佛水已不再是水，而是一片柔和的灵力之海。\n那人睁眼望去。\n水底深处，有东西在上升。\n缓慢的，沉重的，不可阻挡的。像是沉睡了千万年的巨兽终于醒来，从地底缓缓浮起。\n轰——\n一声闷响，水浪冲天。\n洞顶被撞碎了。不是塌陷，是碎裂。岩石向外翻开，露出一个巨大的、完整的轮廓。\n一座宫殿。庞然大物般从水下升起，殿顶先出，然后是飞檐、斗拱、石柱、台阶……通体由不知名的深色石料筑成，古朴肃穆。\n水从殿顶倾泻而下，如万道银瀑。\n人们呆立当场。\n宫殿完全升起的那一刻，一条小蛇从殿门内游出。\n有人认出了他。\n“柳谬！”\n是那条第一个打开云澜壁垒的小蛇。人们纷纷行礼，神色恭敬。小蛇化为人形。\n“不必惊慌。”他声音不大，却清晰传遍全场，“异动乃灵脉降世，已被我驯服。”\n他侧身，引众人看向那座宫殿。\n“水下宫殿，即为修士开拓第一步路。”\n清霄洞窟从此不再是幽暗的洞穴。\n洞顶碎裂之后，天光直落，照亮了整片水域。灵泉不再是一潭，而是一汪大湖，碧波万顷，倒映着天光云影。\n而那座宫殿，就在湖底。\n想去清霄平原，不必再走崎岖山路。从宫殿内部穿堂而过，另一头的出口，便是清霄平原的开阔地。\n这是第一个驿站。也是最壮观、最漂亮的一个。\n蛇被人称为龙。\n是对了不起的修士的认可。" },        
+          { id: 14, title: "第十篇 · 赤曜开境", summary: "赤曜荒原，开了", content: "赤曜荒原，开了。\n通道打通的那一刻，滚烫的热浪如同挣脱牢笼的猛兽，从地底翻涌而出，迎面扑向每一个站在壁垒前的修士。空气扭曲如波浪，呼吸之间，喉咙像是被火舌舔过。\n入眼，是一片荒芜。\n赤红的大地龟裂如蛛网，寸草不生。岩浆在不远处缓缓流淌，赤金色的光芒映照着整片荒原，仿佛大地还在燃烧。但那些岩浆，正在汇聚——沿着执久开辟的通道两侧，缓慢而有序地汇入地底深处，不再四散奔涌。\n而在赤曜的边缘，雪山的融水潺潺而下，汇成细流，在荒芜之中滋养出一小片绿洲。草木虽不繁茂，却青翠欲滴，与周围的赤红大地形成了鲜明对比。赤曜唯一的绿洲。修士们在这里停下脚步，歇息整顿。有人掬一捧清泉洗去满脸沙尘，有人倚着岩石大口喘气，有人盘膝而坐，运转功法抵御燥热。\n“据观测，再往前，就是大峡谷了。”有人指着远方。\n赤曜荒原的尽头，大地裂开了一道巨大的缝隙。峡谷幽深，从边缘往下望去，只见阴影叠嶂，不见底端。与地面上的酷热不同，峡谷里吹上来的风，竟是凉的。\n有人在研究阵法，试图在赤曜与云澜之间架设永久的传送通道，让往来不再艰险。有人已经冲了出去，在荒原上奔跑、挖掘、拾取。赤曜结晶散落满地，在阳光下折射出耀眼的火光。一块、两块、十块……有人抱了满怀，汗水浸透衣袍，却笑得合不拢嘴。\n狂沙滚滚，遮天蔽日。\n陆陆续续，有人抱着宝物往回走。穿过通道，回到云澜，将赤曜结晶献于宗门，换取资源与地位。也有人站在天梯上，望着清霄原的方向，犹豫了很久——然后，继续往下走。回归凡间，当个富豪。这一趟，已经够了。\n而更多的人，选择了峡谷。\n时过境迁\n大峡谷内，阴凉幽深，与地表宛若两个世界。阳光从峡谷顶端的缝隙漏下，在岩壁上投下斑驳光影。风从谷底吹上来，带着潮湿的、古老的气息。\n渐渐出现了摊位。石台、木架、布棚……有人在卖赤曜结晶，有人在卖岩浆冷却后形成的黑曜石，有人在卖从地底捡到的器物碎片。\n吆喝声、讨价还价声、偶尔爆发的争执声，在峡谷中回荡。\n这是最大的商路，也是探墟界第一条成型的商路。人们在峡谷两侧凿石为屋，安家落户，简陋的棚屋渐渐连成一片，有了街道的雏形。烟火气在荒芜之地升起，热闹而嘈杂。\n赤曜开门热浪翻，荒芜大地赤光漫。\n雪山融水成绿洲，狂沙滚滚宝满盘。" },        
+          { id: 15, title: "第十一篇 · 黄金河", summary: "赤曜峡谷之上，有一条河", content: "赤曜峡谷之上，有一条河。\n不是水，是沙。\n不知从何时起，峡谷上方的流沙便开始缓缓流转，如一条金色的大河，从地平线的一头延伸到另一头。沙粒细如粉尘，在阳光下泛着柔软的光泽，远远望去，像是大地披了一层流动的金纱。风起时，沙面泛起细密的波纹，一圈推着一圈，无声无息，却又永不停歇。\n河流平缓，不急不躁。\n沙浪轻轻翻涌，推着金沙向前，偶尔卷起一个小小的漩涡，又慢慢散开，像是大地在呼吸。修士越过毫不费力，灵气护体，足尖轻点，便可凌行。\n慎。此地热浪灼人，灵气狂暴，筑基以下之躯根本承受不住。轻则经脉灼伤、灵力逆流，重则丹田焚毁、气血蒸干，活活渴死在黄沙之中。\n流沙行至峡谷边缘，便倾泻而下。\n如瀑布，如金帘。亿万吨沙粒从高处坠落，拉出千万道细密的金线，在阳光下划出一道道耀眼的弧线，落入峡谷深处，激起漫天沙雾。雾气被风一吹，便散成一层薄薄的金色烟云，飘荡在峡谷上空，久久不散，像是一层永不收拢的纱帐。\n人们叫它黄金河。\n有人站在峡谷边缘，看了很久。\n“是什么让这些沙子一直在流？”\n沙在流，风在吹，峡谷深处依旧传来悠悠的阴嚎伴随着草鸡撒欢的声音。有人说沙子底下压着古时的风穴，有人说流沙深处藏着沉睡的灵兽，有人说这是天地自己的呼吸，不需要理由。\n没有人说得清。\n但每个人都想知道——这黄金河的尽头，是否藏着什么。\n或许只是沙子。\n或许，是下一场奇遇的开端。\n赤曜有河不是水，金沙缓缓自流转。\n修士凌越挽金沙，倾入峡谷作金帘。" },        
+          { id: 16, title: "第十三篇 · 寒祸初临", summary: "峡谷被开发之后，幽嚎声渐渐不再让人恐惧", content: "峡谷被开发之后，幽嚎声渐渐不再让人恐惧。人们习惯了那悠悠的长鸣，甚至觉得有几分安详——像是风在哼歌，像是大地在打鼾。\n更让人安心的，是那些草鸡。\n不知从何时起，峡谷深处诞生出一种奇异的草鸡，专以枯木寄生体和缠人藤蔓为食。它们咯咯叫着，悠哉悠哉地在摊位间穿行，啄啄石缝，刨刨沙土，偶尔仰头啼鸣一声，清脆响亮，驱散峡谷中最后一丝阴冷。\n草鸡成了此地的守护兽。\n有人给它们喂食，有人给它们搭窝，有人把它们绣上旗帜——咯咯声中，赤曜仿佛真的变成了人间乐土。\n黄金瀑布日夜倾泻，金沙如帘，璀璨夺目。\n瀑布旁边，酒楼开了一家又一家。雕栏玉砌，红灯笼高挂，酒香从窗口飘出，混着沙尘和烟火气，熏得人微醺。修士们来来往往，任务前喝一碗，凯旋后再喝三碗。\n人人来此，都要去看一眼黄金河。\n不为别的，就为了讨个彩头——财源滚滚。\n日子安逸得像一场不会醒的梦。\n直到那一天。\n帝庭宗门正在准备收铺，打算关闭这一轮的探索任务。弟子们说说笑笑，盘点着收获，商量着回云澜后去哪里庆祝。\n急报传来。\n所有人愣在原地。\n宗门弟子抬着一副担架冲进营地，担架上躺着一个年轻人——帝庭宗门自家弟子，青衣染血，双目圆睁，表情凝固在惊恐的瞬间。\n他被冻住了。\n通体冰封，像一座冰雕。那不是普通的冰，晶莹剔透，却坚不可摧。刀砍不动，火烧不化，灵力探入如泥牛入海，连宗门传送令牌都来不及触发——人就没了。\n是谁杀了他？\n不知道。\n是什么时候？\n不知道。\n人们围在担架旁，沉默着，看着冰中那张扭曲的脸。他看到了什么？遇到了什么？为什么会来不及逃？\n没有人能回答。\n宗门立刻封锁消息召开会议，一大批修士开始前往峡谷深处。\n草鸡咯咯镇幽谷，黄金瀑布映酒楼。\n忽报一夕寒祸至，冰封弟子死无由。" },        
+          { id: 17, title: "第十四篇 · 玉镜寒潭", summary: "门开了", content: "门开了。\n入眼便是阴霾。灰白色的雾气铺天盖地，像是整片天地都被浸在了浓稠的浆液中。目光所及不过数尺，更远处只有模糊的灰白，分不清是天，是地，还是虚空。空气湿润得仿佛能拧出水来，黏腻地贴在皮肤上。\n远处有风。无数阵风从四面八方涌来，在雾中撕扯、翻滚、咆哮。那风不烈，却冷得刻骨——从骨髓深处往外渗，元婴修士站在风口，也忍不住蜷起了身子。\n玉镜寒潭，是一片无边无际的冰原。\n冰面平整如镜，光滑得没有一丝裂纹，像一整块被精心打磨过的玉石铺在大地上。雾气在冰面上方翻涌，却落不到冰面之上——那层冰，干净得像是另一个世界的窗户。\n人走上去，低头，便看见了自己。\n不是模糊的倒影，是清晰的、分毫不差的自己。眉眼、衣袍、发丝，每一个细节都映在冰面之下，仿佛冰层里藏着另一个自己，正仰头回望。\n但冰面之下的世界，是反的。\n重力相反。倒影中的人，头朝下，脚朝上，像是站在天的另一边。如果你盯着看太久，会恍惚觉得自己才是倒过来的那个。\n试着伸手触碰冰面。指尖触及的瞬间，冰面下的倒影也伸出了手。两只手在冰层两侧重合，指尖对指尖，掌纹对掌纹。然后——\n一股力量从冰下传来。不重，却不可抗拒。像是有什么东西在下面轻轻托了一下，又像是重力在那一瞬间颠倒了过来。身体轻了一瞬，又落回原地。\n这片冰原的下面，是另一个空间。重力相反，上下相反。如果掉下去，你不会坠落，你会——上升。上升到一个没有光、没有声音、只有你自己的世界里。\n是这片冰原本身。\n每一块冰面都映着你的样子，但你永远分不清——冰下的人是倒影，还是你自己走错了方向。走着走着，你会开始怀疑脚下的路是否真实。明明直直往前走，却发现自己绕回了原地。明明记得来时的方向，转过一道冰脊，一切都变得陌生。\n看不见的远方。\n雾气把天地收窄到数尺之内，脚下只有自己的倒影。风声从四面八方涌来，把方向感搅得粉碎。\n有人说，这片冰原会把人的心困住。\n当你只能看见自己的时候，你就会开始怀疑自己。\n而在这片冰原的更深处，雾气最浓、风声最杂、冰面最薄的地方，隐约可以感知到什么东西在呼吸。很慢，很沉，像大地本身在喘息。冰面下的倒影，偶尔会有一瞬不跟着你动了。它就站在冰层下面，隔着那层透明的墙，静静地看着你。\n只是一瞬。\n然后它又动了。和你同步，和你一模一样，分毫不差。\n但你知道它动过。\n你知道它在看你。\n玉镜寒潭，是一片比故土还要广袤的冰原。潭是冰，冰是镜，镜是迷宫。冰面之下，重力相反，倒影会活。而路的尽头，还没有人走到过。\n冰原万里镜中天，一步一影一重渊。\n倒悬之人隔冰望，不知是我还是仙。" },        
+          { id: 18, title: "第十五篇 · 时停领域", summary: "赤曜在上，玉镜在下", content: "风沙从赤曜荒原吹落，裹挟着金色的沙粒，坠入玉镜寒潭的冰原。按理说，沙会落，会堆积，会被风吹散。但这里的沙，被冻住了。\n不是冰封，是停滞。\n沙粒悬在半空，停在坠落途中，停在风刃削去棱角的那一瞬，停在阳光最后一次照亮它的时刻。无数沙粒，无数个静止的瞬间，密密麻麻地悬浮在冰原上空，像一幅被按了暂停的画。\n有人好奇，走进那片黄沙。\n便再也没有出来。\n后来，人们学会了远远地看。看久了才发现，那些沙粒并非永远静止。有时，它们会突然动起来——不是缓慢地飘落，而是像被按了快进键，一闪便到了下一个位置，然后再次凝固。跳跃，停滞；再跳跃，再停滞。\n像时间的脉搏。一下，一下，维持着某种脆弱的平衡。\n有人盯着看了一整天，眼睛都不敢眨。\n“那不是风沙被冻住了，”他说，“是时间被停住了。”\n时停领域。\n没有人能走进去再走出来。进去的人，会和那些沙粒一样，凝滞在某一个瞬间，永远困在那里。他们的表情还停留在踏入黄沙的那一刻，有的好奇，有的谨慎，有的回头想喊一声——但声音永远留在了喉咙里。\n影子不受影响。\n修士们让影子走入那片黄沙，去探路。影子回来时带回的消息不多，但每一条都让人沉默：那片领域是天然形成的，是环境所化。那些沙粒，那些静止的瞬间，那些被时停的风，诡异又结局不了\n但也不是完全没有办法。\n每一个静止的沙粒后面，都可能是前人留下的秘境入口。因为时停原因一直保留，但进去之后能不能出来，出来之后会落在哪里——全凭运气。\n有的人进去，一炷香便回来了，手里多了一件法器。\n有的人进去，再也没有出来。影子说，他们也在里面，和那些沙粒一样，停在了某一个瞬间。\n没有人知道那些秘境里有什么。\n没有人知道走完一条路需要多久。\n赤曜沙落玉镜寒，沙悬半空时已残。" },        
+          { id: 19, title: "第十六篇 · 苍溟碑", summary: "时停领域的深处，风沙凝滞如琥珀", content: "时停领域的深处，风沙凝滞如琥珀。\n那些悬在半空的沙粒不知何时开始震颤，细密的嗡鸣声从地底传来，像是有什么东西在沉睡中翻身。沙面裂开一道幽深的裂隙，不宽，只容一人侧身通过，却有风从下方涌上来，温热的，干燥的，带着一股从未闻过的气息。\n不是赤曜的灼烫，不是寒潭的冰冷。\n是另一种风，古老的，沉睡了不知多少万年的风。\n有人下去了。\n裂隙之下，是一片开阔的秘境。穹顶极高，目不能及。地面平坦，覆着细细的沙砾，踩上去沙沙作响。远处隐约有石柱的轮廓，走近才看清\n不是石柱，是碑。\n两座方碑。\n一碑刻着“苍”，一碑刻着“溟”。碑身斑驳，石面被风沙啃噬了千万年，棱角早已磨圆，唯有这两个古字深深嵌在石中，笔画遒劲，如刀削斧凿。字迹间有微光流转，极淡，不注意根本看不见。\n碑面无字。\n只有这两个字。苍。溟。\n风声在碑间穿行，发出低沉的嗡鸣，像古老的诵经声。站在碑前，会不由自主地闭上眼，不是困倦，是被某种力量牵引着，沉入自己的道心。每个人感受到的都不同。有人看到茫茫云海，有人听到潮水拍岸，有人觉得自己变成了一粒沙，在风中漂泊了许久许久。\n没有人参透“苍”与“溟”的含义。\n但所有人都隐约感知到，若悟透这两个字，便能开辟通往下一界的路。碑在那里。路也在那里。只差一个悟道的人。\n时停深处裂地开，双碑矗立字苍溟。\n风穿碑孔如诵经，悟得真意路自明。" },        
+          { id: 20, title: "第十七篇 · 苍断山开", summary: "碑前的女修睁开眼", content: "碑前的女修睁开眼。\n“苍”字笔画间的微光暗了下去。不是熄灭，是收敛，像一盏灯被人拧小了火，只余一线余温在石纹深处游走。她站在原地，乌发被风吹散了几缕，贴在脸侧，她没有拂。\n“苍”。她好像懂了一点——不是大地的苍茫，是天的苍。无垠，空旷，万物从中来，万物归中去。苍断山脉的“苍”，不是颜色，是状态。是天地未分时的混沌，也是天地已分后那片永远沉默的穹顶。它不断，不裂，不指引，也不拒绝。它只是在那里。等人走过去。\n消息传开，修士们聚拢过来。有人观碑，有人叩问，有人远远站着，感受那股从碑中渗出的、古老而沉重的气息。\n另一座碑前也有人。但“溟”字安静如常，笔画间的微光不增不减，水气没有渗出，地面没有震颤。它只是在听。听风声，听人声，听那些靠近的脚步又远去的脚步。它不急，也不等。它知道自己的时候还没有到。\n两碑之间，地面忽然震颤。\n不是地动，是灵气在底下改道，像一条沉睡了万年的河终于找到了出口。沙石向两侧退去，露出一道向下延伸的石阶。每一级都刻着细密的纹路，被风沙填平了不知多少年，模糊得像老人掌心的纹。风从下方涌上来，干燥，空旷，带着一股陌生的气息——不是赤曜的热，不是寒潭的冷，是从很远很远的地方吹来的风，吹了很久很久，终于吹到了这里。\n有修士沿着石阶往下走。一级，两级，十级。雾气从下方漫上来，漫过脚踝，漫过膝盖，漫过肩膀，淹没了身形。脚步声在石阶上回响，越来越远，越来越轻，像一颗石子坠入深井，回声渐渐被黑暗吞没。\n然后是一声极轻的脆响。像冰裂，像花开，像某本厚重的史书翻开了新的一页。\n石阶尽头的雾散开了。\n那不是平原，不是河谷，不是任何被驯服过的土地。是山脉。\n山峰从雾里长出来，不是拔地而起的雄伟，是缓缓浮现的沉静，像一艘艘巨船从海底浮上水面，无声无息，带着万古的重量。峰顶在云层之上，被日光镀成极淡的金色，像一顶顶沉睡的王冠。山腰以下是暗青色，覆着厚苔和不知名的藤蔓，那些藤蔓垂下来，在风中轻轻晃荡，像无数条犹豫的手，不知道该不该欢迎来者。\n山与山之间没有路。只有铁索。粗如手臂，横跨断壑，连接两座不知相距多远的山峰。有的绷得笔直，有的微微下垂，被风一吹，发出低沉的嗡鸣。铁索上铺着木板，木板已经朽了大半，露出下面空荡荡的深渊。有些地方木板连影子都不剩，只剩两条铁索赤裸裸地横在那里，等着人踩上去。\n断壑纵横。裂缝宽到看不见对岸，只能听见风声从谷底涌上来，呜呜咽咽，像千万张嘴在同时叹气。风里有水汽，也有沙尘，有不知名的草木气息，还有一丝极淡的、像是什么东西烧焦了的味道。\n灵气扑面而来。\n不是清霄原的温和，不是云澜涧的平缓——是乱的，碎的，尖锐的。像无数看不见的刀刃在空中交错，割着皮肤，钻着毛孔。吸入一口，经脉微微胀痛，像被什么东西撑开了。第二口，胀痛变成了温热，灵力在经脉中奔涌，比平时快了近一倍。\n有人站在山脉边缘，攥着拳头，没敢迈步。有人已经踏上了第一条铁索，木板在脚下咯吱作响，铁索轻轻晃动。风从谷底吹上来，掀得衣袍猎猎飞舞。\n那女修站在人群之后，没有急着上前。她看着那片山脉，想起碑中那片无边的白。她走过去，路就出来了。\n苍断山脉，开了。\n双碑一默一开疆，石阶尽处雾作裳。\n铁索横空连断壁，灵气如刀淬骨凉。" },        
+          { id: 21, title: "溟泽古林 · 溟海", summary: "溟碑开的那一刻，雾气没有散，只是让开了一条路", content: "溟碑开的那一刻，雾气没有散，只是让开了一条路。\n第一批踏入的修士站在入口，没有人敢迈出第一步。因为他们看见的不是地面，不是山石，不是任何可以落脚的地方。是海。无边无际的、由树根织成的海。\n那些根不是死的。它们在动。缓慢地、沉重地、不知疲倦地翻涌。粗的如千年古木的躯干，细的如人的手指，根与根交错缠绕，堆叠成起伏的波涛。不是水做的浪，是木做的浪。一浪推着一浪，从脚下延伸到目不可及的远方，直到雾气吞没了一切。没有声音。没有波涛的轰鸣，没有水流的潺潺。只有根与根摩擦时发出的低频闷响，像沉在地底的心跳。\n根海的表面不是平的。有隆起如山丘的根团，有凹陷如深渊的根坑。偶尔有气泡从根缝中翻涌上来，不是空气，是灰白色的雾，浓稠的、带着腐朽甜味的雾。雾散得很慢，像溺亡者最后一口呼吸。远处，隐约可见巨树的轮廓。不是一棵，是无数棵。树干从根海中拔起，直刺向灰蒙蒙的天穹。树与树之间没有空隙，枝叶交织成一张密不透风的网，把天遮得严严实实。树皮是深褐色的，覆着灰白色的菌斑，像溃烂的皮肤。有些树已经枯死了，枝干光秃秃的，像无数只干枯的手伸向天空。有些树还活着，却活得很勉强——树根被根海裹挟着向上拉扯，像是随时会被拖入深处。\n没有风。只有根在动，雾在飘，偶尔有枯枝断裂的声音从远处传来，沉闷的、遥远的，然后被雾气吞掉。安静到能听见自己的心跳。这就是溟海。不是水做的海，是根做的海。活的、沉的、不知疲倦地在古林深处翻涌。走上去的人，脚下不是实地，是无数条正在缓慢蠕动的根。站着不动，能感觉到根在脚下缓缓拱起、下沉、扭曲。走着走着，会发现自己在不知不觉中转到了另一个方向。不是迷路，是根在替你选路。\n没有人知道溟海的尽头是什么。也没有人知道根海的下面埋着什么。但所有人都知道——踏上去的那一刻，就已经不属于自己了。\n根海无波自翻涌，古木擎天不见空。\n一步踏入溟深处，从此身是雾中翁。" },        
 
         ];
     function renderMap() {
@@ -1462,52 +4184,52 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
     const itemDatabase = { 
     // 消耗品数据库
     consumable: [
-    { name: "灵泉水", type: "消耗品", grade: "凡品", desc: "清澈甘甜的山泉，蕴含微弱灵气，饮用后能恢复体力，驱散疲乏。", effect: "服用后 +2 修为", source: "通用/日常获取", detail: "" },
-    { name: "荧光露珠", type: "消耗品", grade: "凡品", desc: "夜间采集的露珠，泛着微弱的荧光，入口清甜，如饮星光。", effect: "服用后 +1 修为", source: "通用/日常获取", detail: "" },
-    { name: "凝气露", type: "消耗品", grade: "初品", desc: "灵气凝结而成的露珠，晶莹剔透，入口化作一缕温热的灵气流入丹田。", effect: "服用后 +4 修为", source: "通用/日常获取", detail: "" },
-    { name: "灵果", type: "消耗品", grade: "初品", desc: "灵气滋养下生长的果实，果肉饱满，咬一口汁水四溢，甘甜中带着草木清香。", effect: "服用后 +3 修为", source: "通用/日常获取", detail: "" },
-    { name: "灵气结晶", type: "消耗品", grade: "良品", desc: "半透明晶石，内里有灵气如云雾般流转。握在掌心微微发凉，灵气会自然渗入体内。", effect: "服用后 +12 修为", source: "清霄洞窟", detail: "" },
-    { name: "发光果实", type: "消耗品", grade: "初品", desc: "半透明果实，内部绿色光点缓慢流动，表皮薄如蝉翼。咬破后果肉化开，像喝温糖水。", effect: "服用后 +5 修为", source: "未标注", detail: "" },
-    { name: "枯木灵", type: "消耗品", grade: "良品", desc: "枯木林中凝结的灵质，呈淡黄色胶状，散发着草木的涩味。可服用，也可入药。", effect: "服用后 +7 修为", source: "枯木掉落", detail: "" },
-    { name: "幻梦灵露", type: "消耗品", grade: "良品", desc: "幻境秘境中凝结的露珠，泛着七彩微光。服用后眼前闪过零碎的梦境片段，如梦似幻。", effect: "服用后 +7 修为", source: "天梯·幻境秘境", detail: "" },
-    { name: "古丹残液", type: "消耗品", grade: "良品", desc: "上古遗迹中残留的丹液，已凝固成半透明的胶状物，散发着淡淡的药香。", effect: "服用后 +7 修为", source: "上古遗迹", detail: "" },
-    { name: "浮空灵珠", type: "消耗品", grade: "良品", desc: "悬浮区域凝结的灵珠，轻若无物，握在掌心时整个人会感到一阵轻盈。", effect: "服用后 +10 修为", source: "悬浮区域", detail: "" },
-    { name: "天风玉露", type: "消耗品", grade: "良品", desc: "高空灵气凝结的玉露，清冽甘甜，入口如饮寒风，过后却有一股暖意从丹田升起。", effect: "服用后 +9 修为", source: "高空灵气凝结", detail: "" },
-    { name: "云露精华", type: "消耗品", grade: "良品", desc: "云层深处凝聚的精华，如雾如露，入口即化，留下一缕清凉的灵气在经脉中流转。", effect: "服用后 +10 修为", source: "天梯攀登", detail: "" },
-    { name: "阶梯尘晶", type: "消耗品", grade: "初品", desc: "天梯台阶上凝结的细小晶粒，灰白色，握在手心有粗糙的质感。", effect: "服用后 +2 修为", source: "天梯攀登", detail: "" },
-    { name: "云雾凝珠", type: "消耗品", grade: "初品", desc: "云中凝结的水珠，圆润如珠，表面有淡淡的雾气缭绕。", effect: "服用后 +4 修为", source: "天梯攀登", detail: "" },
-    { name: "登阶灵叶", type: "消耗品", grade: "初品", desc: "天梯沿途灵木飘落的叶子，叶脉清晰，泛着淡淡的灵光。", effect: "服用后 +6 修为", source: "天梯攀登", detail: "" },
-    { name: "天梯石髓", type: "消耗品", grade: "良品", desc: "天梯石缝中渗出的髓液，凝固成半透明的石块，散发着淡淡的灵气。", effect: "服用后 +8 修为", source: "天梯攀登", detail: "" },
-    { name: "凝雪灵气", type: "消耗品", grade: "初品", desc: "雪山之巅凝结的灵气团，如雪如雾，触之冰凉，入口化作一缕寒意在丹田散开。", effect: "服用后 +5 修为", source: "雪山任务", detail: "" },
-    { name: "熔岩余烬", type: "消耗品", grade: "初品", desc: "火山余烬中捡拾的碎石，表面有细密的裂纹，裂纹中隐约可见橙红色光芒。", effect: "服用后 +5 修为", source: "雪山任务", detail: "" },
-    { name: "冰火交汇露", type: "消耗品", grade: "珍品", desc: "冰火交汇处凝结的露珠，一半冰蓝一半赤红，入口时冰火交替。", effect: "服用后 +10 修为", source: "雪山任务", detail: "" },
-    { name: "虚妄尘晶", type: "消耗品", grade: "初品", desc: "凝结的尘晶，半透明，内里有细小的光点漂浮，像微缩的星空。", effect: "服用后 +5 修为", source: "天梯·幻境秘境", detail: "" },
-    { name: "回音石", type: "消耗品", grade: "初品", desc: "暖石涧石壁中剥落的碎块，表面有细密的音纹，握在手中有微微震颤。", effect: "服用后 +4 修为", source: "暖石涧", detail: "" },
-    { name: "潭果", type: "消耗品", grade: "良品", desc: "寒潭深处生长的灵果，果皮呈深蓝色，果肉晶莹剔透，入口冰凉。", effect: "服用后 +8 修为", source: "寒潭", detail: "" },
-    { name: "山髓结晶", type: "消耗品", grade: "良品", desc: "山体深处凝结的髓晶，乳白色，半透明，散发着淡淡的土腥气。", effect: "服用后 +6 修为", source: "未标注", detail: "" },
-    { name: "冰魄心核", type: "消耗品", grade: "珍品", desc: "冰蓝色心形核体，表面有细密冰纹，触之冰凉却不冻手。", effect: "服用后 +10 修为", source: "玉镜寒潭", detail: "" },
-    { name: "汇灵结晶", type: "消耗品", grade: "良品", desc: "灵气高度浓缩而成的结晶，色泽纯净，内部灵力流转如活物。", effect: "服用后 +12 修为", source: "未标注", detail: "" },
-    { name: "赤曜沙晶", type: "消耗品", grade: "良品", desc: "峡谷中凝结的沙晶，呈暗红色，表面有细密的沙纹，握在手心微微发烫。", effect: "服用后 +10 修为", source: "赤曜峡谷", detail: "" },
-    { name: "阴嚎狼心", type: "消耗品", grade: "珍品", desc: "阴嚎狼的心脏，取出时仍在微微跳动，散发着浓烈的血腥气与灵力波动。", effect: "服用后 +12 修为", source: "赤曜峡谷", detail: "" },
+      { name: "灵泉水", type: "消耗品", grade: "凡品", desc: "清澈甘甜的山泉，蕴含微弱灵气，饮用后能恢复体力，驱散疲乏。", effect: "服用后 +2 修为", source: "通用/日常获取", detail: "" },
+      { name: "荧光露珠", type: "消耗品", grade: "凡品", desc: "夜间采集的露珠，泛着微弱的荧光，入口清甜，如饮星光。", effect: "服用后 +1 修为", source: "通用/日常获取", detail: "" },
+      { name: "凝气露", type: "消耗品", grade: "初品", desc: "灵气凝结而成的露珠，晶莹剔透，入口化作一缕温热的灵气流入丹田。", effect: "服用后 +4 修为", source: "通用/日常获取", detail: "" },
+      { name: "灵果", type: "消耗品", grade: "初品", desc: "灵气滋养下生长的果实，果肉饱满，咬一口汁水四溢，甘甜中带着草木清香。", effect: "服用后 +3 修为", source: "通用/日常获取", detail: "" },
+      { name: "灵气结晶", type: "消耗品", grade: "良品", desc: "半透明晶石，内里有灵气如云雾般流转。握在掌心微微发凉，灵气会自然渗入体内。", effect: "服用后 +12 修为", source: "清霄洞窟", detail: "" },
+      { name: "发光果实", type: "消耗品", grade: "初品", desc: "半透明果实，内部绿色光点缓慢流动，表皮薄如蝉翼。咬破后果肉化开，像喝温糖水。", effect: "服用后 +5 修为", source: "未标注", detail: "" },
+      { name: "枯木灵", type: "消耗品", grade: "良品", desc: "枯木林中凝结的灵质，呈淡黄色胶状，散发着草木的涩味。可服用，也可入药。", effect: "服用后 +7 修为", source: "枯木掉落", detail: "" },
+      { name: "幻梦灵露", type: "消耗品", grade: "良品", desc: "幻境秘境中凝结的露珠，泛着七彩微光。服用后眼前闪过零碎的梦境片段，如梦似幻。", effect: "服用后 +7 修为", source: "天梯·幻境秘境", detail: "" },
+      { name: "古丹残液", type: "消耗品", grade: "良品", desc: "上古遗迹中残留的丹液，已凝固成半透明的胶状物，散发着淡淡的药香。", effect: "服用后 +7 修为", source: "上古遗迹", detail: "" },
+      { name: "浮空灵珠", type: "消耗品", grade: "良品", desc: "悬浮区域凝结的灵珠，轻若无物，握在掌心时整个人会感到一阵轻盈。", effect: "服用后 +10 修为", source: "悬浮区域", detail: "" },
+      { name: "天风玉露", type: "消耗品", grade: "良品", desc: "高空灵气凝结的玉露，清冽甘甜，入口如饮寒风，过后却有一股暖意从丹田升起。", effect: "服用后 +9 修为", source: "高空灵气凝结", detail: "" },
+      { name: "云露精华", type: "消耗品", grade: "良品", desc: "云层深处凝聚的精华，如雾如露，入口即化，留下一缕清凉的灵气在经脉中流转。", effect: "服用后 +10 修为", source: "天梯攀登", detail: "" },
+      { name: "阶梯尘晶", type: "消耗品", grade: "初品", desc: "天梯台阶上凝结的细小晶粒，灰白色，握在手心有粗糙的质感。", effect: "服用后 +2 修为", source: "天梯攀登", detail: "" },
+      { name: "云雾凝珠", type: "消耗品", grade: "初品", desc: "云中凝结的水珠，圆润如珠，表面有淡淡的雾气缭绕。", effect: "服用后 +4 修为", source: "天梯攀登", detail: "" },
+      { name: "登阶灵叶", type: "消耗品", grade: "初品", desc: "天梯沿途灵木飘落的叶子，叶脉清晰，泛着淡淡的灵光。", effect: "服用后 +6 修为", source: "天梯攀登", detail: "" },
+      { name: "天梯石髓", type: "消耗品", grade: "良品", desc: "天梯石缝中渗出的髓液，凝固成半透明的石块，散发着淡淡的灵气。", effect: "服用后 +8 修为", source: "天梯攀登", detail: "" },
+      { name: "凝雪灵气", type: "消耗品", grade: "初品", desc: "雪山之巅凝结的灵气团，如雪如雾，触之冰凉，入口化作一缕寒意在丹田散开。", effect: "服用后 +5 修为", source: "雪山任务", detail: "" },
+      { name: "熔岩余烬", type: "消耗品", grade: "初品", desc: "火山余烬中捡拾的碎石，表面有细密的裂纹，裂纹中隐约可见橙红色光芒。", effect: "服用后 +5 修为", source: "雪山任务", detail: "" },
+      { name: "冰火交汇露", type: "消耗品", grade: "珍品", desc: "冰火交汇处凝结的露珠，一半冰蓝一半赤红，入口时冰火交替。", effect: "服用后 +10 修为", source: "雪山任务", detail: "" },
+      { name: "虚妄尘晶", type: "消耗品", grade: "初品", desc: "凝结的尘晶，半透明，内里有细小的光点漂浮，像微缩的星空。", effect: "服用后 +5 修为", source: "天梯·幻境秘境", detail: "" },
+      { name: "回音石", type: "消耗品", grade: "初品", desc: "暖石涧石壁中剥落的碎块，表面有细密的音纹，握在手中有微微震颤。", effect: "服用后 +4 修为", source: "暖石涧", detail: "" },
+      { name: "潭果", type: "消耗品", grade: "良品", desc: "寒潭深处生长的灵果，果皮呈深蓝色，果肉晶莹剔透，入口冰凉。", effect: "服用后 +8 修为", source: "寒潭", detail: "" },
+      { name: "山髓结晶", type: "消耗品", grade: "良品", desc: "山体深处凝结的髓晶，乳白色，半透明，散发着淡淡的土腥气。", effect: "服用后 +6 修为", source: "未标注", detail: "" },
+      { name: "冰魄心核", type: "消耗品", grade: "珍品", desc: "冰蓝色心形核体，表面有细密冰纹，触之冰凉却不冻手。", effect: "服用后 +10 修为", source: "玉镜寒潭", detail: "" },
+      { name: "汇灵结晶", type: "消耗品", grade: "良品", desc: "灵气高度浓缩而成的结晶，色泽纯净，内部灵力流转如活物。", effect: "服用后 +12 修为", source: "未标注", detail: "" },
+      { name: "赤曜沙晶", type: "消耗品", grade: "良品", desc: "峡谷中凝结的沙晶，呈暗红色，表面有细密的沙纹，握在手心微微发烫。", effect: "服用后 +10 修为", source: "赤曜峡谷", detail: "" },
+      { name: "阴嚎狼心", type: "消耗品", grade: "珍品", desc: "阴嚎狼的心脏，取出时仍在微微跳动，散发着浓烈的血腥气与灵力波动。", effect: "服用后 +12 修为", source: "赤曜峡谷", detail: "" },
     { name: "脆风仙瓤", type: "消耗品", grade: "珍品", desc: "长于赤曜峡谷通风阴凉之处，由于昼夜温差大，极其甜美多汁", effect: "服用后 +3 修为", source: "赤曜峡谷", detail: "" },    
-    { name: "风凝露", type: "消耗品", grade: "初品", desc: "从风眼中凝取的露珠，入口清凉，拂去疲乏。", effect: "服用后 +3 修为", source: "清霄山崖", detail: "" },
-    { name: "碧落果", type: "消耗品", grade: "良品", desc: "峡谷深处生长的灵果，果皮青翠，果肉清脆。", effect: "服用后 +8 修为", source: "赤曜峡谷", detail: "" },
-    { name: "幽荧草", type: "消耗品", grade: "初品", desc: "峡谷中生长的灵草，夜间会发出淡绿色荧光。叶片细长，嚼之微苦，回甘。", effect: "服用后 +3 修为", source: "赤曜峡谷", detail: "" },
-    { name: "阴魂花", type: "消耗品", grade: "初品", desc: "阴气凝聚而成的灵花，花瓣呈暗紫色，散发着淡淡的腐香。", effect: "服用后 +5 修为", source: "赤曜峡谷", detail: "" },
-    { name: "幽嚎兽骨", type: "消耗品", grade: "初品", desc: "幽嚎兽的骨骼碎片，灰白色，表面有细密的裂纹，残留着微弱灵力。", effect: "服用后 +4 修为", source: "赤曜峡谷", detail: "" },
-    { name: "碧鳞蛇胆", type: "消耗品", grade: "良品", desc: "碧鳞蛇的胆囊，墨绿色，饱满圆润，散发着淡淡的腥苦味。", effect: "服用后 +6 修为", source: "赤曜峡谷", detail: "" },
-    { name: "鳞下灵果", type: "消耗品", grade: "良品", desc: "某种灵兽鳞片下寄生的灵果，外表粗糙，内里多汁，味道酸甜。", effect: "服用后 +10 修为", source: "巨蛇试炼", detail: "" },
-    { name: "蛇蜕残片", type: "消耗品", grade: "初品", desc: "灵蛇蜕下的皮膜碎片，半透明，轻薄如纸，残留着淡淡的灵气。", effect: "服用后 +5 修为", source: "巨蛇试炼", detail: "" },
-    { name: "晶砂", type: "消耗品", grade: "良品", desc: "细碎的晶粒，如沙如粉，在阳光下泛着细碎的光芒。", effect: "服用后 +10 修为", source: "龙宫旧址", detail: "" },
-    { name: "珠子", type: "消耗品", grade: "珍品", desc: "圆润的灵珠，表面光滑，内里有灵气如雾流转。捏碎时灵力迸发。", effect: "捏碎后 +15 修为", source: "龙宫旧址", detail: "" },
-    { name: "龙髓珠", type: "消耗品", grade: "珍品", desc: "龙骨中取出的髓珠，乳白色，温润如玉，散发着淡淡的龙威。", effect: "服用后 +15 修为", source: "未标注", detail: "" },
-    { name: "远古水脉残滴", type: "消耗品", grade: "珍品", desc: "远古水脉凝结的残滴，如泪珠般晶莹。", effect: "服用后 +10 修为，或用于灵宠升阶", source: "龙宫旧址", detail: "" },
-    { name: "脉石碎片", type: "消耗品", grade: "初品", desc: "灵脉碎片剥落的小块，灰白色，表面有细密的纹路。", effect: "服用后 +6 修为", source: "龙宫旧址", detail: "" },
-    { name: "龙骨尘", type: "消耗品", grade: "良品", desc: "龙骨研磨而成的细粉，灰白色，散发着淡淡的龙气。", effect: "服用后 +5 修为", source: "龙宫旧址", detail: "" },
-    { name: "冰鸣心", type: "消耗品", grade: "珍品", desc: "寒潭冰下取出的冰蓝色核体，贴耳能听到微弱心跳声。", effect: "服用后 +10 修为", source: "玉镜寒潭", detail: "" },
-    { name: "辟邪丹", type: "消耗品", grade: "良品", desc: "呈淡金色，表面有细密丹纹，散发着淡淡的龙气。", effect: "服用后 +5 修为", source: "龙宫旧址", detail: "" },
-    { name: "溟元果", type: "消耗品", grade: "", desc: "灰白果实", effect: "服用后 +8 修为", source: "溟泽古林·树冠", detail: "" },    
-    {
+      { name: "风凝露", type: "消耗品", grade: "初品", desc: "从风眼中凝取的露珠，入口清凉，拂去疲乏。", effect: "服用后 +3 修为", source: "清霄山崖", detail: "" },
+      { name: "碧落果", type: "消耗品", grade: "良品", desc: "峡谷深处生长的灵果，果皮青翠，果肉清脆。", effect: "服用后 +8 修为", source: "赤曜峡谷", detail: "" },
+      { name: "幽荧草", type: "消耗品", grade: "初品", desc: "峡谷中生长的灵草，夜间会发出淡绿色荧光。叶片细长，嚼之微苦，回甘。", effect: "服用后 +3 修为", source: "赤曜峡谷", detail: "" },
+      { name: "阴魂花", type: "消耗品", grade: "初品", desc: "阴气凝聚而成的灵花，花瓣呈暗紫色，散发着淡淡的腐香。", effect: "服用后 +5 修为", source: "赤曜峡谷", detail: "" },
+      { name: "幽嚎兽骨", type: "消耗品", grade: "初品", desc: "幽嚎兽的骨骼碎片，灰白色，表面有细密的裂纹，残留着微弱灵力。", effect: "服用后 +4 修为", source: "赤曜峡谷", detail: "" },
+      { name: "碧鳞蛇胆", type: "消耗品", grade: "良品", desc: "碧鳞蛇的胆囊，墨绿色，饱满圆润，散发着淡淡的腥苦味。", effect: "服用后 +6 修为", source: "赤曜峡谷", detail: "" },
+      { name: "鳞下灵果", type: "消耗品", grade: "良品", desc: "某种灵兽鳞片下寄生的灵果，外表粗糙，内里多汁，味道酸甜。", effect: "服用后 +10 修为", source: "巨蛇试炼", detail: "" },
+      { name: "蛇蜕残片", type: "消耗品", grade: "初品", desc: "灵蛇蜕下的皮膜碎片，半透明，轻薄如纸，残留着淡淡的灵气。", effect: "服用后 +5 修为", source: "巨蛇试炼", detail: "" },
+      { name: "晶砂", type: "消耗品", grade: "良品", desc: "细碎的晶粒，如沙如粉，在阳光下泛着细碎的光芒。", effect: "服用后 +10 修为", source: "龙宫旧址", detail: "" },
+      { name: "珠子", type: "消耗品", grade: "珍品", desc: "圆润的灵珠，表面光滑，内里有灵气如雾流转。捏碎时灵力迸发。", effect: "捏碎后 +15 修为", source: "龙宫旧址", detail: "" },
+      { name: "龙髓珠", type: "消耗品", grade: "珍品", desc: "龙骨中取出的髓珠，乳白色，温润如玉，散发着淡淡的龙威。", effect: "服用后 +15 修为", source: "未标注", detail: "" },
+      { name: "远古水脉残滴", type: "消耗品", grade: "珍品", desc: "远古水脉凝结的残滴，如泪珠般晶莹。", effect: "服用后 +10 修为，或用于灵宠升阶", source: "龙宫旧址", detail: "" },
+      { name: "脉石碎片", type: "消耗品", grade: "初品", desc: "灵脉碎片剥落的小块，灰白色，表面有细密的纹路。", effect: "服用后 +6 修为", source: "龙宫旧址", detail: "" },
+      { name: "龙骨尘", type: "消耗品", grade: "良品", desc: "龙骨研磨而成的细粉，灰白色，散发着淡淡的龙气。", effect: "服用后 +5 修为", source: "龙宫旧址", detail: "" },
+      { name: "冰鸣心", type: "消耗品", grade: "珍品", desc: "寒潭冰下取出的冰蓝色核体，贴耳能听到微弱心跳声。", effect: "服用后 +10 修为", source: "玉镜寒潭", detail: "" },
+      { name: "辟邪丹", type: "消耗品", grade: "良品", desc: "呈淡金色，表面有细密丹纹，散发着淡淡的龙气。", effect: "服用后 +5 修为", source: "龙宫旧址", detail: "" },
+      { name: "溟元果", type: "消耗品", grade: "", desc: "灰白果实", effect: "服用后 +8 修为", source: "溟泽古林·树冠", detail: "" },    
+      {
         name: "灵脉碎晶",       // 名字
         type: "消耗品",   // 分类
         grade: "",  // 种类-品级
@@ -1515,8 +4237,8 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
         effect: "服用后 +8 修为",     // 效果
         source: "苍断山脉",  // 产出地
         detail: ""    // 详细内容
-    },
-    {
+      },
+      {
         name: "冰渊寒气",       // 名字
         type: "消耗品",   // 分类
         grade: "",  // 种类-品级
@@ -1524,8 +4246,8 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
         effect: "服用后 +5 修为",     // 效果
         source: "秘境",  // 产出地
         detail: ""    // 详细内容
-    },
-    {
+      },
+      {
         name: "云滋草",       // 名字
         type: "消耗品",   // 分类
         grade: "",  // 种类-品级
@@ -1533,8 +4255,8 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
         effect: "服用后 +5 修为",     // 效果
         source: "秘境",  // 产出地
         detail: ""    // 详细内容
-    },
-    {
+      },
+      {
         name: "魂质",       // 名字
         type: "消耗品",   // 分类
         grade: "",  // 种类-品级
@@ -1542,29 +4264,29 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
         effect: "服用后 +2 修为",     // 效果
         source: "秘境",  // 产出地
         detail: ""    // 详细内容
-    },
+      },
 ], 
 
     // 功法数据库
     skill: [
-    { name: "冰心照渊", type: "功法", grade: "识海系", desc: "识海系辅修功法", effect: "可直接破坏低阶幻境，对幻术类攻击有较强抗性。", source: "冰渊欲窟副本", detail: "识海系辅修功法，修成后识海如冰湖澄澈，可照破幻境幻术，不受欲望类幻境影响。" },
-    { name: "冰心招式", type: "功法", grade: "功法", desc: "影属性招式", effect: "唤出镜子倒影敌人，让敌人自己和自己对战。", source: "玉镜寒潭", detail: "" },
-    { name: "雾里摘尘", type: "功法", grade: "感知系", desc: "感知系辅修功法", effect: "可直接看破幻境，精准锁定真实破绽。", source: "冰渊欲窟副本", detail: "感知系辅修功法，可看破虚假场景，不受幻术类幻境迷惑。" },
-    { name: "欲烬余温", type: "功法", grade: "心法系", desc: "心法系辅修功法", effect: "可将幻境中的欲望能量转化为自身防御。", source: "冰渊欲窟副本", detail: "心法系辅修功法，可净化或摧毁欲望类幻境，不受负面情绪影响。" },
-    { name: "云隐诀", type: "功法", grade: "身法", desc: "身法", effect: "灵力流转间身周生出薄雾，雾随人动，人隐雾中。", source: "云中石任务", detail: "雾中可凝云成针无声刺出。被攻击命中或主动出针时雾气炸开，功法暂破。" },
-    { name: "御风诀", type: "功法", grade: "身法", desc: "身法", effect: "可在悬崖峭壁间借风踏行，短暂滑空，落地无声。", source: "清霄山崖任务", detail: "身法，修成后周身气流缠绕，轻身如燕。" },
-    { name: "龙骨相", type: "功法", grade: "护身类", desc: "护身类功法", effect: "龙骨合拢形成屏障，外界攻击落于龙骨之上。", source: "龙宫旧址", detail: "护身类功法，身后开启龙骨虚影，庞大如山。" },
-    { name: "逆鳞七斩", type: "功法", grade: "攻击类", desc: "攻击类连斩功法", effect: "七斩连出，如七条巨龙接连扑杀，连绵不绝。", source: "龙宫旧址", detail: "攻击类连斩功法，身后依次浮现七道龙相，一相一斩。" },
-    { name: "龙骨锻体", type: "功法", grade: "体修类", desc: "体修类功法残篇", effect: "化龙十秒，伤口自愈。", source: "未龙宫旧址", detail: "体修类功法残篇，可修炼至金丹境。濒死时人性化龙，仰天长啸震慑对方。" },
-    { name: "暗河引", type: "功法", grade: "水系", desc: "水系法术", effect: "水线入体化作冰针，痛如骨髓。", source: "龙宫旧址", detail: "水系法术，可凝聚刺骨水线数道射向目标。" },
-    { name: "冰心招式", type: "功法", grade: "冰属性", desc: "冰属性招式", effect: "唤出镜子，倒映出敌人的身影，使其与自己的镜像对战。", source: "镜心试炼", detail: "冰属性招式，凝冰成镜。镜像会复刻敌人的动作与招式，敌人需同时应对自身与镜像的双重压力。" },
-    { name: "星辰眼", type: "功法", grade: "瞳术类", desc: "瞳术类功法", effect: "夜间视物，感知灵力波动。", source: "未标注", detail: "瞳术类功法，引星光淬炼双目，可在黑暗中视物，看破低阶隐匿。" },
-    { name: "心眼", type: "功法", grade: "感知类", desc: "感知类功法", effect: "不受视觉幻术影响，但范围有限。", source: "未标注", detail: "感知类功法，闭目时可感知周围生物的大致位置与灵力强弱。" },
-    { name: "换针术", type: "功法", grade: "攻击类", desc: "攻击类功法", effect: "对金丹及以上无效。", source: "未标注", detail: "攻击类功法，灵力飞针，次数模糊。" },
-    { name: "残破道图", type: "功法", grade: "功法", desc: "观摩壁画道韵", effect: "一次性道具，使用后消失。", source: "上古废墟", detail: "观摩壁画道韵，可参悟基础功法、身法。" },
-    { name: "兽语录", type: "功法", grade: "功法", desc: "记录灵兽习性、弱点、喜好的薄册", effect: "面对非敌对灵兽时，持有者仇恨值不优先指向。", source: "开辟令", detail: "记录灵兽习性、弱点、喜好的薄册，字迹潦草。" },
+      { name: "冰心照渊", type: "功法", grade: "识海系", desc: "识海系辅修功法", effect: "可直接破坏低阶幻境，对幻术类攻击有较强抗性。", source: "冰渊欲窟副本", detail: "识海系辅修功法，修成后识海如冰湖澄澈，可照破幻境幻术，不受欲望类幻境影响。" },
+      { name: "冰心招式", type: "功法", grade: "功法", desc: "影属性招式", effect: "唤出镜子倒影敌人，让敌人自己和自己对战。", source: "玉镜寒潭", detail: "" },
+      { name: "雾里摘尘", type: "功法", grade: "感知系", desc: "感知系辅修功法", effect: "可直接看破幻境，精准锁定真实破绽。", source: "冰渊欲窟副本", detail: "感知系辅修功法，可看破虚假场景，不受幻术类幻境迷惑。" },
+      { name: "欲烬余温", type: "功法", grade: "心法系", desc: "心法系辅修功法", effect: "可将幻境中的欲望能量转化为自身防御。", source: "冰渊欲窟副本", detail: "心法系辅修功法，可净化或摧毁欲望类幻境，不受负面情绪影响。" },
+      { name: "云隐诀", type: "功法", grade: "身法", desc: "身法", effect: "灵力流转间身周生出薄雾，雾随人动，人隐雾中。", source: "云中石任务", detail: "雾中可凝云成针无声刺出。被攻击命中或主动出针时雾气炸开，功法暂破。" },
+      { name: "御风诀", type: "功法", grade: "身法", desc: "身法", effect: "可在悬崖峭壁间借风踏行，短暂滑空，落地无声。", source: "清霄山崖任务", detail: "身法，修成后周身气流缠绕，轻身如燕。" },
+      { name: "龙骨相", type: "功法", grade: "护身类", desc: "护身类功法", effect: "龙骨合拢形成屏障，外界攻击落于龙骨之上。", source: "龙宫旧址", detail: "护身类功法，身后开启龙骨虚影，庞大如山。" },
+      { name: "逆鳞七斩", type: "功法", grade: "攻击类", desc: "攻击类连斩功法", effect: "七斩连出，如七条巨龙接连扑杀，连绵不绝。", source: "龙宫旧址", detail: "攻击类连斩功法，身后依次浮现七道龙相，一相一斩。" },
+      { name: "龙骨锻体", type: "功法", grade: "体修类", desc: "体修类功法残篇", effect: "化龙十秒，伤口自愈。", source: "未龙宫旧址", detail: "体修类功法残篇，可修炼至金丹境。濒死时人性化龙，仰天长啸震慑对方。" },
+      { name: "暗河引", type: "功法", grade: "水系", desc: "水系法术", effect: "水线入体化作冰针，痛如骨髓。", source: "龙宫旧址", detail: "水系法术，可凝聚刺骨水线数道射向目标。" },
+      { name: "冰心招式", type: "功法", grade: "冰属性", desc: "冰属性招式", effect: "唤出镜子，倒映出敌人的身影，使其与自己的镜像对战。", source: "镜心试炼", detail: "冰属性招式，凝冰成镜。镜像会复刻敌人的动作与招式，敌人需同时应对自身与镜像的双重压力。" },
+      { name: "星辰眼", type: "功法", grade: "瞳术类", desc: "瞳术类功法", effect: "夜间视物，感知灵力波动。", source: "未标注", detail: "瞳术类功法，引星光淬炼双目，可在黑暗中视物，看破低阶隐匿。" },
+      { name: "心眼", type: "功法", grade: "感知类", desc: "感知类功法", effect: "不受视觉幻术影响，但范围有限。", source: "未标注", detail: "感知类功法，闭目时可感知周围生物的大致位置与灵力强弱。" },
+      { name: "换针术", type: "功法", grade: "攻击类", desc: "攻击类功法", effect: "对金丹及以上无效。", source: "未标注", detail: "攻击类功法，灵力飞针，次数模糊。" },
+      { name: "残破道图", type: "功法", grade: "功法", desc: "观摩壁画道韵", effect: "一次性道具，使用后消失。", source: "上古废墟", detail: "观摩壁画道韵，可参悟基础功法、身法。" },
+      { name: "兽语录", type: "功法", grade: "功法", desc: "记录灵兽习性、弱点、喜好的薄册", effect: "面对非敌对灵兽时，持有者仇恨值不优先指向。", source: "开辟令", detail: "记录灵兽习性、弱点、喜好的薄册，字迹潦草。" },
     { name: "冰与火之歌", type: "功法", grade: "功法", desc: "自身获得冰火双抗性，不惧怕严寒也不惧怕酷热", effect: "主动调节自身灵力属性可使用纯净冰之灵力与纯净火之灵力。", source: "帝庭副本", detail: "" },        
-    {
+      {
         name: "破冰",       // 名字
         type: "功法",   // 分类
         grade: "",  // 种类-品级
@@ -1572,8 +4294,8 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
         effect: "可让目标心中固守的某一层“壳”出现一道裂缝",     // 效果
         source: "副本",  // 产出地
         detail: "破冰：修炼后，可让目标心中固守的某一层“壳”出现一道裂缝，让对方自己开始怀疑。如冰面裂开第一道纹，之后整面都会碎。\n特殊作用：任何“本该如此”的成见，执念，都会被施法破防"    // 详细内容
-    },
-    {
+      },
+      {
         name: "玄元护罩",       // 名字
         type: "功法",   // 分类
         grade: "金丹功法",  // 种类-品级
@@ -1581,109 +4303,120 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
         effect: "单场1次。对元婴及以上无效",     // 效果
         source: "未知",  // 产出地
         detail: ""    // 详细内容
-    },        
-        ], 
+      },        
+          ], 
 
     // 材料数据库
     material: [
-    { name: "幻墟衍灵髓", type: "材料", grade: "", desc: "幻化兵器为虚影", effect: "幻化任意兵刃一次，或辅助武器突破", source: "天梯·幻境秘境", detail: "" },
-    { name: "福泽灵语", type: "材料", grade: "", desc: "白蛇的福泽文书，镶嵌于器上化成器文。", effect: "炼器后有效制造视觉骗局，实现强控", source: "白蛇神庙", detail: "灵兽使用不增加外观\n挥舞出招之处，生机盎然之景。" },
-    { name: "风缚丝", type: "材料", grade: "", desc: "银白色丝线，细如发丝却韧如蚕丝。", effect: "牵引目标的攻击轨迹略微偏移", source: "清霄", detail: "挥剑时，剑锋拖曳一缕无形的气流，可牵引目标的攻击轨迹略微偏移\n出招之际，风声轻啸，丝线所过之处留下细密的银色残影，如风过竹林。" },
-    { name: "枯木藤", type: "材料", grade: "", desc: "深褐色藤蔓，一指粗，坚韧难断，内中空有暗绿汁液。", effect: "镶嵌武器（概率吸灵）、炼器、灵力牵引装置", source: "枯木林", detail: "" },
-    { name: "枯木根茎", type: "材料", grade: "", desc: "蕴含灵力存储之威能。", effect: "可起手将存储灵力挥出", source: "枯木林", detail: "灵力获取可来自天地灵气，或吸食灵兽与修士。" },
-    { name: "变异藤蔓", type: "材料", grade: "", desc: "藤蔓脱落后依然保持活性，表面有细密倒刺。", effect: "附魔于武器。", source: "开拓令", detail: "每次击中目标会在其体内留下微小寄生种子，击中足够次数后种子短暂萌芽\n使目标出现不受控的微小抽搐，握力松懈、脚步偏移、招式变形。\n使用者可在极短时间内牵引对方攻击方向偏移分毫。" },
-    { name: "幽光藤蔓", type: "材料", grade: "", desc: "造成异变", effect: "具有腐蚀之效与操控之能", source: "开拓令", detail: "" },
-    { name: "烧焦藤蔓", type: "材料", grade: "灵宠", desc: "藤蔓被石门夹断，断口有雷电灼烧痕迹。", effect: "灵宠服用升阶", source: "开拓令", detail: "灵宠服用后升阶一次，不改变形态，仅提升等阶。\n枯藤中残留的雷电与寄生体气息刺激灵宠体质，增强对外界毒素、寄生物的抵抗力。" },
-    { name: "熔岩火虫", type: "材料", grade: "", desc: "火系材料", effect: "+5修为/可锻造", source: "雪山·岩浆边缘", detail: "" },
-    { name: "火灵之羽", type: "材料", grade: "", desc: "火系材料", effect: "+10修为/锻造材料", source: "火焰鹤", detail: "" },
-    { name: "霜脊狼骨", type: "材料", grade: "", desc: "冰系材料", effect: "+5修为/可锻造", source: "雪山·霜脊狼", detail: "" },
-    { name: "冰灵绒毛", type: "材料", grade: "", desc: "冰系材料", effect: "+7修为/可锻造，提高冰抗性", source: "冰系灵兽", detail: "" },
-    { name: "冰鹿之角", type: "材料", grade: "", desc: "冰系材料", effect: "+10修为/锻造材料", source: "冰封鹿", detail: "" },
-    { name: "冰火玄晶", type: "材料", grade: "", desc: "一半赤红一半莹白，内蕴冰火双属性。", effect: "武器附带冰火双属性", source: "雪山", detail: "" },
-    { name: "冰渊髓晶", type: "材料", grade: "", desc: "冰系材料", effect: "婴儿拳头大小不规则晶体，内部蓝色光丝缓慢游动，触之冰凉刺骨", source: "冰渊欲窟副本", detail: "" },
-    { name: "冰毒绿莲", type: "材料", grade: "", desc: "花瓣纯白如雪，薄到近乎透明，花蕊绿到发黑。", effect: "冰毒属性/可炼化入体", source: "寒潭秘境", detail: "冰毒触碰花蕊会沿经脉上行麻痹肢体，冰白而血绿\n将其炼化入体，灵力中多了一道淡绿色寒毒，攻击时结白冰绿血\n寒毒抗性提升但体温常年偏低。" },
-    { name: "渡灵灯芯", type: "材料", grade: "灵宠", desc: "渡船青灯中取出的灯芯，长约三寸，细如发丝，泛着幽蓝微光。", effect: "灵宠可吞服或佩戴", source: "玉镜寒潭", detail: "灵宠吞服或佩戴后，周身泛起幽蓝光晕，瞳孔深处隐约有青焰跳动\n升阶后，攻击时爪牙附带幽蓝残影，可触及目标神魂，令其短暂失神\n夜间隐匿时，身形如融入薄雾，难以捕捉。" },
-    { name: "风残石", type: "材料", grade: "", desc: "于时停之风沙域因时间弹跳所造之石", effect: "可时停，借助弹跳毁其生物神志，攻其识海。", source: "寒潭秘境", detail: "" },
-    { name: "风聚石", type: "升阶材料", grade: "", desc: "风属性之石", effect: "可用于提升品级", source: "玉镜寒潭", detail: "" },
-    { name: "土聚石", type: "升阶材料", grade: "", desc: "土属性之石", effect: "可用于提升品级", source: "玉镜寒潭", detail: "" },
-    { name: "冰聚石", type: "升阶材料", grade: "", desc: "风属性之石", effect: "可用于提升品级", source: "玉镜寒潭", detail: "" },
-    { name: "焚石碎片", type: "材料", grade: "武器", desc: "通体暗红，表面有灼烧纹路，触之滚烫", effect: "可嵌入武器，挥器时拖曳一缕暗红火星", source: "未知", detail: "特效（嵌入武器后）：\n挥器时，器拖曳一缕暗红火星，击中目标时火星炸开，溅射数点灼热烈焰。\n若与冰属性材料同铸，冰火交织，剑刃划过之处，半边焦 痕半边霜。" },
-    { name: "沙舟碎片", type: "材料", grade: "", desc: "十枚碎片可制造飞舟", effect: "飞舟外观、功能，需要审核通过。", source: "赤曜荒原", detail: "" },
-    { name: "冰心碎片", type: "材料", grade: "", desc: "十枚碎片可兑换功法《冰心招式》", effect: "《冰心招式》唤出镜子倒影敌人，让敌人自己和自己对战。", source: "玉镜寒潭", detail: "" },
-    { name: "仙门残锋", type: "材料", grade: "", desc: "上古仙门遗留碎片", effect: "融入武器提升品质", source: "上古废墟", detail: "" },
-    { name: "星荧绸", type: "材料", grade: "", desc: "造器核心材料", effect: "处似夜空有幽蓝光点，亮处流光溢彩，织出星河旋转", source: "溯命之隙", detail: "" },
-    { name: "混沌石", type: "材料", grade: "仅一枚", desc: "五行本源随机抽取", effect: "形态改造一次+ 属性附魔", source: "修为前三奖励", detail: "金：锋锐、破甲\n木：生长、缠绕\n水：流动、渗透\n火：爆裂、灼\n土：厚重、稳固" },
-    { name: "变异混沌石", type: "材料", grade: "仅一枚", desc: "混沌石受天地异变浸染，分化出五种本之力", effect: "形态改造一次+ 属性附魔", source: "修为前三奖励", detail: "变异混沌石·雷 雷劫浸染，石面雷纹密布\n变异混沌石·光 极光照射，内藏星辰光点\n变异混沌石·暗 深渊万年，通体漆黑不反光\n变异混沌石·冰 万年寒冰，触之刺骨\n变异混沌石·风 万年风眼，轻若无物\n属性效果：名称 特性\n雷 引雷、麻痹\n光 留痕、破隐\n暗 失向、乱步\n冰 凝霜、脆化\n风 吹障、散盾" },
-    { name: "双生源石", type: "材料", grade: "武器/灵宠", desc: "如菱石，通体半透明，内里封存双生之力", effect: "双属性效果", source: "修为前三奖励", detail: "双形态：武器可在两种选定形态间切换，外观与基础属性随之变化\n双属性：灵宠获得两种选定属性，技能附带双系效果\n全新特效：攻击时触发双属性交织特效，两种力量同时显现\n武器：\n形态一：主属性特效\n形态二：副属性特效\n切换无消耗，一念即可\n灵宠：\n获得双属性抗性，技能附带双重伤害效果，外观出现双属性交织印记\n打斗特效：\n双属性能量凝而不散，交汇处泛起金色光晕\n命中目标时，两种特效同时迸发\n属性自选：一石双生，源力同根。器有双形，宠具双魂。" },
-    { name: "恒石星陨", type: "材料", grade: "武器", desc: "灰黑色石片，掌心大小，边缘粗糙", effect: "武器功能", source: "修为前三奖励", detail: "挥击之时：挥击时星点膨胀成球体砸落，虚空凹陷炸开裂隙\n裂隙：目标连同碎裂空间坠入未成型的混沌秘境，裂隙随即闭合。" },
-    { name: "恒石星陨*", type: "材料", grade: "小世界", desc: "灰黑色石片，掌心大小，边缘粗糙", effect: "小世界功能", source: "修为前三奖励", detail: "裂隙之内，持主即是这片混沌的唯一主宰。灵雾随念而动，光影随行而变。未成形的世界尚在沉睡，却在每一次握石时微微震颤。\n小世界功能：\n· 持主可自由进出自己的秘境\n· 可邀请他人进入，也可强制将目标拖入\n· 秘境内，持主可操控环境、压制闯入者\n· 秘境需通过材料与机缘逐步打造，方可发挥完整功能\n个人小世界（升阶）\n方寸之地 - 仅容转身，雾气紧裹\n弹丸之隅 - 如庭院一角，灵雾初散\n丈许之域 - 约一丈方圆，地面平整\n数丈见方 - 数丈开阔，灵泉居其中\n半亩之池 - 半亩有余，青草漫生\n一顷之地 - 可容一村，溪流穿行\n十里方圆 - 十方之境，天光普照\n百里之疆 - 山丘起伏，生灵渐聚\n千里之界 - 一眼望不尽，四季分明\n自成天地 - 无垠无际，心念所及皆是疆土" },
-    { name: "玄霜藤", type: "材料", grade: "升阶材料", desc: "枯枝间垂挂的银白藤蔓。摸上去冰凉光滑，指节粗，韧性极强，扯不断。", effect: "融入武器后，攻击时有银白霜气缠绕锋刃", source: "溟泽古林·树冠", detail: "融入武器后，攻击时有银白霜气缠绕锋刃，击中目标后霜气短暂附着，使目标动作略微凝滞不是冻住，是像被湿冷的藤蔓绊了一下。" },
-    { name: "霜玄叶", type: "材料", grade: "升阶材料", desc: "枯木顶端新枝上蜷曲的嫩叶，绿得扎眼，叶片边缘泛着细碎的银光。", effect: "融入武器后，叶脉纹路浮现在武器表面，挥斩时刃口带出一缕极细的银线", source: "溟泽古林·树冠", detail: "融入武器后，叶脉纹路浮现在武器表面，挥斩时刃口带出一缕极细的银线，不是剑气，是叶片边缘那一线银光被拉长了。含在舌下可清心明目，对低阶幻术有微弱抗性。" },
-    { name: "雾纱丝", type: "材料", grade: "防具材料", desc: "几乎看不见的蓝白色丝线", effect: "织入道袍、软甲、护腕等防具", source: "未知", detail: "" },
-    { name: "脉息石", type: "材料", grade: "辅助法器", desc: "浑圆蓝色石子，表面光滑，随心跳脉动", effect: "炼制成辅助法器（挂坠、戒指、手环、护心镜等）", source: "未知", detail: "" },    
-    {
-        name: "云山凝露",       // 名字
+    // 升阶材料数据 
+      { name: "风聚石", type: "材料", grade: "升阶材料", desc: "风属性之石", effect: "可用于提升品级", source: "玉镜寒潭", detail: "" },
+      { name: "土聚石", type: "材料", grade: "升阶材料", desc: "土属性之石", effect: "可用于提升品级", source: "玉镜寒潭", detail: "" },
+      { name: "冰聚石", type: "材料", grade: "升阶材料", desc: "风属性之石", effect: "可用于提升品级", source: "玉镜寒潭", detail: "" },
+      { name: "玄霜藤", type: "材料", grade: "升阶材料", desc: "枯枝间垂挂的银白藤蔓。摸上去冰凉光滑，指节粗，韧性极强，扯不断。", effect: "融入武器后，攻击时有银白霜气缠绕锋刃", source: "溟泽古林·树冠", detail: "融入武器后，攻击时有银白霜气缠绕锋刃，击中目标后霜气短暂附着，使目标动作略微凝滞不是冻住，是像被湿冷的藤蔓绊了一下。" },
+      { name: "霜玄叶", type: "材料", grade: "升阶材料", desc: "枯木顶端新枝上蜷曲的嫩叶，绿得扎眼，叶片边缘泛着细碎的银光。", effect: "融入武器后，叶脉纹路浮现在武器表面，挥斩时刃口带出一缕极细的银线", source: "溟泽古林·树冠", detail: "融入武器后，叶脉纹路浮现在武器表面，挥斩时刃口带出一缕极细的银线，不是剑气，是叶片边缘那一线银光被拉长了。含在舌下可清心明目，对低阶幻术有微弱抗性。" },
+      { name: "云山凝露",       // 名字
         type: "材料",   // 分类
         grade: "升阶材料",  // 种类-品级
         desc: "云山深处凝结的露珠，透着淡淡的乳白色光晕",  // 介绍
         effect: "融入武器后，会有霜凝效果",     // 效果
         source: "副本",  // 产出地
         detail: "霜凝：融入武器后，攻击时会有细密的水雾弥散，雾气沾身，使人如陷泥沼——不是减速，是每一寸移动都要多花一丝力气。"    // 详细内容
-    },
-        {
-        name: "琥珀",       // 名字
+      },    
+      { name: "琥珀",       // 名字
         type: "材料",   // 分类
         grade: "升阶材料",  // 种类-品级
         desc: "半透明的金黄色琥珀，内里封着一只细小的虫子",  // 介绍
         effect: "融入武器后，会有凝固效果",     // 效果
         source: "副本",  // 产出地
         detail: "凝固：融入武器或防具后，受到致命一击时，琥珀内的虫影会震颤一次，将那一击的“时机”拖慢一瞬——不是抵挡，是让你多出眨眼的时间来闪避"    // 详细内容
-    },
-        {
-        name: "玉片",       // 名字
+      },      
+      // 武器材料数据
+      { name: "幻墟衍灵髓", type: "材料", grade: "武器", desc: "幻化兵器为虚影", effect: "幻化任意兵刃一次，或辅助武器突破", source: "天梯·幻境秘境", detail: "" },
+      { name: "福泽灵语", type: "材料", grade: "武器", desc: "白蛇的福泽文书，镶嵌于器上化成器文。", effect: "炼器后有效制造视觉骗局，实现强控", source: "白蛇神庙", detail: "灵兽使用不增加外观\n挥舞出招之处，生机盎然之景。" },
+      { name: "风缚丝", type: "材料", grade: "武器", desc: "银白色丝线，细如发丝却韧如蚕丝。", effect: "牵引目标的攻击轨迹略微偏移", source: "清霄", detail: "挥剑时，剑锋拖曳一缕无形的气流，可牵引目标的攻击轨迹略微偏移\n出招之际，风声轻啸，丝线所过之处留下细密的银色残影，如风过竹林。" },
+      { name: "枯木藤", type: "材料", grade: "武器", desc: "深褐色藤蔓，一指粗，坚韧难断，内中空有暗绿汁液。", effect: "镶嵌武器（概率吸灵）、炼器、灵力牵引装置", source: "枯木林", detail: "" },
+      { name: "枯木根茎", type: "材料", grade: "武器", desc: "蕴含灵力存储之威能。", effect: "可起手将存储灵力挥出", source: "枯木林", detail: "灵力获取可来自天地灵气，或吸食灵兽与修士。" },
+      { name: "变异藤蔓", type: "材料", grade: "武器", desc: "藤蔓脱落后依然保持活性，表面有细密倒刺。", effect: "附魔于武器。", source: "开拓令", detail: "每次击中目标会在其体内留下微小寄生种子，击中足够次数后种子短暂萌芽\n使目标出现不受控的微小抽搐，握力松懈、脚步偏移、招式变形。\n使用者可在极短时间内牵引对方攻击方向偏移分毫。" },
+      { name: "幽光藤蔓", type: "材料", grade: "武器", desc: "造成异变", effect: "具有腐蚀之效与操控之能", source: "开拓令", detail: "" },
+      { name: "冰火玄晶", type: "材料", grade: "武器", desc: "一半赤红一半莹白，内蕴冰火双属性。", effect: "武器附带冰火双属性", source: "雪山", detail: "" },
+      { name: "焚石碎片", type: "材料", grade: "武器", desc: "通体暗红，表面有灼烧纹路，触之滚烫", effect: "可嵌入武器，挥器时拖曳一缕暗红火星", source: "未知", detail: "特效（嵌入武器后）：\n挥器时，器拖曳一缕暗红火星，击中目标时火星炸开，溅射数点灼热烈焰。\n若与冰属性材料同铸，冰火交织，剑刃划过之处，半边焦 痕半边霜。" },
+      { name: "仙门残锋", type: "材料", grade: "武器", desc: "上古仙门遗留碎片", effect: "融入武器提升品质", source: "上古废墟", detail: "" },
+      { name: "星荧绸", type: "材料", grade: "武器", desc: "造器核心材料", effect: "处似夜空有幽蓝光点，亮处流光溢彩，织出星河旋转", source: "溯命之隙", detail: "" },
+    // 辅助材料数据 
+      { name: "雾纱丝", type: "材料", grade: "防具材料", desc: "几乎看不见的蓝白色丝线", effect: "织入道袍、软甲、护腕等防具", source: "未知", detail: "" },
+      { name: "脉息石", type: "材料", grade: "辅助法器", desc: "浑圆蓝色石子，表面光滑，随心跳脉动", effect: "炼制成辅助法器（挂坠、戒指、手环、护心镜等）", source: "未知", detail: "" },    
+      { name: "玉片",       // 名字
         type: "材料",   // 分类
         grade: "",  // 种类-品级
         desc: "半透明的玉质薄片，边缘光滑，表面有细密纹路，像微缩的阵图",  // 介绍
         effect: "可用于打造高阶符箓或阵盘，提升符箓的稳定性与效果",     // 效果
         source: "副本",  // 产出地
         detail: "玉片本身不含灵力，只作为载体。"    // 详细内容
-    },
-
+      },  
+      // 其他材料数据 
+      { name: "熔岩火虫", type: "材料", grade: "", desc: "火系材料", effect: "+5修为/可锻造", source: "雪山·岩浆边缘", detail: "" },
+      { name: "火灵之羽", type: "材料", grade: "", desc: "火系材料", effect: "+10修为/锻造材料", source: "火焰鹤", detail: "" },
+      { name: "霜脊狼骨", type: "材料", grade: "", desc: "冰系材料", effect: "+5修为/可锻造", source: "雪山·霜脊狼", detail: "" },
+      { name: "冰灵绒毛", type: "材料", grade: "", desc: "冰系材料", effect: "+7修为/可锻造，提高冰抗性", source: "冰系灵兽", detail: "" },
+      { name: "冰鹿之角", type: "材料", grade: "", desc: "冰系材料", effect: "+10修为/锻造材料", source: "冰封鹿", detail: "" },
+      { name: "冰渊髓晶", type: "材料", grade: "", desc: "冰系材料", effect: "婴儿拳头大小不规则晶体，内部蓝色光丝缓慢游动，触之冰凉刺骨", source: "冰渊欲窟副本", detail: "" },
+      { name: "冰毒绿莲", type: "材料", grade: "", desc: "花瓣纯白如雪，薄到近乎透明，花蕊绿到发黑。", effect: "冰毒属性/可炼化入体", source: "寒潭秘境", detail: "冰毒触碰花蕊会沿经脉上行麻痹肢体，冰白而血绿\n将其炼化入体，灵力中多了一道淡绿色寒毒，攻击时结白冰绿血\n寒毒抗性提升但体温常年偏低。" },
+      { name: "风残石", type: "材料", grade: "", desc: "于时停之风沙域因时间弹跳所造之石", effect: "可时停，借助弹跳毁其生物神志，攻其识海。", source: "寒潭秘境", detail: "" },
+    // 灵宠材料数据
+      { name: "烧焦藤蔓", type: "材料", grade: "灵宠", desc: "藤蔓被石门夹断，断口有雷电灼烧痕迹。", effect: "灵宠服用升阶", source: "开拓令", detail: "灵宠服用后升阶一次，不改变形态，仅提升等阶。\n枯藤中残留的雷电与寄生体气息刺激灵宠体质，增强对外界毒素、寄生物的抵抗力。" },
+      { name: "渡灵灯芯", type: "材料", grade: "灵宠", desc: "渡船青灯中取出的灯芯，长约三寸，细如发丝，泛着幽蓝微光。", effect: "灵宠可吞服或佩戴", source: "玉镜寒潭", detail: "灵宠吞服或佩戴后，周身泛起幽蓝光晕，瞳孔深处隐约有青焰跳动\n升阶后，攻击时爪牙附带幽蓝残影，可触及目标神魂，令其短暂失神\n夜间隐匿时，身形如融入薄雾，难以捕捉。" },
+    // 特殊材料数据  
+      { name: "沙舟碎片", type: "材料", grade: "飞舟材料", desc: "十枚碎片可制造飞舟", effect: "飞舟外观、功能，需要审核通过。", source: "赤曜荒原", detail: "" },
+      { name: "冰心碎片", type: "材料", grade: "功法材料", desc: "十枚碎片可兑换功法《冰心招式》", effect: "《冰心招式》唤出镜子倒影敌人，让敌人自己和自己对战。", source: "玉镜寒潭", detail: "" },
+      { name: "混沌石", type: "材料", grade: "仅一枚", desc: "五行本源随机抽取", effect: "形态改造一次+ 属性附魔", source: "修为前三奖励", detail: "金：锋锐、破甲\n木：生长、缠绕\n水：流动、渗透\n火：爆裂、灼\n土：厚重、稳固" },
+      { name: "变异混沌石", type: "材料", grade: "仅一枚", desc: "混沌石受天地异变浸染，分化出五种本之力", effect: "形态改造一次+ 属性附魔", source: "修为前三奖励", detail: "变异混沌石·雷 雷劫浸染，石面雷纹密布\n变异混沌石·光 极光照射，内藏星辰光点\n变异混沌石·暗 深渊万年，通体漆黑不反光\n变异混沌石·冰 万年寒冰，触之刺骨\n变异混沌石·风 万年风眼，轻若无物\n属性效果：名称 特性\n雷 引雷、麻痹\n光 留痕、破隐\n暗 失向、乱步\n冰 凝霜、脆化\n风 吹障、散盾" },
+      { name: "双生源石", type: "材料", grade: "武器/灵宠", desc: "如菱石，通体半透明，内里封存双生之力", effect: "双属性效果", source: "修为前三奖励", detail: "双形态：武器可在两种选定形态间切换，外观与基础属性随之变化\n双属性：灵宠获得两种选定属性，技能附带双系效果\n全新特效：攻击时触发双属性交织特效，两种力量同时显现\n武器：\n形态一：主属性特效\n形态二：副属性特效\n切换无消耗，一念即可\n灵宠：\n获得双属性抗性，技能附带双重伤害效果，外观出现双属性交织印记\n打斗特效：\n双属性能量凝而不散，交汇处泛起金色光晕\n命中目标时，两种特效同时迸发\n属性自选：一石双生，源力同根。器有双形，宠具双魂。" },
+      { name: "恒石星陨", type: "材料", grade: "武器", desc: "灰黑色石片，掌心大小，边缘粗糙", effect: "武器功能", source: "修为前三奖励", detail: "挥击之时：挥击时星点膨胀成球体砸落，虚空凹陷炸开裂隙\n裂隙：目标连同碎裂空间坠入未成型的混沌秘境，裂隙随即闭合。" },
+      { name: "恒石星陨*", type: "材料", grade: "小世界", desc: "灰黑色石片，掌心大小，边缘粗糙", effect: "小世界功能", source: "修为前三奖励", detail: "裂隙之内，持主即是这片混沌的唯一主宰。灵雾随念而动，光影随行而变。未成形的世界尚在沉睡，却在每一次握石时微微震颤。\n小世界功能：\n· 持主可自由进出自己的秘境\n· 可邀请他人进入，也可强制将目标拖入\n· 秘境内，持主可操控环境、压制闯入者\n· 秘境需通过材料与机缘逐步打造，方可发挥完整功能\n个人小世界（升阶）\n方寸之地 - 仅容转身，雾气紧裹\n弹丸之隅 - 如庭院一角，灵雾初散\n丈许之域 - 约一丈方圆，地面平整\n数丈见方 - 数丈开阔，灵泉居其中\n半亩之池 - 半亩有余，青草漫生\n一顷之地 - 可容一村，溪流穿行\n十里方圆 - 十方之境，天光普照\n百里之疆 - 山丘起伏，生灵渐聚\n千里之界 - 一眼望不尽，四季分明\n自成天地 - 无垠无际，心念所及皆是疆土" },
 ],
 
     // 武器数据库
     weapon: [
-    { name:"镜破", type:"武器", grade:"优品", desc:"镜子碎片凝成的冰紫剑", effect:"聚合成剑，剑面如镜", source:"玉镜寒潭", detail:"碎镜之痕\n剑身炸开，化作数十片冰紫碎片悬空。每片碎片映出身影，镜像动作与本体错开一拍，碎片齐射，划过空间边缘。\n所过之处留下蛛网般冰紫裂痕，裂痕内画面定格，落叶悬停、尘埃静止。\n镜渊倒影\n发剑身平举，镜面映照的并非此刻，而是久时的过去，在镜中缓缓浮现。\n若看向镜面，会看到“自己”做动作愧事，心神恍惚，错认当下。\n特殊作用：劈开时停之域一段时间。" },        
-    { name:"枯荣枝", type:"武器", grade:"优品", desc:"枯木深处爆出的内核，枝节粗糙，状如枯枝，握在手中不似兵器", effect:"枝上骤生新芽，抽条如鞭，从地面、空气中无声抽出，快如疾雨，连绵不绝", source:"溟泽古林·树冠", detail:"枝上骤生新芽，抽条如鞭，从地面、空气中无声抽出，快如疾雨，连绵不绝。\n佩戴效果：不战时，心念所至，枝上开花。\n花型、花色、花数随心而变，握一枝枯木，可得满手春意。" }        
+      { name:"镜破", type:"武器", grade:"优品", desc:"镜子碎片凝成的冰紫剑", effect:"聚合成剑，剑面如镜", source:"玉镜寒潭", detail:"碎镜之痕\n剑身炸开，化作数十片冰紫碎片悬空。每片碎片映出身影，镜像动作与本体错开一拍，碎片齐射，划过空间边缘。\n所过之处留下蛛网般冰紫裂痕，裂痕内画面定格，落叶悬停、尘埃静止。\n镜渊倒影\n发剑身平举，镜面映照的并非此刻，而是久时的过去，在镜中缓缓浮现。\n若看向镜面，会看到“自己”做动作愧事，心神恍惚，错认当下。\n特殊作用：劈开时停之域一段时间。" },        
+      { name:"枯荣枝", type:"武器", grade:"优品", desc:"枯木深处爆出的内核，枝节粗糙，状如枯枝，握在手中不似兵器", effect:"枝上骤生新芽，抽条如鞭，从地面、空气中无声抽出，快如疾雨，连绵不绝", source:"溟泽古林·树冠", detail:"枝上骤生新芽，抽条如鞭，从地面、空气中无声抽出，快如疾雨，连绵不绝。\n佩戴效果：不战时，心念所至，枝上开花。\n花型、花色、花数随心而变，握一枝枯木，可得满手春意。" }        
     
-    ], 
+      ], 
 
     // 灵宠数据库
     pet: [
-    { name: "沼泽蜈蚣", type: "灵宠", grade: "凡品", desc: "墨绿多足，行动快", effect: "口器大带毒", source: "枯木林", detail: "暂无" },
-    { name: "攀君", type: "灵宠", grade: "初品", desc: "擅长攀爬", effect: "山地探索、驮运物资，亦可作为坐骑。", source: "青霄", detail: "在陡峭岩壁，四蹄稳健，可在险峻山地如履平地。" },
-    { name: "弥月灵兔", type: "灵宠", grade: "初品", desc: "身形小巧，毛色柔白如月，行动敏捷。", effect: "适合作为陪伴型灵宠", source: "青霄", detail: "性情温和，能感知灵气波动，对危险有敏锐直觉。" },
-    { name: "莲下鱼", type: "灵宠", grade: "良品", desc: "通体灰白，近乎透明。", effect: "以咬作为攻击，伤口会迅速结冰", source: "未知", detail: "体型不大，约一掌长。\n攻击方式：以冰毒入体后，寒气从伤口向四周蔓延；\n中者先失知觉，后失行动能力，最后全身冻僵瘫痪。" },
-    { name: "火焰鹤", type: "灵宠", grade: "良品", desc: "常态下通体雪白羽毛，朱红长喙配上一对朱红长腿。", effect: "火焰破风乘骑飞行不会感受到有阻力", source: "未知", detail: "翼展开腾空而起，烈焰自羽根腾起，顺着翼展向后蔓延，拖曳出两片炽红尾焰犹如空中锦帛。\n飞行：火焰鹤周身燃火双翅一震扶摇腾空而起，至半空后便不再振翅转为火之灵力驱动飞行" },
-    { name: "冰封鹿", type: "灵宠", grade: "良品", desc: "周身青蓝色绒毛覆体，沉冰色鹿角树枝散开。", effect: "冰封鹿四蹄踏上地面，所过之处覆上薄冰。", source: "未知", detail: "骑行：鹿角幽蓝微光悦动，若踏足水面，每一步都在脚下凝出一片冰台，身后留下一串晶莹的冰路。" },
-    { name: "食铁兽", type: "灵宠", grade: "初品", desc: "毛发锃亮，体态憨厚，行动较为笨拙。", effect: "可协助进攻亦可乘骑作为坐骑。", source: "青霄竹林", detail: "作为熊，嗅觉敏锐并且力量大。" },
-    { name: "幽嚎兽", type: "灵宠", grade: "初品", desc: "通体漆黑如墨，身形似狼但更修长，皮毛下隐约有暗纹流动。", effect: "音波攻击", source: "赤曜峡谷", detail: "" },
-    { name: "碧鳞蛇", type: "灵宠", grade: "初品", desc: "通体碧绿鳞片，泛幽冷光泽，蛇身纤细修长。", effect: "具有毒属性", source: "未知", detail: "" },
-    { name: "青鸾", type: "灵宠", grade: "良品", desc: "羽翼以靛青为底，翼尖渐变为水蓝与苍翠，层层叠染如远山含黛。", effect: "具有时停之风和风暴跃迁", source: "赤曜峡谷", detail: "时停之风：翼尖凝出透明波纹外散。所过之处，皆停滞定格。\n风刃划过之处，空间留下一道银白裂痕，无法流动。时停解除的瞬间，静止的空间在眨眼间会被风暴填满。\n风暴跃迁：连续空间跳跃中，每次跃迁都会压制旧位置的风、释放新位置的风，使死寂之处瞬间爆发出十倍狂风；落地时所有被压制的风同时释放，在中心点对撞炸开气浪。" },
-    { name: "火沙蝗虫", type: "灵宠", grade: "良品", desc: "通体暗金色，甲壳上有细密的赤红纹路如岩浆流动", effect: "具有噬停之颚和流沙行走", source: "赤曜峡谷", detail: "噬停之颚：咬住时停沙暴边缘，硬生生撕开裂口，使停滞的沙粒碎裂成粉末，身后留下一段恢复流动的通道。\n流沙行走：六足所至，沙粒被高温软化为半流动状态，使蝗虫能在停滞的沙暴中如履平地，身后留下一串冷却后呈深褐色的暗红足印。" },
-    { name: "青穗鼠", type: "灵宠", grade: "初品", desc: "体长半尺，灰褐色皮毛，背脊有一道青色的细纹，从鼻尖延伸至尾尖。", effect: "行动迅捷如风，能嗅出方圆百步内灵气最浓之处", source: "未知", detail: "双耳圆润，眼睛乌黑透亮。\n鼻尖轻嗅时，青色细纹微微发亮，能嗅出方圆百步内灵气最浓之处。\n找到宝物时，双耳竖起，发出细碎的吱吱声，前爪刨地示意。概率触发修为奖励。" },
-    { name: "沙潜蝎", type: "灵宠", grade: "初品", desc: "体金黄色的蝎子，体型约成人半个手掌，尾钩细长呈暗红色。", effect: "在沙中快速移动，突袭时从目标脚底窜出", source: "未知", detail: "钻沙：钻入沙地快速移动，从目标脚底突袭。\n喷沙：喷射沙尘形成沙雾，迷眼扰敌。\n尾钩：刺中注入麻痹毒素，使局部僵硬、动作迟缓。" },
-    { name: "霜脊狼", type: "灵宠", grade: "初品", desc: "通体灰白，毛色如霜，擅长在雪地中隐匿行踪。", effect: "可骑乘，战斗、追踪", source: "雪山", detail: "" },
-    { name: "草鸡", type: "灵宠", grade: "初品", desc: "体型比普通鸡小一圈，枯草色羽毛参差不齐。", effect: "可啄食寄生体/蛊虫", source: "未知", detail: "不爱理人但会跟随。对携带寄生体或孢子印记的人有明显兴趣。" },
-    { name: "时隙幽影", type: "灵宠", grade: "良品", desc: "往日已逝执念与时间相融合产生的特异存在没有固定形态。", effect: "操纵影子，主隐匿控制，可以对鬼魂造成伤害。", source: "未知", detail: "讨厌光亮，升阶可以克服。" },
-    { name: "弥星妖精", type: "灵宠", grade: "良品", desc: "荧光与空间的宠儿，通常为巴掌大小的小光人，没有固定形态。", effect: "转化光，辅助治疗", source: "未知", detail: "在夜晚也闪闪发光。" },        
-    { name: "苍冥猿", type: "灵宠", grade: "优品", desc: "灰白色长臂猴，在枯枝间翻腾跳跃，不惧人", source: "溟泽古林·树冠", detail: "小猴会挂在藤条上歪头打量来者，吱吱喳喳，像是在问：你怎么上来了？\n使用效果：可驯养为灵宠，擅长攀爬、荡跃，在树冠、悬崖等复杂地形中行动自如。感知敏锐，对危险有直觉，能提前预警。" }        
+      { name: "沼泽蜈蚣", type: "灵宠", grade: "凡品", desc: "墨绿多足，行动快", effect: "口器大带毒", source: "枯木林", detail: "暂无" },
+      { name: "攀君", type: "灵宠", grade: "初品", desc: "擅长攀爬", effect: "山地探索、驮运物资，亦可作为坐骑。", source: "青霄", detail: "在陡峭岩壁，四蹄稳健，可在险峻山地如履平地。" },
+      { name: "弥月灵兔", type: "灵宠", grade: "初品", desc: "身形小巧，毛色柔白如月，行动敏捷。", effect: "适合作为陪伴型灵宠", source: "青霄", detail: "性情温和，能感知灵气波动，对危险有敏锐直觉。" },
+      { name: "莲下鱼", type: "灵宠", grade: "良品", desc: "通体灰白，近乎透明。", effect: "以咬作为攻击，伤口会迅速结冰", source: "未知", detail: "体型不大，约一掌长。\n攻击方式：以冰毒入体后，寒气从伤口向四周蔓延；\n中者先失知觉，后失行动能力，最后全身冻僵瘫痪。" },
+      { name: "火焰鹤", type: "灵宠", grade: "良品", desc: "常态下通体雪白羽毛，朱红长喙配上一对朱红长腿。", effect: "火焰破风乘骑飞行不会感受到有阻力", source: "未知", detail: "翼展开腾空而起，烈焰自羽根腾起，顺着翼展向后蔓延，拖曳出两片炽红尾焰犹如空中锦帛。\n飞行：火焰鹤周身燃火双翅一震扶摇腾空而起，至半空后便不再振翅转为火之灵力驱动飞行" },
+      { name: "冰封鹿", type: "灵宠", grade: "良品", desc: "周身青蓝色绒毛覆体，沉冰色鹿角树枝散开。", effect: "冰封鹿四蹄踏上地面，所过之处覆上薄冰。", source: "未知", detail: "骑行：鹿角幽蓝微光悦动，若踏足水面，每一步都在脚下凝出一片冰台，身后留下一串晶莹的冰路。" },
+      { name: "食铁兽", type: "灵宠", grade: "初品", desc: "毛发锃亮，体态憨厚，行动较为笨拙。", effect: "可协助进攻亦可乘骑作为坐骑。", source: "青霄竹林", detail: "作为熊，嗅觉敏锐并且力量大。" },
+      { name: "幽嚎兽", type: "灵宠", grade: "初品", desc: "通体漆黑如墨，身形似狼但更修长，皮毛下隐约有暗纹流动。", effect: "音波攻击", source: "赤曜峡谷", detail: "" },
+      { name: "碧鳞蛇", type: "灵宠", grade: "初品", desc: "通体碧绿鳞片，泛幽冷光泽，蛇身纤细修长。", effect: "具有毒属性", source: "未知", detail: "" },
+      { name: "青鸾", type: "灵宠", grade: "良品", desc: "羽翼以靛青为底，翼尖渐变为水蓝与苍翠，层层叠染如远山含黛。", effect: "具有时停之风和风暴跃迁", source: "赤曜峡谷", detail: "时停之风：翼尖凝出透明波纹外散。所过之处，皆停滞定格。\n风刃划过之处，空间留下一道银白裂痕，无法流动。时停解除的瞬间，静止的空间在眨眼间会被风暴填满。\n风暴跃迁：连续空间跳跃中，每次跃迁都会压制旧位置的风、释放新位置的风，使死寂之处瞬间爆发出十倍狂风；落地时所有被压制的风同时释放，在中心点对撞炸开气浪。" },
+      { name: "火沙蝗虫", type: "灵宠", grade: "良品", desc: "通体暗金色，甲壳上有细密的赤红纹路如岩浆流动", effect: "具有噬停之颚和流沙行走", source: "赤曜峡谷", detail: "噬停之颚：咬住时停沙暴边缘，硬生生撕开裂口，使停滞的沙粒碎裂成粉末，身后留下一段恢复流动的通道。\n流沙行走：六足所至，沙粒被高温软化为半流动状态，使蝗虫能在停滞的沙暴中如履平地，身后留下一串冷却后呈深褐色的暗红足印。" },
+      { name: "青穗鼠", type: "灵宠", grade: "初品", desc: "体长半尺，灰褐色皮毛，背脊有一道青色的细纹，从鼻尖延伸至尾尖。", effect: "行动迅捷如风，能嗅出方圆百步内灵气最浓之处", source: "未知", detail: "双耳圆润，眼睛乌黑透亮。\n鼻尖轻嗅时，青色细纹微微发亮，能嗅出方圆百步内灵气最浓之处。\n找到宝物时，双耳竖起，发出细碎的吱吱声，前爪刨地示意。概率触发修为奖励。" },
+      { name: "沙潜蝎", type: "灵宠", grade: "初品", desc: "体金黄色的蝎子，体型约成人半个手掌，尾钩细长呈暗红色。", effect: "在沙中快速移动，突袭时从目标脚底窜出", source: "未知", detail: "钻沙：钻入沙地快速移动，从目标脚底突袭。\n喷沙：喷射沙尘形成沙雾，迷眼扰敌。\n尾钩：刺中注入麻痹毒素，使局部僵硬、动作迟缓。" },
+      { name: "霜脊狼", type: "灵宠", grade: "初品", desc: "通体灰白，毛色如霜，擅长在雪地中隐匿行踪。", effect: "可骑乘，战斗、追踪", source: "雪山", detail: "" },
+      { name: "草鸡", type: "灵宠", grade: "初品", desc: "体型比普通鸡小一圈，枯草色羽毛参差不齐。", effect: "可啄食寄生体/蛊虫", source: "未知", detail: "不爱理人但会跟随。对携带寄生体或孢子印记的人有明显兴趣。" },
+      { name: "时隙幽影", type: "灵宠", grade: "良品", desc: "往日已逝执念与时间相融合产生的特异存在没有固定形态。", effect: "操纵影子，主隐匿控制，可以对鬼魂造成伤害。", source: "未知", detail: "讨厌光亮，升阶可以克服。" },
+      { name: "弥星妖精", type: "灵宠", grade: "良品", desc: "荧光与空间的宠儿，通常为巴掌大小的小光人，没有固定形态。", effect: "转化光，辅助治疗", source: "未知", detail: "在夜晚也闪闪发光。" },        
+      { name: "苍冥猿", type: "灵宠", grade: "优品", desc: "灰白色长臂猴，在枯枝间翻腾跳跃，不惧人", source: "溟泽古林·树冠", detail: "小猴会挂在藤条上歪头打量来者，吱吱喳喳，像是在问：你怎么上来了？\n使用效果：可驯养为灵宠，擅长攀爬、荡跃，在树冠、悬崖等复杂地形中行动自如。感知敏锐，对危险有直觉，能提前预警。" },       
+      { name: "极地梭鱼", type: "灵宠", grade: "良品", desc: "通身修长透亮，个体之间均有发光颜色与强度之间的差异。", source: "冰镜迷宫", detail: "习性：成群结队种群出没于冰镜迷宫之中。\n本就是照射进玉镜寒潭第一缕光所化，能够在镜面之间随意穿梭，夜间非常漂亮。" },        
+      { name: "鸳鸯",       // 名字
+        type: "灵宠",   // 分类
+        grade: "宝品",  // 种类-品级
+        desc: "一对巨鸟。雄者赤羽，翼展遮天。雌者青灰，尾羽拖曳如烟。",  // 介绍
+        effect: "它们不落单。一只飞，另一只必定跟随，两道光影在天际交缠。",     // 效果
+        source: "天道",  // 产出地
+        detail: "姬时愿、陈以宁持有\n比翼：双持者心意相通时，两只鸳鸯同时振翅，掀起两股对冲的气流。气流交汇处，风压骤升，方圆百丈内的人被压得抬不起头。\n若一人遇险，另一只鸳鸯燃尽半身羽翼，化作一道流光砸向对手。\n连理：两只鸳鸯相距千里时，各自在夜空中映出对方的虚影。雄者低头，雌者便感知到水草的方位；雌者振翅，雄者便知道风暴将至。\n仿若天地间多了一根系着它们的线，看不见，扯不断。\n特殊作用：一对鸳鸯分别归于二人。此后无论相隔多远，只要灵宠还在，便知对方尚在人间。\n若一人陨落，另一只在当夜燃尽羽翼，化作一颗流星划过天际，落向对方陨落的方向。"    // 详细内容
+      }, 
 
 ], 
     
     // 特殊数据库
     special: [
-    {
+      {
         name: "飞舟",
         type: "特殊",
         grade: "特殊",
@@ -1691,8 +4424,8 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
         effect: "合成方式核心功能可随意改变外形，可在飞舟上建设建筑",
         source: "合成/宗门建设",
         detail: "宗门二级与灵脉直接联系，出现天上宗门，不影响\n灵脉传输\n副本功能进入副本时可带宗门一群人领取奖励（哪怕未参加）\n宗门三级飞舟内核于灵器内，可打造浮岛仙山\n三级即满"
-    },
-    {
+      },
+      {
         name: "时影珠",
         type: "特殊",
         grade: "特殊",
@@ -1700,8 +4433,8 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
         effect: "增加3+（骰子）点修为",
         source: "溯命垣副本",
         detail: "不可交易"
-    },
-    {
+      },
+      {
         name: "空明晶",
         type: "特殊",
         grade: "特殊",
@@ -1709,8 +4442,8 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
         effect: "炼制/提升空间属性辅助法器/参悟+10修为",
         source: "溯命垣副本",
         detail: "不可交易"
-    },
-    {
+      },
+      {
         name: "个人储物袋",       // 名字
         type: "特殊",   // 分类
         grade: "额外奖励",  // 种类-品级
@@ -1718,8 +4451,8 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
         effect: "每格在副本/对戏/自戏中额外获得1奖励",     // 效果
         source: "特殊",  // 产出地
         detail: "升级：材料/机缘任务，宗门宗主可扩1格。\n评优：人设审核员每周评选一名成员奖励一个储物袋（评优者优先）"    // 详细内容
-    },
-    {
+      },
+      {
         name: "宗门储物袋",       // 名字
         type: "特殊",   // 分类
         grade: "额外奖励",  // 种类-品级
@@ -1727,8 +4460,8 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
         effect: "用宗门袋收取的物品传入宗门仓库，初始收纳件数1，宗门每升1级数量+5，上不封顶。",     // 效果
         source: "特殊",  // 产出地
         detail: ""    // 详细内容
-    },
-    {
+      },
+      {
         name: "女鬼的衣物",       // 名字
         type: "特殊",   // 分类
         grade: "抵御攻击",  // 种类-品级
@@ -1736,8 +4469,8 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
         effect: "整体非常透明，夜里会发出淡淡的白光穿上后能抵御一定的灵魂攻击",     // 效果
         source: "特殊",  // 产出地
         detail: ""    // 详细内容
-    },
-    {
+      },
+      {
         name: "录时珠",       // 名字
         type: "特殊",   // 分类
         grade: "特殊道具",  // 种类-品级
@@ -1745,8 +4478,17 @@ function renderBagSubTabs(inventory, activeCat = currentBagCat) {
         effect: "溯忆：在副本中使用，可查看该处远古时期的一段记忆（由管理提供提示），用于解谜或寻找隐藏奖励。",     // 效果
         source: "特殊",  // 产出地
         detail: ""    // 详细内容
-    },
-    ],
+      },
+        {
+        name: "云缕衣",       // 名字
+        type: "特殊",   // 分类
+        grade: "服装",  // 种类-品级
+        desc: "以灵气至纯之地凝丝织就，薄如蝉翼，轻若无物。",  // 介绍
+        effect: "月色下泛着淡淡的银光，像一层薄雾披在身上。",     // 效果
+        source: "特殊",  // 产出地
+        detail: "浮羽：穿戴者身轻如燕，落步无声。在重力异常区域，可抵消部分负重，使人行动如常。\n特殊作用：不沾尘，不染水，越山川如履平地。"    // 详细内容
+      },
+      ],
 
     };
 
@@ -1883,16 +4625,16 @@ function renderItemGrid(cat, keyword = '') {
     // 姻缘数据（与之前一致）
     // 姻缘数据
 const marriageList = [
-    { couple: "裁枝 & 清羽", token: "（暂无）", verse: "一世风霜皆为你，半生情念只予人。" },
-    { couple: "皇翎九霄 & 苍恒", token: "（暂无）", verse: "朱衣踏雪入苍茫，云烟一瞥误终生～" },
-    { couple: "苏轻青 & 谢今安", token: "（暂无）", verse: "苏影含情逢轻青，谢心落笔许今安。" },
-    { couple: "季鸢 & 夙玄溟", token: "（暂无）", verse: "红尘里来看千遍，一眼便能定万年" },
-    { couple: "王源 & 渡昭", token: "（无）", verse: "渡月昭光映王影，风源共守此长生。" },
-    { couple: "观仰止 & 叙", token: "（无）", verse: "云揽花间金镶玉，相叙高山不渡川。" },
-    { couple: "姬时愿 & 陈以宁", token: "（暂无）", verse: "江海藏情时时愿，云途执手念念宁。" },
-    { couple: "程颂柒 & 宋锶苏", token: "（暂无）", verse: "宋玉微澜映雪锖，扶苏影里见君遥。" },
-    { couple: "梓卿 & 朝珩筠", token: "（暂无）", verse: "日为朝，月为暮，卿为朝朝暮暮。" },
-    { couple: "霁鸢 & 墨渊", token: "（暂无）", verse: "金风玉露一相逢，便胜却人间无数。" }
+      { couple: "裁枝 & 清羽", token: "（暂无）", verse: "一世风霜皆为你，半生情念只予人。" },
+      { couple: "皇翎九霄 & 苍恒", token: "（暂无）", verse: "朱衣踏雪入苍茫，云烟一瞥误终生～" },
+      { couple: "苏轻青 & 谢今安", token: "（暂无）", verse: "苏影含情逢轻青，谢心落笔许今安。" },
+      { couple: "季鸢 & 夙玄溟", token: "（暂无）", verse: "红尘里来看千遍，一眼便能定万年" },
+      { couple: "王源 & 渡昭", token: "（无）", verse: "渡月昭光映王影，风源共守此长生。" },
+      { couple: "观仰止 & 叙", token: "（无）", verse: "云揽花间金镶玉，相叙高山不渡川。" },
+      { couple: "姬时愿 & 陈以宁", token: "（暂无）", verse: "江海藏情时时愿，云途执手念念宁。" },
+      { couple: "程颂柒 & 宋锶苏", token: "（暂无）", verse: "宋玉微澜映雪锖，扶苏影里见君遥。" },
+      { couple: "梓卿 & 朝珩筠", token: "（暂无）", verse: "日为朝，月为暮，卿为朝朝暮暮。" },
+      { couple: "霁鸢 & 墨渊", token: "（暂无）", verse: "金风玉露一相逢，便胜却人间无数。" }
 ];
 
 function renderMarriagePanel() {
@@ -1949,7 +4691,7 @@ function startMarriagePetals() {
         } else {
             clearInterval(window._marriageInterval);
         }
-    }, 600);
+      }, 600);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
