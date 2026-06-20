@@ -829,2578 +829,2670 @@ body {
 
 // 人物数据库（用于个人搜索）
 const peopleDatabase = [
-  {
-    "behaviorCultivation": {
-      "写戏认证": 421,
-      "奇遇": 14,
-      "道具使用": 64,
-      "额外修为": 90
-    },
-    "breaks": 4,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 640,
-    "checkInDays": 64,
-    "cultivation": 1229,
-    "layer": 1,
-    "name": "褚修叶",
-    "realm": "问心"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 168,
-      "奇遇": 0,
-      "道具使用": 300,
-      "额外修为": 97
-    },
-    "breaks": 4,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 630,
-    "checkInDays": 63,
-    "cultivation": 1195,
-    "layer": 10,
-    "name": "九酒",
-    "realm": "化神"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 329,
-      "奇遇": 56,
-      "道具使用": 83,
-      "额外修为": 49
-    },
-    "breaks": 4,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 610,
-    "checkInDays": 61,
-    "cultivation": 1127,
-    "layer": 9,
-    "name": "皇翎九霄",
-    "realm": "化神"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 113,
-      "奇遇": 5,
-      "道具使用": 0,
-      "额外修为": 192
-    },
-    "breaks": 4,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 530,
-    "checkInDays": 53,
-    "cultivation": 850,
-    "layer": 4,
-    "name": "杨建设",
-    "realm": "化神"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 222,
-      "奇遇": 0,
-      "道具使用": 79,
-      "额外修为": 247
-    },
-    "breaks": 4,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 280,
-    "checkInDays": 28,
-    "cultivation": 828,
-    "layer": 3,
-    "name": "陈以宁",
-    "realm": "化神"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 133,
-      "奇遇": 1,
-      "道具使用": 16,
-      "额外修为": 78
-    },
-    "breaks": 4,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 600,
-    "checkInDays": 60,
-    "cultivation": 843,
-    "layer": 3,
-    "name": "姬时愿",
-    "realm": "化神"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 70,
-      "奇遇": 8,
-      "道具使用": 79,
-      "额外修为": -1
-    },
-    "breaks": 4,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 640,
-    "checkInDays": 64,
-    "cultivation": 796,
-    "layer": 2,
-    "name": "苏轻青",
-    "realm": "化神"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 154,
-      "奇遇": 3,
-      "道具使用": 33,
-      "额外修为": -3
-    },
-    "breaks": 4,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 580,
-    "checkInDays": 58,
-    "cultivation": 767,
-    "layer": 2,
-    "name": "骁彻",
-    "realm": "化神"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 57,
-      "奇遇": 0,
-      "道具使用": 56,
-      "额外修为": -4
-    },
-    "breaks": 4,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 640,
-    "checkInDays": 64,
-    "cultivation": 749,
-    "layer": 1,
-    "name": "谢今安",
-    "realm": "化神"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 147,
-      "奇遇": 6,
-      "道具使用": 0,
-      "额外修为": 17
-    },
-    "breaks": 4,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 550,
-    "checkInDays": 55,
-    "cultivation": 720,
-    "layer": 1,
-    "name": "季鸢",
-    "realm": "化神"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 86,
-      "奇遇": 2,
-      "道具使用": 7,
-      "额外修为": 25
-    },
-    "breaks": 3,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 600,
-    "checkInDays": 60,
-    "cultivation": 720,
-    "layer": 1,
-    "name": "王源",
-    "realm": "化神"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 47,
-      "奇遇": 7,
-      "道具使用": 35,
-      "额外修为": 224
-    },
-    "breaks": 3,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 360,
-    "checkInDays": 36,
-    "cultivation": 673,
-    "layer": 10,
-    "name": "梳翎",
-    "realm": "元婴"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 125,
-      "奇遇": 3,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 3,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 520,
-    "checkInDays": 52,
-    "cultivation": 658,
-    "layer": 9,
-    "name": "执久",
-    "realm": "元婴"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 74,
-      "奇遇": 2,
-      "道具使用": 45,
-      "额外修为": -50
-    },
-    "breaks": 3,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 540,
-    "checkInDays": 54,
-    "cultivation": 611,
-    "layer": 8,
-    "name": "任决",
-    "realm": "元婴"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 59,
-      "奇遇": 0,
-      "道具使用": 17,
-      "额外修为": -41
-    },
-    "breaks": 3,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 550,
-    "checkInDays": 55,
-    "cultivation": 585,
-    "layer": 7,
-    "name": "云知微",
-    "realm": "元婴"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 23,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 210
-    },
-    "breaks": 3,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 350,
-    "checkInDays": 35,
-    "cultivation": 583,
-    "layer": 7,
-    "name": "轩辕",
-    "realm": "元婴"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 38,
-      "奇遇": 0,
-      "道具使用": 73,
-      "额外修为": 4
-    },
-    "breaks": 3,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 470,
-    "checkInDays": 47,
-    "cultivation": 585,
-    "layer": 7,
-    "name": "澹台净尘",
-    "realm": "元婴"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 27,
-      "奇遇": 1,
-      "道具使用": 23,
-      "额外修为": -27
-    },
-    "breaks": 3,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 490,
-    "checkInDays": 49,
-    "cultivation": 514,
-    "layer": 4,
-    "name": "观仰止",
-    "realm": "元婴"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 12,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -2
-    },
-    "breaks": 3,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 450,
-    "checkInDays": 45,
-    "cultivation": 460,
-    "layer": 3,
-    "name": "江愿",
-    "realm": "元婴"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 52,
-      "奇遇": 0,
-      "道具使用": 7,
-      "额外修为": -49
-    },
-    "breaks": 2,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 430,
-    "checkInDays": 43,
-    "cultivation": 440,
-    "layer": 2,
-    "name": "梓卿",
-    "realm": "元婴"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -160
-    },
-    "breaks": 2,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 590,
-    "checkInDays": 59,
-    "cultivation": 430,
-    "layer": 2,
-    "name": "单纯",
-    "realm": "元婴"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 25,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -55
-    },
-    "breaks": 2,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 460,
-    "checkInDays": 46,
-    "cultivation": 430,
-    "layer": 2,
-    "name": "凌水芸",
-    "realm": "元婴"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 29,
-      "奇遇": 0,
-      "道具使用": 8,
-      "额外修为": 12
-    },
-    "breaks": 2,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 380,
-    "checkInDays": 38,
-    "cultivation": 429,
-    "layer": 1,
-    "name": "初祓",
-    "realm": "元婴"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 14,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -174
-    },
-    "breaks": 2,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 560,
-    "checkInDays": 56,
-    "cultivation": 400,
-    "layer": 1,
-    "name": "夜烬",
-    "realm": "元婴"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 8,
-      "奇遇": 0,
-      "道具使用": 10,
-      "额外修为": -18
-    },
-    "breaks": 2,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 390,
-    "checkInDays": 39,
-    "cultivation": 390,
-    "layer": 10,
-    "name": "羲和",
-    "realm": "金丹"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 44,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 2,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 310,
-    "checkInDays": 31,
-    "cultivation": 371,
-    "layer": 9,
-    "name": "简长生",
-    "realm": "金丹"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 115,
-      "奇遇": 0,
-      "道具使用": 5,
-      "额外修为": 17
-    },
-    "breaks": 2,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 220,
-    "checkInDays": 22,
-    "cultivation": 357,
-    "layer": 8,
-    "name": "许青埃",
-    "realm": "金丹"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 40,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -10
-    },
-    "breaks": 1,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 210,
-    "checkInDays": 21,
-    "cultivation": 240,
-    "layer": 3,
-    "name": "灵汐",
-    "realm": "金丹"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -20
-    },
-    "breaks": 1,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 270,
-    "checkInDays": 27,
-    "cultivation": 250,
-    "layer": 3,
-    "name": "夜羽",
-    "realm": "金丹"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 5,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -65
-    },
-    "breaks": 1,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 270,
-    "checkInDays": 27,
-    "cultivation": 210,
-    "layer": 1,
-    "name": "夙玄溟",
-    "realm": "金丹"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 41,
-      "奇遇": 0,
-      "道具使用": 12,
-      "额外修为": -93
-    },
-    "breaks": 1,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 240,
-    "checkInDays": 24,
-    "cultivation": 200,
-    "layer": 1,
-    "name": "封拙安",
-    "realm": "金丹"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 6,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 4
-    },
-    "breaks": 2,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 200,
-    "checkInDays": 20,
-    "cultivation": 210,
-    "layer": 1,
-    "name": "旻川",
-    "realm": "金丹"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 8,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -48
-    },
-    "breaks": 1,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 240,
-    "checkInDays": 24,
-    "cultivation": 200,
-    "layer": 1,
-    "name": "陌池",
-    "realm": "金丹"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 7,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -157
-    },
-    "breaks": 1,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 340,
-    "checkInDays": 34,
-    "cultivation": 190,
-    "layer": 10,
-    "name": "慈洲屿",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 1,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 180,
-    "checkInDays": 18,
-    "cultivation": 190,
-    "layer": 10,
-    "name": "际渊",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 1,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -11
-    },
-    "breaks": 1,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 200,
-    "checkInDays": 20,
-    "cultivation": 190,
-    "layer": 10,
-    "name": "凌霄",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 10,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 1,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 150,
-    "checkInDays": 15,
-    "cultivation": 170,
-    "layer": 8,
-    "name": "勿忘卿",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 20,
-      "奇遇": 0,
-      "道具使用": 5,
-      "额外修为": -100
-    },
-    "breaks": 1,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 230,
-    "checkInDays": 23,
-    "cultivation": 155,
-    "layer": 6,
-    "name": "霡霂",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 1,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 140,
-    "checkInDays": 14,
-    "cultivation": 150,
-    "layer": 6,
-    "name": "江逸",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 140,
-    "checkInDays": 14,
-    "cultivation": 140,
-    "layer": 5,
-    "name": "凤清林",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 150,
-    "checkInDays": 15,
-    "cultivation": 140,
-    "layer": 5,
-    "name": "槐玄",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -70
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 200,
-    "checkInDays": 20,
-    "cultivation": 130,
-    "layer": 4,
-    "name": "眠安",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -70
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 210,
-    "checkInDays": 21,
-    "cultivation": 140,
-    "layer": 5,
-    "name": "墨珏",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -100
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 230,
-    "checkInDays": 23,
-    "cultivation": 130,
-    "layer": 4,
-    "name": "南靡",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 140,
-    "checkInDays": 14,
-    "cultivation": 140,
-    "layer": 5,
-    "name": "云间月",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 8,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 2
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 110,
-    "checkInDays": 11,
-    "cultivation": 120,
-    "layer": 3,
-    "name": "长生",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 3,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 120,
-    "checkInDays": 12,
-    "cultivation": 123,
-    "layer": 3,
-    "name": "江书舒",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 1,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 100,
-    "checkInDays": 10,
-    "cultivation": 110,
-    "layer": 2,
-    "name": "银岑",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 110,
-    "checkInDays": 11,
-    "cultivation": 110,
-    "layer": 2,
-    "name": "百里瑾",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 8,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -18
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 120,
-    "checkInDays": 12,
-    "cultivation": 110,
-    "layer": 2,
-    "name": "离煜",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -40
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 150,
-    "checkInDays": 15,
-    "cultivation": 110,
-    "layer": 2,
-    "name": "洛言川",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -130
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 240,
-    "checkInDays": 24,
-    "cultivation": 110,
-    "layer": 2,
-    "name": "念欢",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 100,
-    "checkInDays": 10,
-    "cultivation": 110,
-    "layer": 2,
-    "name": "萧承彦",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -10
-    },
-    "breaks": 1,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 110,
-    "checkInDays": 11,
-    "cultivation": 100,
-    "layer": 1,
-    "name": "依妍",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 2,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -232
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 330,
-    "checkInDays": 33,
-    "cultivation": 100,
-    "layer": 1,
-    "name": "白凩",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 3,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -23
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 120,
-    "checkInDays": 12,
-    "cultivation": 100,
-    "layer": 1,
-    "name": "朝珩筠",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -70
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 170,
-    "checkInDays": 17,
-    "cultivation": 100,
-    "layer": 1,
-    "name": "顾思言",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 10,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -20
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 110,
-    "checkInDays": 11,
-    "cultivation": 100,
-    "layer": 1,
-    "name": "李木羊",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 18,
-      "奇遇": 3,
-      "道具使用": 0,
-      "额外修为": -131
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 210,
-    "checkInDays": 21,
-    "cultivation": 100,
-    "layer": 1,
-    "name": "刘政安",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 1,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -101
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 200,
-    "checkInDays": 20,
-    "cultivation": 100,
-    "layer": 1,
-    "name": "青严",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 100,
-    "checkInDays": 10,
-    "cultivation": 110,
-    "layer": 2,
-    "name": "塔沙维尔",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 16,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -6
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 90,
-    "checkInDays": 9,
-    "cultivation": 100,
-    "layer": 1,
-    "name": "邬稔",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -90
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 190,
-    "checkInDays": 19,
-    "cultivation": 100,
-    "layer": 1,
-    "name": "谢沉喻",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -70
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 170,
-    "checkInDays": 17,
-    "cultivation": 100,
-    "layer": 1,
-    "name": "夜璃",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 2,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -22
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 120,
-    "checkInDays": 12,
-    "cultivation": 100,
-    "layer": 1,
-    "name": "尹宿泱",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -20
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 120,
-    "checkInDays": 12,
-    "cultivation": 100,
-    "layer": 1,
-    "name": "虞悠悠",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 100,
-    "checkInDays": 10,
-    "cultivation": 100,
-    "layer": 1,
-    "name": "月衔枝",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 5,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -5
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 100,
-    "checkInDays": 10,
-    "cultivation": 100,
-    "layer": 1,
-    "name": "云言深",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 15,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 80,
-    "checkInDays": 8,
-    "cultivation": 95,
-    "layer": 10,
-    "name": "程喻",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 2,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 1,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 100,
-    "checkInDays": 10,
-    "cultivation": 102,
-    "layer": 1,
-    "name": "苏箐禾",
-    "realm": "筑基"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 90,
-    "checkInDays": 9,
-    "cultivation": 90,
-    "layer": 10,
-    "name": "沈烬",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 25,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 85,
-    "layer": 9,
-    "name": "长云浮",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 80,
-    "checkInDays": 8,
-    "cultivation": 90,
-    "layer": 10,
-    "name": "云瑶",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 80,
-    "checkInDays": 8,
-    "cultivation": 80,
-    "layer": 9,
-    "name": "李飞羽",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 80,
-    "checkInDays": 8,
-    "cultivation": 80,
-    "layer": 9,
-    "name": "筝渡",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 5,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 65,
-    "layer": 7,
-    "name": "蓝夜",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 3,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 60,
-    "checkInDays": 6,
-    "cultivation": 73,
-    "layer": 8,
-    "name": "宋守真",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 14,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 60,
-    "checkInDays": 6,
-    "cultivation": 74,
-    "layer": 8,
-    "name": "樊螭",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 60,
-    "checkInDays": 6,
-    "cultivation": 60,
-    "layer": 7,
-    "name": "白稚",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 60,
-    "layer": 7,
-    "name": "程与年",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 60,
-    "layer": 7,
-    "name": "铃湘桦",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 60,
-    "layer": 7,
-    "name": "玄鸳",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 8,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 60,
-    "checkInDays": 6,
-    "cultivation": 68,
-    "layer": 7,
-    "name": "皎皎",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 5,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 55,
-    "layer": 6,
-    "name": "安陵清梧",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 2,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 62,
-    "layer": 7,
-    "name": "黎绥禾",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 50,
-    "layer": 6,
-    "name": "薄青",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 50,
-    "layer": 6,
-    "name": "坊青殿",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 60,
-    "layer": 7,
-    "name": "柳安",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 50,
-    "layer": 6,
-    "name": "祁正武",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 50,
-    "layer": 6,
-    "name": "叶凡",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 50,
-    "layer": 6,
-    "name": "鱼日",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 50,
-    "layer": 6,
-    "name": "云沐泠",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 6,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 40,
-    "checkInDays": 4,
-    "cultivation": 46,
-    "layer": 5,
-    "name": "柳生",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 3,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 30,
-    "checkInDays": 3,
-    "cultivation": 43,
-    "layer": 5,
-    "name": "许易安",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 1,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 40,
-    "checkInDays": 4,
-    "cultivation": 41,
-    "layer": 5,
-    "name": "何寻笙",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 40,
-    "checkInDays": 4,
-    "cultivation": 40,
-    "layer": 5,
-    "name": "陈锦归",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 40,
-    "checkInDays": 4,
-    "cultivation": 40,
-    "layer": 5,
-    "name": "江薄枝",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 50,
-    "layer": 6,
-    "name": "罗岐",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": -20
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 60,
-    "checkInDays": 6,
-    "cultivation": 40,
-    "layer": 5,
-    "name": "洛歌梦",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 50,
-    "layer": 6,
-    "name": "商欣辞",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 50,
-    "checkInDays": 5,
-    "cultivation": 50,
-    "layer": 6,
-    "name": "沈渊",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 40,
-    "checkInDays": 4,
-    "cultivation": 40,
-    "layer": 5,
-    "name": "魏澜沉",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 40,
-    "checkInDays": 4,
-    "cultivation": 40,
-    "layer": 5,
-    "name": "张乌山",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 14,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 20,
-    "checkInDays": 2,
-    "cultivation": 34,
-    "layer": 4,
-    "name": "安渡",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 5,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 40,
-    "checkInDays": 4,
-    "cultivation": 45,
-    "layer": 5,
-    "name": "归凌空",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 2,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 40,
-    "checkInDays": 4,
-    "cultivation": 42,
-    "layer": 5,
-    "name": "许尽欢",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 5,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 40,
-    "checkInDays": 4,
-    "cultivation": 45,
-    "layer": 5,
-    "name": "宴逐风",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 30,
-    "checkInDays": 3,
-    "cultivation": 30,
-    "layer": 4,
-    "name": "白无月",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 30,
-    "checkInDays": 3,
-    "cultivation": 30,
-    "layer": 4,
-    "name": "独夫",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 20,
-    "checkInDays": 2,
-    "cultivation": 30,
-    "layer": 4,
-    "name": "公孙玲",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 30,
-    "checkInDays": 3,
-    "cultivation": 30,
-    "layer": 4,
-    "name": "江清雪",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 30,
-    "checkInDays": 3,
-    "cultivation": 30,
-    "layer": 4,
-    "name": "柳贯一",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 10
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 20,
-    "checkInDays": 2,
-    "cultivation": 30,
-    "layer": 4,
-    "name": "裴知禾",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 30,
-    "checkInDays": 3,
-    "cultivation": 30,
-    "layer": 4,
-    "name": "柒茉",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 30,
-    "checkInDays": 3,
-    "cultivation": 30,
-    "layer": 4,
-    "name": "清心辞",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 30,
-    "checkInDays": 3,
-    "cultivation": 30,
-    "layer": 4,
-    "name": "万毅卿",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 7,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 20,
-    "checkInDays": 2,
-    "cultivation": 27,
-    "layer": 3,
-    "name": "晏无墟",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 20,
-    "checkInDays": 2,
-    "cultivation": 20,
-    "layer": 3,
-    "name": "堇鸢",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 3,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 30,
-    "checkInDays": 3,
-    "cultivation": 33,
-    "layer": 4,
-    "name": "清灵",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 20,
-    "checkInDays": 2,
-    "cultivation": 20,
-    "layer": 3,
-    "name": "斯諦凡",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 20,
-    "checkInDays": 2,
-    "cultivation": 20,
-    "layer": 3,
-    "name": "向姊",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 20,
-    "checkInDays": 2,
-    "cultivation": 20,
-    "layer": 3,
-    "name": "玄卿",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 20,
-    "checkInDays": 2,
-    "cultivation": 20,
-    "layer": 3,
-    "name": "叶泠鸢",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 3,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 13,
-    "layer": 2,
-    "name": "妘虞",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 3,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 20,
-    "checkInDays": 2,
-    "cultivation": 23,
-    "layer": 3,
-    "name": "陈墨",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "东方见秋",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "花间",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "江晚烟",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "姜庆瑶",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "姜十三",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "姜醉",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "君寄雪",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "乐正欢",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "柳俞",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "落安",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "莫忧",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "慕容溪",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "南华觉",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "亓岁",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "秦宓",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "清辞",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "上官瑾瑜",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "孙傅黎",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "谢无渡",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "厌清",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "checkInCult": 20,
-    "checkInDays": 2,
-    "cultivation": 20,
-    "layer": 3,
-    "name": "叶济世",
-    "realm": "炼气",
-    "canBreakthrough": false,
-    "breakthroughTriggerTime": null
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "羽湘容",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "云尘",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 10,
-    "checkInDays": 1,
-    "cultivation": 10,
-    "layer": 2,
-    "name": "赵清梧",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 5,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 0,
-    "checkInDays": 0,
-    "cultivation": 5,
-    "layer": 1,
-    "name": "染灵钰",
-    "realm": "炼气"
-  },
-  {
-    "behaviorCultivation": {
-      "写戏认证": 0,
-      "奇遇": 0,
-      "道具使用": 0,
-      "额外修为": 0
-    },
-    "breaks": 0,
-    "breakthroughTriggerTime": null,
-    "canBreakthrough": false,
-    "checkInCult": 0,
-    "checkInDays": 0,
-    "cultivation": 0,
-    "layer": 1,
-    "name": "叙",
-    "realm": "炼气"
-  }
+    {
+      "behaviorCultivation": {
+        "写戏认证": 421,
+        "奇遇": 14,
+        "道具使用": 64,
+        "额外修为": 90
+      },
+      "breaks": 4,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 650,
+      "checkInDays": 65,
+      "cultivation": 1239,
+      "layer": 10,
+      "name": "褚修叶",
+      "realm": "化神"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 168,
+        "奇遇": 0,
+        "道具使用": 300,
+        "额外修为": 97
+      },
+      "breaks": 4,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 640,
+      "checkInDays": 64,
+      "cultivation": 1205,
+      "layer": 10,
+      "name": "九酒",
+      "realm": "化神"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 329,
+        "奇遇": 56,
+        "道具使用": 83,
+        "额外修为": 56
+      },
+      "breaks": 4,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 620,
+      "checkInDays": 62,
+      "cultivation": 1144,
+      "layer": 9,
+      "name": "皇翎九霄",
+      "realm": "化神"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 113,
+        "奇遇": 5,
+        "道具使用": 42,
+        "额外修为": 192
+      },
+      "breaks": 4,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 540,
+      "checkInDays": 54,
+      "cultivation": 902,
+      "layer": 5,
+      "name": "杨建设",
+      "realm": "化神"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 222,
+        "奇遇": 0,
+        "道具使用": 87,
+        "额外修为": 247
+      },
+      "breaks": 4,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 290,
+      "checkInDays": 29,
+      "cultivation": 846,
+      "layer": 3,
+      "name": "陈以宁",
+      "realm": "化神"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 133,
+        "奇遇": 1,
+        "道具使用": 16,
+        "额外修为": 93
+      },
+      "breaks": 4,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 610,
+      "checkInDays": 61,
+      "cultivation": 868,
+      "layer": 4,
+      "name": "姬时愿",
+      "realm": "化神"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 70,
+        "奇遇": 8,
+        "道具使用": 79,
+        "额外修为": -1
+      },
+      "breaks": 4,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 650,
+      "checkInDays": 65,
+      "cultivation": 806,
+      "layer": 3,
+      "name": "苏轻青",
+      "realm": "化神"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 154,
+        "奇遇": 3,
+        "道具使用": 33,
+        "额外修为": -3
+      },
+      "breaks": 4,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 590,
+      "checkInDays": 59,
+      "cultivation": 777,
+      "layer": 2,
+      "name": "骁彻",
+      "realm": "化神"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 57,
+        "奇遇": 0,
+        "道具使用": 56,
+        "额外修为": -4
+      },
+      "breaks": 4,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 650,
+      "checkInDays": 65,
+      "cultivation": 759,
+      "layer": 2,
+      "name": "谢今安",
+      "realm": "化神"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 147,
+        "奇遇": 6,
+        "道具使用": 0,
+        "额外修为": 17
+      },
+      "breaks": 4,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 560,
+      "checkInDays": 56,
+      "cultivation": 730,
+      "layer": 1,
+      "name": "季鸢",
+      "realm": "化神"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 86,
+        "奇遇": 2,
+        "道具使用": 7,
+        "额外修为": 25
+      },
+      "breaks": 4,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 610,
+      "checkInDays": 61,
+      "cultivation": 730,
+      "layer": 1,
+      "name": "王源",
+      "realm": "化神"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 47,
+        "奇遇": 7,
+        "道具使用": 35,
+        "额外修为": 224
+      },
+      "breaks": 3,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 360,
+      "checkInDays": 36,
+      "cultivation": 673,
+      "layer": 10,
+      "name": "梳翎",
+      "realm": "元婴"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 125,
+        "奇遇": 3,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 3,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 530,
+      "checkInDays": 53,
+      "cultivation": 668,
+      "layer": 9,
+      "name": "执久",
+      "realm": "元婴"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 74,
+        "奇遇": 2,
+        "道具使用": 45,
+        "额外修为": -50
+      },
+      "breaks": 3,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 540,
+      "checkInDays": 54,
+      "cultivation": 611,
+      "layer": 8,
+      "name": "任决",
+      "realm": "元婴"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 59,
+        "奇遇": 0,
+        "道具使用": 17,
+        "额外修为": -41
+      },
+      "breaks": 3,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 560,
+      "checkInDays": 56,
+      "cultivation": 595,
+      "layer": 7,
+      "name": "云知微",
+      "realm": "元婴"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 23,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 210
+      },
+      "breaks": 3,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 360,
+      "checkInDays": 36,
+      "cultivation": 593,
+      "layer": 7,
+      "name": "轩辕",
+      "realm": "元婴"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 38,
+        "奇遇": 0,
+        "道具使用": 73,
+        "额外修为": 4
+      },
+      "breaks": 3,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 480,
+      "checkInDays": 48,
+      "cultivation": 595,
+      "layer": 7,
+      "name": "澹台净尘",
+      "realm": "元婴"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 27,
+        "奇遇": 1,
+        "道具使用": 23,
+        "额外修为": -27
+      },
+      "breaks": 3,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 500,
+      "checkInDays": 50,
+      "cultivation": 524,
+      "layer": 5,
+      "name": "观仰止",
+      "realm": "元婴"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 12,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -2
+      },
+      "breaks": 3,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 450,
+      "checkInDays": 45,
+      "cultivation": 460,
+      "layer": 3,
+      "name": "江愿",
+      "realm": "元婴"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 52,
+        "奇遇": 0,
+        "道具使用": 7,
+        "额外修为": -49
+      },
+      "breaks": 2,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 440,
+      "checkInDays": 44,
+      "cultivation": 450,
+      "layer": 10,
+      "name": "梓卿",
+      "realm": "金丹"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -160
+      },
+      "breaks": 2,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 600,
+      "checkInDays": 60,
+      "cultivation": 440,
+      "layer": 10,
+      "name": "单纯",
+      "realm": "金丹"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 25,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -55
+      },
+      "breaks": 2,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 470,
+      "checkInDays": 47,
+      "cultivation": 440,
+      "layer": 10,
+      "name": "凌水芸",
+      "realm": "金丹"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 31,
+        "奇遇": 0,
+        "道具使用": 8,
+        "额外修为": 12
+      },
+      "breaks": 2,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 390,
+      "checkInDays": 39,
+      "cultivation": 441,
+      "layer": 10,
+      "name": "初祓",
+      "realm": "金丹"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 14,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -174
+      },
+      "breaks": 2,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 560,
+      "checkInDays": 56,
+      "cultivation": 400,
+      "layer": 10,
+      "name": "夜烬",
+      "realm": "金丹"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 8,
+        "奇遇": 0,
+        "道具使用": 10,
+        "额外修为": -18
+      },
+      "breaks": 2,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 400,
+      "checkInDays": 40,
+      "cultivation": 400,
+      "layer": 10,
+      "name": "羲和",
+      "realm": "金丹"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 44,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 2,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 320,
+      "checkInDays": 32,
+      "cultivation": 381,
+      "layer": 10,
+      "name": "简长生",
+      "realm": "金丹"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 115,
+        "奇遇": 0,
+        "道具使用": 5,
+        "额外修为": 17
+      },
+      "breaks": 2,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 230,
+      "checkInDays": 23,
+      "cultivation": 367,
+      "layer": 9,
+      "name": "许青埃",
+      "realm": "金丹"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 40,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -10
+      },
+      "breaks": 1,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 220,
+      "checkInDays": 22,
+      "cultivation": 250,
+      "layer": 10,
+      "name": "灵汐",
+      "realm": "筑基"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -20
+      },
+      "breaks": 1,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 280,
+      "checkInDays": 28,
+      "cultivation": 260,
+      "layer": 10,
+      "name": "夜羽",
+      "realm": "筑基"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 5,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -65
+      },
+      "breaks": 1,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 270,
+      "checkInDays": 27,
+      "cultivation": 210,
+      "layer": 10,
+      "name": "夙玄溟",
+      "realm": "筑基"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 41,
+        "奇遇": 0,
+        "道具使用": 12,
+        "额外修为": -93
+      },
+      "breaks": 1,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 240,
+      "checkInDays": 24,
+      "cultivation": 200,
+      "layer": 10,
+      "name": "封拙安",
+      "realm": "筑基"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 8,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 4
+      },
+      "breaks": 2,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 210,
+      "checkInDays": 21,
+      "cultivation": 222,
+      "layer": 2,
+      "name": "旻川",
+      "realm": "金丹"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 8,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -48
+      },
+      "breaks": 1,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 240,
+      "checkInDays": 24,
+      "cultivation": 200,
+      "layer": 10,
+      "name": "陌池",
+      "realm": "筑基"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 7,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -157
+      },
+      "breaks": 1,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 340,
+      "checkInDays": 34,
+      "cultivation": 190,
+      "layer": 10,
+      "name": "慈洲屿",
+      "realm": "筑基"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 1,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 180,
+      "checkInDays": 18,
+      "cultivation": 190,
+      "layer": 10,
+      "name": "际渊",
+      "realm": "筑基"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 1,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -11
+      },
+      "breaks": 1,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 210,
+      "checkInDays": 21,
+      "cultivation": 200,
+      "layer": 10,
+      "name": "凌霄",
+      "realm": "筑基"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 10,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 1,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 160,
+      "checkInDays": 16,
+      "cultivation": 180,
+      "layer": 9,
+      "name": "勿忘卿",
+      "realm": "筑基"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 20,
+        "奇遇": 0,
+        "道具使用": 5,
+        "额外修为": -100
+      },
+      "breaks": 1,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 230,
+      "checkInDays": 23,
+      "cultivation": 155,
+      "layer": 6,
+      "name": "霡霂",
+      "realm": "筑基"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 1,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 150,
+      "checkInDays": 15,
+      "cultivation": 160,
+      "layer": 7,
+      "name": "江逸",
+      "realm": "筑基"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 150,
+      "checkInDays": 15,
+      "cultivation": 150,
+      "layer": 10,
+      "name": "凤清林",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 150,
+      "checkInDays": 15,
+      "cultivation": 140,
+      "layer": 10,
+      "name": "槐玄",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -70
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 200,
+      "checkInDays": 20,
+      "cultivation": 130,
+      "layer": 10,
+      "name": "眠安",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -70
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 220,
+      "checkInDays": 22,
+      "cultivation": 150,
+      "layer": 10,
+      "name": "墨珏",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -100
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 230,
+      "checkInDays": 23,
+      "cultivation": 130,
+      "layer": 10,
+      "name": "南靡",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 140,
+      "checkInDays": 14,
+      "cultivation": 140,
+      "layer": 10,
+      "name": "云间月",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 8,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 2
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 110,
+      "checkInDays": 11,
+      "cultivation": 120,
+      "layer": 10,
+      "name": "长生",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 3,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 130,
+      "checkInDays": 13,
+      "cultivation": 133,
+      "layer": 10,
+      "name": "江书舒",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 1,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 110,
+      "checkInDays": 11,
+      "cultivation": 120,
+      "layer": 3,
+      "name": "银岑",
+      "realm": "筑基"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 110,
+      "checkInDays": 11,
+      "cultivation": 110,
+      "layer": 10,
+      "name": "百里瑾",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 8,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -18
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 120,
+      "checkInDays": 12,
+      "cultivation": 110,
+      "layer": 10,
+      "name": "离煜",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -40
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 150,
+      "checkInDays": 15,
+      "cultivation": 110,
+      "layer": 10,
+      "name": "洛言川",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -130
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 240,
+      "checkInDays": 24,
+      "cultivation": 110,
+      "layer": 10,
+      "name": "念欢",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 100,
+      "checkInDays": 10,
+      "cultivation": 110,
+      "layer": 10,
+      "name": "萧承彦",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -10
+      },
+      "breaks": 1,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 110,
+      "checkInDays": 11,
+      "cultivation": 100,
+      "layer": 1,
+      "name": "依妍",
+      "realm": "筑基"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 2,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -232
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 330,
+      "checkInDays": 33,
+      "cultivation": 100,
+      "layer": 10,
+      "name": "白凩",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 3,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -23
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": "2026-06-21",
+      "canBreakthrough": true,
+      "checkInCult": 130,
+      "checkInDays": 13,
+      "cultivation": 110,
+      "layer": 10,
+      "name": "朝珩筠",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -70
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 170,
+      "checkInDays": 17,
+      "cultivation": 100,
+      "layer": 10,
+      "name": "顾思言",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 10,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -20
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 110,
+      "checkInDays": 11,
+      "cultivation": 100,
+      "layer": 10,
+      "name": "李木羊",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 18,
+        "奇遇": 3,
+        "道具使用": 0,
+        "额外修为": -131
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 210,
+      "checkInDays": 21,
+      "cultivation": 100,
+      "layer": 10,
+      "name": "刘政安",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 1,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -101
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 200,
+      "checkInDays": 20,
+      "cultivation": 100,
+      "layer": 10,
+      "name": "青严",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 1,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 110,
+      "checkInDays": 11,
+      "cultivation": 120,
+      "layer": 3,
+      "name": "塔沙维尔",
+      "realm": "筑基"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 16,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -6
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 90,
+      "checkInDays": 9,
+      "cultivation": 100,
+      "layer": 10,
+      "name": "邬稔",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -90
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 190,
+      "checkInDays": 19,
+      "cultivation": 100,
+      "layer": 10,
+      "name": "谢沉喻",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -70
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 170,
+      "checkInDays": 17,
+      "cultivation": 100,
+      "layer": 10,
+      "name": "夜璃",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 2,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -22
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 120,
+      "checkInDays": 12,
+      "cultivation": 100,
+      "layer": 10,
+      "name": "尹宿泱",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -20
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 120,
+      "checkInDays": 12,
+      "cultivation": 100,
+      "layer": 10,
+      "name": "虞悠悠",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 100,
+      "checkInDays": 10,
+      "cultivation": 100,
+      "layer": 10,
+      "name": "月衔枝",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 5,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -5
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 100,
+      "checkInDays": 10,
+      "cultivation": 100,
+      "layer": 10,
+      "name": "云言深",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 15,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 80,
+      "checkInDays": 8,
+      "cultivation": 95,
+      "layer": 10,
+      "name": "程喻",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 2,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 1,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 110,
+      "checkInDays": 11,
+      "cultivation": 112,
+      "layer": 2,
+      "name": "苏箐禾",
+      "realm": "筑基"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 90,
+      "checkInDays": 9,
+      "cultivation": 90,
+      "layer": 10,
+      "name": "沈烬",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 25,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 85,
+      "layer": 9,
+      "name": "长云浮",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 90,
+      "checkInDays": 9,
+      "cultivation": 100,
+      "layer": 10,
+      "name": "云瑶",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 80,
+      "checkInDays": 8,
+      "cultivation": 80,
+      "layer": 9,
+      "name": "李飞羽",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 90,
+      "checkInDays": 9,
+      "cultivation": 90,
+      "layer": 10,
+      "name": "筝渡",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 5,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 65,
+      "layer": 7,
+      "name": "蓝夜",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 3,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 60,
+      "checkInDays": 6,
+      "cultivation": 73,
+      "layer": 8,
+      "name": "宋守真",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 14,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 70,
+      "checkInDays": 7,
+      "cultivation": 94,
+      "layer": 10,
+      "name": "樊螭",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 60,
+      "checkInDays": 6,
+      "cultivation": 60,
+      "layer": 7,
+      "name": "白稚",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 60,
+      "layer": 7,
+      "name": "程与年",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 60,
+      "layer": 7,
+      "name": "铃湘桦",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 60,
+      "layer": 7,
+      "name": "玄鸳",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 11,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 70,
+      "checkInDays": 7,
+      "cultivation": 81,
+      "layer": 9,
+      "name": "皎皎",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 5,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 55,
+      "layer": 6,
+      "name": "安陵清梧",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 2,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 62,
+      "layer": 7,
+      "name": "黎绥禾",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 50,
+      "layer": 6,
+      "name": "薄青",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 50,
+      "layer": 6,
+      "name": "坊青殿",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 60,
+      "checkInDays": 6,
+      "cultivation": 70,
+      "layer": 8,
+      "name": "柳安",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 50,
+      "layer": 6,
+      "name": "祁正武",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 50,
+      "layer": 6,
+      "name": "叶凡",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 50,
+      "layer": 6,
+      "name": "鱼日",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 50,
+      "layer": 6,
+      "name": "云沐泠",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 6,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 40,
+      "checkInDays": 4,
+      "cultivation": 46,
+      "layer": 5,
+      "name": "柳生",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 3,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 30,
+      "checkInDays": 3,
+      "cultivation": 43,
+      "layer": 5,
+      "name": "许易安",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 1,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 40,
+      "checkInDays": 4,
+      "cultivation": 41,
+      "layer": 5,
+      "name": "何寻笙",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 40,
+      "checkInDays": 4,
+      "cultivation": 40,
+      "layer": 5,
+      "name": "陈锦归",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 40,
+      "checkInDays": 4,
+      "cultivation": 40,
+      "layer": 5,
+      "name": "江薄枝",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 50,
+      "layer": 6,
+      "name": "罗岐",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": -20
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 60,
+      "checkInDays": 6,
+      "cultivation": 40,
+      "layer": 5,
+      "name": "洛歌梦",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 50,
+      "layer": 6,
+      "name": "商欣辞",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 50,
+      "layer": 6,
+      "name": "沈渊",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 40,
+      "checkInDays": 4,
+      "cultivation": 40,
+      "layer": 5,
+      "name": "魏澜沉",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 40,
+      "checkInDays": 4,
+      "cultivation": 40,
+      "layer": 5,
+      "name": "张乌山",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 14,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 20,
+      "checkInDays": 2,
+      "cultivation": 34,
+      "layer": 4,
+      "name": "安渡",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 5,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 55,
+      "layer": 6,
+      "name": "归凌空",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 2,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 52,
+      "layer": 6,
+      "name": "许尽欢",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 5,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 50,
+      "checkInDays": 5,
+      "cultivation": 55,
+      "layer": 6,
+      "name": "宴逐风",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 30,
+      "checkInDays": 3,
+      "cultivation": 30,
+      "layer": 4,
+      "name": "白无月",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 30,
+      "checkInDays": 3,
+      "cultivation": 30,
+      "layer": 4,
+      "name": "独夫",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 20,
+      "checkInDays": 2,
+      "cultivation": 30,
+      "layer": 4,
+      "name": "公孙玲",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 30,
+      "checkInDays": 3,
+      "cultivation": 30,
+      "layer": 4,
+      "name": "江清雪",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 30,
+      "checkInDays": 3,
+      "cultivation": 30,
+      "layer": 4,
+      "name": "柳贯一",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 10
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 20,
+      "checkInDays": 2,
+      "cultivation": 30,
+      "layer": 4,
+      "name": "裴知禾",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 30,
+      "checkInDays": 3,
+      "cultivation": 30,
+      "layer": 4,
+      "name": "柒茉",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 30,
+      "checkInDays": 3,
+      "cultivation": 30,
+      "layer": 4,
+      "name": "清心辞",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 30,
+      "checkInDays": 3,
+      "cultivation": 30,
+      "layer": 4,
+      "name": "万毅卿",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 7,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 20,
+      "checkInDays": 2,
+      "cultivation": 27,
+      "layer": 3,
+      "name": "晏无墟",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 20,
+      "checkInDays": 2,
+      "cultivation": 20,
+      "layer": 3,
+      "name": "堇鸢",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 3,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 40,
+      "checkInDays": 4,
+      "cultivation": 43,
+      "layer": 5,
+      "name": "清灵",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 20,
+      "checkInDays": 2,
+      "cultivation": 20,
+      "layer": 3,
+      "name": "斯諦凡",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 20,
+      "checkInDays": 2,
+      "cultivation": 20,
+      "layer": 3,
+      "name": "向姊",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 20,
+      "checkInDays": 2,
+      "cultivation": 20,
+      "layer": 3,
+      "name": "玄卿",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 20,
+      "checkInDays": 2,
+      "cultivation": 20,
+      "layer": 3,
+      "name": "叶泠鸢",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 3,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 20,
+      "checkInDays": 2,
+      "cultivation": 23,
+      "layer": 3,
+      "name": "妘虞",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 3,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 30,
+      "checkInDays": 3,
+      "cultivation": 33,
+      "layer": 4,
+      "name": "陈墨",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "东方见秋",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "花间",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "江晚烟",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "姜庆瑶",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "姜十三",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "姜醉",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "君寄雪",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "乐正欢",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "柳俞",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "落安",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "莫忧",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "慕容溪",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "南华觉",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "亓岁",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "秦宓",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "清辞",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "上官瑾瑜",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "孙傅黎",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "谢无渡",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "厌清",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 30,
+      "checkInDays": 3,
+      "cultivation": 30,
+      "layer": 4,
+      "name": "叶济世",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "羽湘容",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "云尘",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "赵清梧",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 5,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 0,
+      "checkInDays": 0,
+      "cultivation": 5,
+      "layer": 1,
+      "name": "染灵钰",
+      "realm": "炼气"
+    },
+    {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "breakthroughTriggerTime": null,
+      "canBreakthrough": false,
+      "checkInCult": 0,
+      "checkInDays": 0,
+      "cultivation": 0,
+      "layer": 1,
+      "name": "叙",
+      "realm": "炼气"
+    },
+    {
+      "name": "雯瑶",
+      "realm": "炼气",
+      "layer": 1,
+      "cultivation": 0,
+      "checkInDays": 1,
+      "checkInCult": 10,
+      "breaks": 0,
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "道具使用": 0,
+        "奇遇": 0,
+        "额外修为": -10
+      }
+    },
+    {
+      "name": "栖霜",
+      "realm": "炼气",
+      "layer": 1,
+      "cultivation": 0,
+      "checkInDays": 0,
+      "checkInCult": 0,
+      "breaks": 0,
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "道具使用": 0,
+        "奇遇": 0,
+        "额外修为": 0
+      }
+    },
+    {
+      "name": "楼惊鹊",
+      "realm": "炼气",
+      "layer": 1,
+      "cultivation": 0,
+      "checkInDays": 0,
+      "checkInCult": 0,
+      "breaks": 0,
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "道具使用": 0,
+        "奇遇": 0,
+        "额外修为": 0
+      }
+    },
+    {
+      "name": "裴羽暝",
+      "realm": "炼气",
+      "layer": 1,
+      "cultivation": 0,
+      "checkInDays": 0,
+      "checkInCult": 0,
+      "breaks": 0,
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "道具使用": 0,
+        "奇遇": 0,
+        "额外修为": 0
+      }
+    },
+    {
+      "name": "孟凄",
+      "realm": "炼气",
+      "layer": 3,
+      "cultivation": 20,
+      "checkInDays": 2,
+      "checkInCult": 20,
+      "breaks": 0,
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "道具使用": 0,
+        "奇遇": 0,
+        "额外修为": 0
+      }
+    },
+    {
+      "name": "源池兮",
+      "realm": "炼气",
+      "layer": 3,
+      "cultivation": 20,
+      "checkInDays": 2,
+      "checkInCult": 20,
+      "breaks": 0,
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "道具使用": 0,
+        "奇遇": 0,
+        "额外修为": 0
+      }
+    }
 
 ]
 
+
 // 个人已拥有的背包物品x
 const personInventoryMap = {
+
   "安陵清梧": [
     "云露精华"
   ],
@@ -3443,7 +3535,9 @@ const personInventoryMap = {
     "焚石碎片",
     "时影珠×10",
     "阴影的许诺",
-    "余晖织影"
+    "余晖织影",
+    "沉枝",
+    "赤曜沙晶x2"
   ],
   "梳翎": [
     "琥珀"
@@ -3537,7 +3631,9 @@ const personInventoryMap = {
     "幻梦灵露×2",
     "发光果实",
     "极地梭鱼",
-    "枯荣枝"
+    "枯荣枝",
+    "玄霜叶",
+    "沉枝"
   ],
   "皇翎九霄": [
     "冰心碎片x6",
@@ -3584,7 +3680,7 @@ const personInventoryMap = {
     "余晖织影"
   ],
   "杨建设": [
-    "汇灵结晶×2",
+    "汇灵结晶",
     "天龙",
     "女鬼的衣物",
     "玄元护罩",
@@ -3599,10 +3695,8 @@ const personInventoryMap = {
     "风残石",
     "枯木灵",
     "云山凝露",
-    "幻梦灵露",
     "殍爻",
     "灵脉",
-    "脉石碎片",
     "逆鳞七斩",
     "空明晶",
     "雾里摘尘",
@@ -3613,7 +3707,8 @@ const personInventoryMap = {
     "熊猫",
     "草鸡",
     "冰心碎片×2",
-    "枯木蜈蚣"
+    "枯木蜈蚣",
+    "玄霜叶"
   ],
   "刘政安": [
     "幻梦灵露×3",
@@ -3663,7 +3758,8 @@ const personInventoryMap = {
     "恒石星陨",
     "宗门储物袋",
     "渡灵灯芯",
-    "焚石碎片"
+    "焚石碎片",
+    "汇灵结晶"
   ],
   "季鸢": [
     "雾里摘尘",
@@ -3773,22 +3869,26 @@ const personInventoryMap = {
     "沙舟碎片×6",
     "沼泽蜈蚣",
     "枯木根茎",
+    "潭果",
     "冰心碎片×5",
     "草鸡",
     "风残石x2",
     "土聚石",
     "冰火玄晶×2",
+    "冰渊寒气",
+    "熔岩余烬",
     "魂质",
     "变异混沌石·冰",
     "镜破",
     "极地梭鱼",
     "焚石碎片",
+    "灵脉碎晶x2",
     "仙门残锋",
     "脉纹石",
     "残脉感应",
     "霜玄叶",
-    "溟元果",
-    "余晖织影"
+    "余晖织影",
+    "余烬生花"
   ],
   "江逸": [
     "霜脊狼骨"
@@ -3854,11 +3954,15 @@ const personInventoryMap = {
     "青穗鼠"
   ],
   "叶济世": [],
-  "源池兮": [],
-  "孟凄": []
-  
-}
+  "雯瑶": [],
+  "栖霜": [],
+  "楼惊鹊": [],
+  "裴羽暝": [],
+  "孟凄": [],
+  "源池兮": []
 
+
+}
 
 let currentBagCat = "consumable";
 
