@@ -828,7 +828,7 @@ body {
 <script>
 
 // 人物数据库（用于个人搜索）
-const peopleDatabase = [
+const peopleDatabase =[
     {
       "behaviorCultivation": {
         "写戏认证": 1054,
@@ -6541,8 +6541,7 @@ const peopleDatabase = [
       "name": "落白",
       "realm": "炼气"
     }
-  ]
-  // 个人已拥有的背包物品x
+  ]// 个人已拥有的背包物品x
 const personInventoryMap = {
     "三谷": [
       "雷击木",
@@ -7752,9 +7751,8 @@ const personInventoryMap = {
       "草鸡（良）",
       "枯木蜈蚣（良）"
     ]
-  }
-let currentBagCat = "consumable";
-
+}
+  let currentBagCat = "consumable";
 function renderBagSubTabs(inventory, activeCat = currentBagCat) {
     const contentDiv = document.getElementById('personalTabContent');
     if (!contentDiv) {
