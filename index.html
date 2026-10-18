@@ -828,7 +828,7 @@ body {
 <script>
 
 // 人物数据库（用于个人搜索）
-const peopleDatabase = [
+const peopleDatabase =[
     {
       "behaviorCultivation": {
         "写戏认证": 1054,
@@ -6256,13 +6256,13 @@ const peopleDatabase = [
         "额外修为": 5
       },
       "breaks": 4,
-      "breakthroughTriggerTime": null,
-      "canBreakthrough": false,
+      "breakthroughTriggerTime": "2026-10-18",
+      "canBreakthrough": true,
       "celestialBreaks": 0,
       "celestialRealm": null,
       "checkInCult": 980,
       "checkInDays": 66,
-      "cultivation": 1196,
+      "cultivation": 1368,
       "daoName": null,
       "formerName": null,
       "layer": 10,
@@ -6373,27 +6373,6 @@ const peopleDatabase = [
       "layer": 10,
       "name": "归暮",
       "realm": "金丹"
-    },
-    {
-      "behaviorCultivation": {
-        "写戏认证": 0,
-        "奇遇": 0,
-        "道具使用": 0,
-        "额外修为": 100
-      },
-      "breaks": 1,
-      "breakthroughTriggerTime": null,
-      "canBreakthrough": false,
-      "celestialBreaks": 0,
-      "celestialRealm": null,
-      "checkInCult": 72,
-      "checkInDays": 3,
-      "cultivation": 172,
-      "daoName": null,
-      "formerName": null,
-      "layer": 8,
-      "name": "冷栀",
-      "realm": "筑基"
     },
     {
       "behaviorCultivation": {
@@ -7446,49 +7425,67 @@ const peopleDatabase = [
       "realm": "炼气"
     },
     {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 0,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
       "name": "清欢渡",
       "realm": "炼气",
-      "layer": 2,
-      "cultivation": 10,
-      "checkInDays": 1,
-      "checkInCult": 10,
-      "breaks": 0,
-      "behaviorCultivation": {
-        "写戏认证": 0,
-        "道具使用": 0,
-        "奇遇": 0,
-        "额外修为": 0
-      }
+      "canBreakthrough": false,
+      "breakthroughTriggerTime": null,
+      "celestialRealm": null,
+      "celestialBreaks": 0,
+      "daoName": null,
+      "formerName": null
     },
     {
+      "behaviorCultivation": {
+        "写戏认证": 0,
+        "奇遇": 0,
+        "道具使用": 0,
+        "额外修为": 0
+      },
+      "breaks": 1,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 110,
+      "layer": 2,
       "name": "温昭辞",
       "realm": "筑基",
-      "layer": 2,
-      "cultivation": 110,
-      "checkInDays": 1,
-      "checkInCult": 10,
-      "breaks": 1,
-      "behaviorCultivation": {
-        "写戏认证": 0,
-        "道具使用": 0,
-        "奇遇": 0,
-        "额外修为": 0
-      }
+      "canBreakthrough": false,
+      "breakthroughTriggerTime": null,
+      "celestialRealm": null,
+      "celestialBreaks": 0,
+      "daoName": null,
+      "formerName": null
     },
     {
-      "name": "乌衔",
-      "realm": "炼气",
-      "layer": 2,
-      "cultivation": 10,
-      "checkInDays": 1,
-      "checkInCult": 10,
-      "breaks": 0,
       "behaviorCultivation": {
         "写戏认证": 0,
-        "道具使用": 0,
         "奇遇": 0,
+        "道具使用": 0,
         "额外修为": 0
-      }
+      },
+      "breaks": 0,
+      "checkInCult": 10,
+      "checkInDays": 1,
+      "cultivation": 10,
+      "layer": 2,
+      "name": "乌衔",
+      "realm": "炼气",
+      "canBreakthrough": false,
+      "breakthroughTriggerTime": null,
+      "celestialRealm": null,
+      "celestialBreaks": 0,
+      "daoName": null,
+      "formerName": null
     }
   ]
   const personInventoryMap = {
@@ -7504,6 +7501,7 @@ const peopleDatabase = [
     "临池": [
       "仙门残锋"
     ],
+    "乌衔": [],
     "九灵": [],
     "九百苓殊": [
       "镜破【优】"
@@ -7515,7 +7513,8 @@ const peopleDatabase = [
       "弥月灵兔（初）",
       "晖光散x5",
       "赤曜沙晶x10",
-      "云凝护体丹"
+      "云凝护体丹",
+      "破境丹"
     ],
     "云凌": [
       "烬羽"
@@ -7588,7 +7587,6 @@ const peopleDatabase = [
     "依妍": [
       "弥月灵兔（初）"
     ],
-    "冷栀": [],
     "凌洛安": [],
     "凌霄": [
       "青穗鼠（初）"
@@ -7844,7 +7842,8 @@ const peopleDatabase = [
       "云山凝露",
       "时流星海",
       "《残脉感应》",
-      "赤曜沙晶x2"
+      "赤曜沙晶x2",
+      "破境丹"
     ],
     "宸熠": [
       "硬浆流",
@@ -8068,7 +8067,8 @@ const peopleDatabase = [
       "弥月灵兔（初）x2",
       "素弦弓（良）",
       "《逆鳞七斩》",
-      "《冰心招式》"
+      "《冰心招式》",
+      "破境丹"
     ],
     "林夏桉": [
       "枯木灵x2",
@@ -8119,7 +8119,7 @@ const peopleDatabase = [
     "樊螭": [
       "幽光藤蔓x2",
       "汇灵结晶",
-      "沼泽蜈蚣x2",
+      "沼泽蜈蚣x3",
       "霜狼脊骨",
       "醒愁玉桂枝x2",
       "雷击木",
@@ -8160,7 +8160,8 @@ const peopleDatabase = [
       "苍角碎屑",
       "枯木根茎",
       "山髓结晶",
-      "雾镜"
+      "雾镜",
+      "潭果"
     ],
     "欧阳澈": [
       "仙门残锋x2",
@@ -8198,7 +8199,8 @@ const peopleDatabase = [
       "飞瀑花",
       "脆风仙瓤x2",
       "阴嚎狼心",
-      "仙门残锋"
+      "仙门残锋",
+      "破境丹"
     ],
     "江墨": [],
     "江愿": [
@@ -8237,7 +8239,8 @@ const peopleDatabase = [
       "冰聚石",
       "残脉感应",
       "挽雪",
-      "逆鳞七斩"
+      "逆鳞七斩",
+      "破境丹"
     ],
     "洛冕": [],
     "洛妄辞": [],
@@ -8252,6 +8255,7 @@ const peopleDatabase = [
       "晖光散"
     ],
     "流年": [],
+    "清欢渡": [],
     "清灵": [
       "冰火玄晶",
       "脆风仙瓤",
@@ -8283,6 +8287,7 @@ const peopleDatabase = [
       "幻梦灵露x3",
       "登阶灵叶"
     ],
+    "温昭辞": [],
     "温眠": [],
     "澹台净尘": [
       "极地梭鱼",
@@ -8320,7 +8325,7 @@ const peopleDatabase = [
       "霜脊狼骨x2",
       "幻梦灵露x2",
       "沉枝x2",
-      "万灵鼎x2",
+      "万灵鼎",
       "星霄雀",
       "纯洁灵脉",
       "云山凝露",
@@ -8338,7 +8343,8 @@ const peopleDatabase = [
     ],
     "灵芜": [
       "天风玉露",
-      "山髓结晶"
+      "山髓结晶",
+      "破境丹"
     ],
     "烛笙": [
       "回春丸x2",
@@ -8544,7 +8550,8 @@ const peopleDatabase = [
       "云凝护体丹",
       "古溟蜂后",
       "幽荧草x3",
-      "血瘴木芯"
+      "血瘴木芯",
+      "破境丹"
     ],
     "纤雪绫": [],
     "绯胭": [],
@@ -8797,7 +8804,8 @@ const peopleDatabase = [
       "木之精华",
       "冰聚石",
       "灵气结晶",
-      "云隐决"
+      "云隐决",
+      "破境丹"
     ],
     "谢辞": [
       "潭果",
@@ -8984,10 +8992,7 @@ const peopleDatabase = [
       "潭果",
       "云缕衣"
     ],
-    "黥褚懿": [],
-    "清欢渡": [],
-    "温昭辞": [],
-    "乌衔": []
+    "黥褚懿": []
   }
   let currentBagCat = "consumable";
 function renderBagSubTabs(inventory, activeCat = currentBagCat) {
